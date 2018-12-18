@@ -9,12 +9,12 @@ const ScheBuySchema = new Schema({
   },
   from: {
     type: Date,
-    required: true,
+    // required: true,
     default: Date.now()
   },
   to: {
     type: Date,
-    required: true,
+    // required: true,
     default: Date.now()
   },
   state: {
@@ -29,7 +29,7 @@ const ScheBuySchema = new Schema({
       default: 20000
     },
     idCard: {
-      type: String,
+      type: Number,
       required: true,
       default: 0
     }
