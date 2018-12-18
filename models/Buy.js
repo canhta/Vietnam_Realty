@@ -47,6 +47,18 @@ const BuySchema = new Schema({
         default: 0
       }
     }
-  ]
+  ],
+  cardCash: {
+    menhGia: {
+      type: Number,
+      required: true,
+      default: 20000
+    },
+    idCard: {
+      type: String,
+      required: true,
+      default: 0
+    }
+  }
 });
 module.exports = mongoose.model("buy", BuySchema);
