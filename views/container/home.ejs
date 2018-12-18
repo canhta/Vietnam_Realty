@@ -1,0 +1,479 @@
+<div class="mainleft">
+    <div class="b-search">
+        <label><b>Tìm kiếm:</b> Thuê văn phòng theo khu vực Quận / Huyện tại Hà Nội</label>
+        <span class="forms">
+            <form name="frmsearch" action="#" method="post" />
+            <select style="width:19%;" id="districts">
+                <option value="all">Quận / Huyện</option>
+                <option value="5">-- Ba Đình</option>
+                <option value="11">-- Cầu Giấy</option>
+                <option value="6">-- Đống Đa</option>
+                <option value="10">-- Hà Đông</option>
+                <option value="7">-- Hai Bà Trưng</option>
+                <option value="1">-- Hoàn Kiếm</option>
+                <option value="13">-- Hoàng Mai</option>
+                <option value="12">-- Long Biên</option>
+                <option value="8">-- Tây Hồ</option>
+                <option value="9">-- Thanh Xuân</option>
+                <option value="18">-- Từ Liêm</option>
+            </select>
+            <select style="width:19%;">
+                <!--                 		<option value="0">Loại văn phòng</option>-->
+                <!--                	    <option value="1">--- Tòa nhà văn phòng</option>-->
+                <option value="2">Loại văn phòng</option>
+                <!--                	     <option value="3">--- Văn phòng giá rẻ</option>-->
+                <!--                	    <option value="4">--- Mặt bằng bán lẻ</option>-->
+            </select>
+
+            <select style="width:19%;" id="price" name="price">
+                <option value="all">Mức giá</option>
+                <option value="10">Dưới 10 USD/m2/tháng</option>
+                <option value="15">Dưới 15 USD/m2/tháng</option>
+                <option value="20">Dưới 20 USD/m2/tháng</option>
+                <option value="25">Dưới 25 USD/m2/tháng</option>
+                <option value="30">Dưới 30 USD/m2/tháng</option>
+                <option value="35">Dưới 35 USD/m2/tháng</option>
+                <!--<option value="40">Dưới 40 USD/m2</option>
+            <option value="45">Dưới 45 USD/m2</option>
+            <option value="50">Dưới 50 USD/m2</option>
+            <option value="60">Dưới 60 USD/m2</option>
+            <option value="61">Trên 60 USD/m2</option>-->
+            </select>
+
+            <select style="width:19%;" id="area" name="area">
+                <option value="all">Diện tích</option>
+                <option value="30">Dưới 30 m2</option>
+                <option value="70">Dưới 70 m2</option>
+                <option value="100">Dưới 100 m2</option>
+                <option value="150">Dưới 150 m2</option>
+                <option value="200">Dưới 200 m2</option>
+                <option value="500">Dưới 500 m2</option>
+                <option value="1000">Dưới 1000m2</option>
+                <!--<option value="2000">Dưới 2000m2</option>
+            <option value="5000">Dưới 5000m2</option>
+            <option value="5001">Trên 5000m2</option>-->
+            </select>
+            <input type="button" name="" onclick="filter_home();" value="" class="imgtvp btns" />
+            </form>
+        </span>
+    </div>
+    <div class="b-service">
+        <ul class="listsv">
+            <li>
+                <h2><a href="toa-nha-van-phong/index.html" title="Tòa nhà văn phòng"> Tòa nhà văn phòng</a></h2>
+                <a href="toa-nha-van-phong/index.html" title="Tòa nhà văn phòng"><img src="public/client/images/toanha_vn.png"
+                        title="Tòa nhà văn phòng" alt="Tòa nhà văn phòng" class="sv1" /></a>
+            </li>
+            <li>
+                <h2><a href="van-phong-tron-goi/index.html" title="văn phòng trọn gói"> Văn phòng trọn gói</a></h2>
+                <a href="van-phong-tron-goi/index.html" title="văn phòng trọn gói"><img src="public/client/images/vptg_anh1.jpg"
+                        title="văn phòng trọn gói" alt="văn phòng trọn gói" class="sv1" /></a>
+            </li>
+            <li class="end">
+                <h2><a href="mat-bang-ban-le/index.html" title="Mặt bằng bán lẻ"> Mặt bằng bán lẻ</a></h2>
+                <a href="mat-bang-ban-le/index.html" title="Mặt bằng bán lẻ"><img src="public/client/images/imgsv1.jpg"
+                        title="Mặt bằng bán lẻ" alt="Mặt bằng bán lẻ" class="sv1" /></a>
+            </li>
+            <li>
+                <h2><a href="gioi-thieu/dich-vu-cung-cap.html" title="Dịch vụ thuê văn phòng"> Dịch vụ thuê văn phòng</a></h2>
+                <a href="gioi-thieu/dich-vu-cung-cap.html" title="Dịch vụ thuê văn phòng"><img src="public/client/images/imgsv3.jpg"
+                        title="Dịch vụ thuê văn phòng" alt="Dịch vụ thuê văn phòng" class="sv1" /></a>
+            </li>
+            <li>
+                <h2><a href="#"> Bản đồ</a></h2>
+                <a href="javascript:void(0)" onclick="document.getElementById('light-request').style.display='block';document.getElementById('fade-request').style.display='block'"
+                    title="" id="showmap"><img src="public/client/images/imgsv4.jpg" title="" alt="" class="sv1" /></a>
+            </li>
+            <li class="end">
+                <h2><a href="#"> Blog hữu ích</a></h2>
+                <a href="#"><img src="public/client/images/imgsv5.jpg" title="Blog hữu ích" alt="" class="sv1" /></a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--     <div class="mainright">
+    	    <a href="/nhan-bao-gia.html" title="Bao gia nhanh"><img src="/public/client/images/Bao-gia-2.gif" title="Bao gia nhanh" alt="Bao gia nhanh" /></a>
+	<div style="margin-top:7px;"><a href="/toa-nha-van-phong/cau-giay" title="Văn phòng Cầu Giấy" ><img src="/public/client/images/Van-phong-cau-giay.gif" title="" alt="Văn phòng Cầu Giấy" /></a></div>
+    </div> -->
+
+<div class="mainright">
+    <div class="bannerr1">
+        <a target="_blank" href="http://ongay.vn/?utm_source=Banner_TVP&amp;utm_medium=Banner&amp;utm_campaign=Qu%E1%BA%A3ng%20b%C3%A1n%20th%C6%B0%C6%A1ng%20hi%E1%BB%87u%20Ongay"
+            title="vtconlinetower.com"><img alt="vtconlinetower" src="public/client/images/banner-ongay-tvp.gif"></a>
+    </div>
+    <div class="bannerr2">
+        <a href="toa-nha-van-phong/cau-giay.html" title="Văn phòng Cầu Giấy"><img alt="" title="" src="public/client/images/banner2.jpg"></a>
+    </div>
+</div>
+
+<div class="b-filter1">
+    <h2 class="imgtvp">Tìm văn phòng theo Quận / Huyện tại Hà Nội</h2>
+    <ul class="listqh">
+        <li class="imgtvp"><a href="van-phong-cho-thue/ba-dinh/index.html" title="Văn phòng cho thuê tại Ba Đình">Ba
+                Đình</a></li>
+        <li class="imgtvp"><a href="van-phong-cho-thue/cau-giay/index.html" title="Văn phòng cho thuê tại Cầu Giấy">Cầu
+                Giấy</a></li>
+        <li class="imgtvp"><a href="van-phong-cho-thue/dong-da/index.html" title="Văn phòng cho thuê tại Đống Đa">Đống
+                Đa</a></li>
+        <li class="imgtvp"><a href="van-phong-cho-thue/ha-dong/index.html" title="Văn phòng cho thuê tại Hà Đông">Hà
+                Đông</a></li>
+        <li class="imgtvp"><a href="van-phong-cho-thue/hai-ba-trung/index.html" title="Văn phòng cho thuê tại Hai Bà Trưng">Hai
+                Bà Trưng</a></li>
+        <li class="imgtvp"><a href="van-phong-cho-thue/hoan-kiem/index.html" title="Văn phòng cho thuê tại Hoàn Kiếm">Hoàn
+                Kiếm</a></li>
+        <li class="imgtvp"><a href="van-phong-cho-thue/hoang-mai/index.html" title="Văn phòng cho thuê tại Hoàng Mai">Hoàng
+                Mai</a></li>
+        <li class="imgtvp"><a href="van-phong-cho-thue/long-bien/index.html" title="Văn phòng cho thuê tại Long Biên">Long
+                Biên</a></li>
+        <li class="imgtvp"><a href="van-phong-cho-thue/tay-ho/index.html" title="Văn phòng cho thuê tại Tây Hồ">Tây Hồ</a></li>
+        <li class="imgtvp"><a href="van-phong-cho-thue/thanh-xuan/index.html" title="Văn phòng cho thuê tại Thanh Xuân">Thanh
+                Xuân</a></li>
+        <li class="imgtvp"><a href="van-phong-cho-thue/tu-liem/index.html" title="Văn phòng cho thuê tại Từ Liêm">Từ
+                Liêm</a></li>
+    </ul>
+</div>
+
+<!-- Bat dau slide moi -->
+<div class="b-filter2">
+    <h2 class="imgtvp vp1">Tòa nhà văn phòng chuyên nghiệp</h2>
+    <div class="slidetoanha">
+        <div id="slider1" class="sliderwrapper">
+            <div class="contentdiv">
+                <ul>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1526524964-688424.jpg" alt="eSpace Coworking"
+                            title="eSpace Coworking" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/espace-coworking-full-package.html" title="eSpace Coworking">eSpace
+                                Coworking</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1517388151-928359.jpg" alt="Tòa nhà Daeha Business Center"
+                            title="Tòa nhà Daeha Business Center" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/toa-nha-daeha-business-center.html" title="Tòa nhà Daeha Business Center">Tòa
+                                nhà Daeha Business Center</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1509445420-179061.png" alt="Tòa nhà Horison Tower, Cát Linh"
+                            title="Tòa nhà Horison Tower, Cát Linh" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/toa-nha-horison-tower-cat-linh.html" title="Tòa nhà Horison Tower, Cát Linh">Tòa
+                                nhà Horison Tower, Cát Linh</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1508403624-262700.jpg" alt="Tòa nhà Hà Nội Tower- 49 Hai Bà Trưng"
+                            title="Tòa nhà Hà Nội Tower- 49 Hai Bà Trưng" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/toa-nha-ha-noi-tower-49-hai-ba-trung.html" title="Tòa nhà Hà Nội Tower- 49 Hai Bà Trưng">Tòa
+                                nhà Hà Nội Tower- 49 Hai Bà Trưng</a></p>
+                    </li>
+                </ul>
+            </div>
+            <div class="contentdiv">
+                <ul>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1506330265-233439.jpg" alt="Tòa nhà Richy Tower"
+                            title="Tòa nhà Richy Tower" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/toa-nha-richy-tower.html" title="Tòa nhà Richy Tower">Tòa nhà
+                                Richy Tower</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1504606012-353956.jpg" alt="Tòa nhà Belvedere Hà Nội"
+                            title="Tòa nhà Belvedere Hà Nội" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/toa-nha-belvedere-ha-noi.html" title="Tòa nhà Belvedere Hà Nội">Tòa
+                                nhà
+                                Belvedere Hà Nội</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1494233128-372225.jpg" alt="Tổ hợp Ecolife Capitol"
+                            title="Tổ hợp Ecolife Capitol" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/to-hop-ecolife-capitol.html" title="Tổ hợp Ecolife Capitol">Tổ
+                                hợp Ecolife
+                                Capitol</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1483954442-274292.jpg" alt="Tòa nhà Charmvit Tower"
+                            title="Tòa nhà Charmvit Tower" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/toa-nha-charmvit-tower.html" title="Tòa nhà Charmvit Tower">Tòa
+                                nhà Charmvit
+                                Tower</a></p>
+                    </li>
+                </ul>
+            </div>
+            <div class="contentdiv">
+                <ul>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1483003184-663570.jpg" alt="Tòa nhà 789 Tower"
+                            title="Tòa nhà 789 Tower" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/toa-nha-789-tower.html" title="Tòa nhà 789 Tower">Tòa nhà 789
+                                Tower</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1470215018-457019.jpg" alt="Tòa nhà Vietbank"
+                            title="Tòa nhà Vietbank" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/toa-nha-vietbank.html" title="Tòa nhà Vietbank">Tòa nhà Vietbank</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1470020232-522458.jpg" alt="Tòa nhà Hồng Hà Center"
+                            title="Tòa nhà Hồng Hà Center" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/toa-nha-hong-ha-center.html" title="Tòa nhà Hồng Hà Center">Tòa
+                                nhà Hồng Hà
+                                Center</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1469848068-26220.jpg" alt="Tòa nhà PV Oil Tower"
+                            title="Tòa nhà PV Oil Tower" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/toa-nha-pv-oil-tower.html" title="Tòa nhà PV Oil Tower">Tòa nhà
+                                PV Oil Tower</a></p>
+                    </li>
+                </ul>
+            </div>
+            <div class="contentdiv">
+                <ul>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1469778718-822123.jpg" alt="Capital Building, 41 Hai Bà Trưng"
+                            title="Capital Building, 41 Hai Bà Trưng" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/capital-building-41-hai-ba-trung.html" title="Capital Building, 41 Hai Bà Trưng">Capital
+                                Building, 41 Hai Bà Trưng</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1469765146-435454.png" alt="Tòa nhà TNR Tower - Vincom Nguyễn Chí Thanh"
+                            title="Tòa nhà TNR Tower - Vincom Nguyễn Chí Thanh" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/toa-nha-tnr-tower-vincom-nguyen-chi-thanh.html" title="Tòa nhà TNR Tower - Vincom Nguyễn Chí Thanh">Tòa
+                                nhà TNR Tower - Vincom Nguyễn Chí Thanh</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1469527006-156410.jpg" alt="Tràng An Complex"
+                            title="Tràng An Complex" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/trang-an-complex.html" title="Tràng An Complex">Tràng An Complex</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1453948695-330179.jpg" alt="Trung Tín Building"
+                            title="Trung Tín Building" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/trung-tin-building.html" title="Trung Tín Building">Trung Tín
+                                Building</a></p>
+                    </li>
+                </ul>
+            </div>
+            <div class="contentdiv">
+                <ul>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1443500633-36168.jpg" alt="VCCI Tower" title="VCCI Tower"
+                            width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/vcci-tower.html" title="VCCI Tower">VCCI Tower</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1429174541-308770.jpg" alt="Tòa nhà Handico Tower"
+                            title="Tòa nhà Handico Tower" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/toa-nha-handico-tower.html" title="Tòa nhà Handico Tower">Tòa nhà
+                                Handico Tower</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1428723199-673591.jpg" alt="Tòa nhà Viện Dầu Khí"
+                            title="Tòa nhà Viện Dầu Khí" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/toa-nha-vien-dau-khi.html" title="Tòa nhà Viện Dầu Khí">Tòa nhà
+                                Viện Dầu Khí</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1422673872-443833.jpg" alt="Toà nhà Mặt Trời Sông Hồng"
+                            title="Toà nhà Mặt Trời Sông Hồng" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/toa-nha-mat-troi-song-hong.html" title="Toà nhà Mặt Trời Sông Hồng">Toà
+                                nhà Mặt
+                                Trời Sông Hồng</a></p>
+                    </li>
+                </ul>
+            </div>
+            <div class="contentdiv">
+                <ul>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1413344890-754174.jpg" alt="Tòa nhà 319 Tower"
+                            title="Tòa nhà 319 Tower" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/toa-nha-319-tower.html" title="Tòa nhà 319 Tower">Tòa nhà 319
+                                Tower</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1411458996-686137.jpg" alt="Lotte Center Hà Nội"
+                            title="Lotte Center Hà Nội" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/lotte-center-ha-noi.html" title="Lotte Center Hà Nội">Lotte
+                                Center Hà Nội</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1408587234-688827.jpg" alt="Gelex Tower" title="Gelex Tower"
+                            width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/gelex-tower.html" title="Gelex Tower">Gelex Tower</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1399351895-604626.jpg" alt="Tòa nhà Tung Shing"
+                            title="Tòa nhà Tung Shing" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/toa-nha-tung-shing.html" title="Tòa nhà Tung Shing">Tòa nhà Tung
+                                Shing</a></p>
+                    </li>
+                </ul>
+            </div>
+            <div class="contentdiv">
+                <ul>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1368505085-481087.jpg" alt="Vinaconex 9" title="Vinaconex 9"
+                            width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/vinaconex-9.html" title="Vinaconex 9">Vinaconex 9</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1363663894-853970.jpg" alt="Việt Tower" title="Việt Tower"
+                            width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/viet-tower.html" title="Việt Tower">Việt Tower</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1378198942-265580.jpg" alt="Toserco Building"
+                            title="Toserco Building" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/toserco-building.html" title="Toserco Building">Toserco Building</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1347961026-683083.jpg" alt="Tổ Hợp CTM Complex"
+                            title="Tổ Hợp CTM Complex" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/to-hop-ctm-139-cau-giay.html" title="Tổ Hợp CTM Complex">Tổ Hợp
+                                CTM Complex</a></p>
+                    </li>
+                </ul>
+            </div>
+            <div class="contentdiv">
+                <ul>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1508234623-262076.jpg" alt="Tòa nhà Eurowindow Số 2 Tôn Thất Tùng (HICC1)"
+                            title="Tòa nhà Eurowindow Số 2 Tôn Thất Tùng (HICC1)" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/toa-nha-hicc-1-toa-nha-vp-eurowindow.html" title="Tòa nhà Eurowindow Số 2 Tôn Thất Tùng (HICC1)">Tòa
+                                nhà Eurowindow Số 2 Tôn Thất Tùng (HICC1)</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1346061290-979110.png" alt="VID Tower 1" title="VID Tower 1"
+                            width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/vid-tower-1.html" title="VID Tower 1">VID Tower 1</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1394506782-924377.jpg" alt="Tòa nhà PVI Tower"
+                            title="Tòa nhà PVI Tower" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/pvi-tower.html" title="Tòa nhà PVI Tower">Tòa nhà PVI Tower</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1344308488-378229.jpg" alt="HUD Tower Lê Văn Lương"
+                            title="HUD Tower Lê Văn Lương" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/hud-tower.html" title="HUD Tower Lê Văn Lương">HUD Tower Lê Văn
+                                Lương</a></p>
+                    </li>
+                </ul>
+            </div>
+            <div class="contentdiv">
+                <ul>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1343384464-468307.jpg" alt="TTC Tower" title="TTC Tower"
+                            width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/ttc-tower.html" title="TTC Tower">TTC Tower</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1342498761-738295.jpg" alt="Discovery Complex"
+                            title="Discovery Complex" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/discovery-complex.html" title="Discovery Complex">Discovery
+                                Complex</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1342405726-636652.jpg" alt="Tổ hợp chức năng Eurowindow MultiComplex"
+                            title="Tổ hợp chức năng Eurowindow MultiComplex" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/to-hop-chuc-nang-eurowindow-multicomplex.html" title="Tổ hợp chức năng Eurowindow MultiComplex">Tổ
+                                hợp chức năng Eurowindow MultiComplex</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1401165003-163986.jpg" alt="Hapulico Complex"
+                            title="Hapulico Complex" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/hapulico-complex.html" title="Hapulico Complex">Hapulico Complex</a></p>
+                    </li>
+                </ul>
+            </div>
+            <div class="contentdiv">
+                <ul>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1504000518-560894.jpg" alt="Hoa Binh International Towers"
+                            title="Hoa Binh International Towers" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/hoa-binh-international-towers.html" title="Hoa Binh International Towers">Hoa
+                                Binh International Towers</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1341374811-786161.jpg" alt="Nam Cường Building"
+                            title="Nam Cường Building" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/nam-cuong-building.html" title="Nam Cường Building">Nam Cường
+                                Building</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1341291658-400584.jpg" alt="Tòa nhà Vinaplast"
+                            title="Tòa nhà Vinaplast" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/toa-nha-vinaplast.html" title="Tòa nhà Vinaplast">Tòa nhà
+                                Vinaplast</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1339212615-487206.jpg" alt="Icon4 Tower" title="Icon4 Tower"
+                            width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/icon4-tower.html" title="Icon4 Tower">Icon4 Tower</a></p>
+                    </li>
+                </ul>
+            </div>
+            <div class="contentdiv">
+                <ul>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1339129145-577074.jpg" alt="DMC Tower" title="DMC Tower"
+                            width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/dcm-tower.html" title="DMC Tower">DMC Tower</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1336018348-18031.jpg" alt="Zodiac building"
+                            title="Zodiac building" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/toa-nha-zodiac.html" title="Zodiac building">Zodiac building</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1341454186-871959.jpg" alt="Kinh Đô Building"
+                            title="Kinh Đô Building" width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/kinh-do-building.html" title="Kinh Đô Building">Kinh Đô Building</a></p>
+                    </li>
+                    <li>
+                        <img src="uploads/office_building/thumb_172-94/1340848952-640816.jpg" alt="Việt Á Tower" title="Việt Á Tower"
+                            width="172px" height="94px" />
+                        <p><a href="toa-nha-van-phong/viet-a-tower.html" title="Việt Á Tower">Việt Á Tower</a></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="paginate-slider1" class="pagination"></div>
+        <script type="text/javascript">
+            featuredcontentslider.init({
+                id: "slider1",  //id of main slider DIV
+                contentsource: ["inline", ""],  //Valid values: ["inline", ""] or ["ajax", "path_to_file"]
+                toc: "#increment",  //Valid values: "#increment", "markup", ["label1", "label2", etc]
+                nextprev: ["&laquo; Prev", "Next &raquo;"],  //labels for "prev" and "next" links. Set to "" to hide.
+                revealtype: "click", //Behavior of pagination links to reveal the slides: "click" or "mouseover"
+                enablefade: [true, 0.2],  //[true/false, fadedegree]
+                autorotate: [true, 4000],  //[true/false, pausetime]
+                onChange: function (previndex, curindex) {  //event handler fired whenever script changes slide
+                    //previndex holds index of last slide viewed b4 current (1=1st slide, 2nd=2nd etc)
+                    //curindex holds index of currently shown slide (1=1st slide, 2nd=2nd etc)
+                }
+            })
+        </script>
+    </div>
+    <span class="viewmore"><a href="toa-nha-van-phong/index.html" title="Toa nha van phong">Xem thêm &raquo;</a></span>
+</div>
+<!-- Ket thuc slide moi -->
+
+<div class="b-filter2">
+    <h2 class="imgtvp vp2">Mặt bằng bán lẻ</h2>
+    <ul class="mbbl">
+        <li><a href="mat-bang-ban-le/parkson-thai-ha.html" title="Parkson Thái Hà"> Parkson Thái Hà</a></li>
+        <li><a href="mat-bang-ban-le/ciputra-hanoi-mall.html" title="Ciputra Hanoi Mall"> Ciputra Hanoi Mall</a></li>
+        <li><a href="mat-bang-ban-le/tttm-cho-hang-da.html" title="TTTM Chợ Hàng Da"> TTTM Chợ Hàng Da</a></li>
+        <li><a href="mat-bang-ban-le/savico-mega-mall.html" title="Savico Mega Mall"> Savico Mega Mall</a></li>
+        <li><a href="mat-bang-ban-le/parkson-landmark-72.html" title="Parkson Landmark 72"> Parkson Landmark 72</a></li>
+        <li><a href="mat-bang-ban-le/trung-tam-thuong-mai-vincom-center-ha-noi.html" title="Vincom Center Hà Nội">
+                Vincom
+                Center Hà Nội</a></li>
+        <li><a href="mat-bang-ban-le/trung-tam-thuong-mai-grand-plaza.html" title="Trung tâm thương mại Grand Plaza">
+                Trung tâm thương mại Grand Plaza</a></li>
+        <li><a href="mat-bang-ban-le/pico-mall.html" title="Pico Mall"> Pico Mall</a></li>
+        <li><a href="mat-bang-ban-le/mat-bang-ban-le-big-c-thang-long-hn.html" title="Mặt bằng bán lẻ Big C Thăng Long (HN)">
+                Mặt bằng bán lẻ Big C Thăng Long (HN)</a></li>
+    </ul>
+    <span class="viewmore"><a href="mat-bang-ban-le/index.html" title="Mặt bằng bán lẻ">Xem thêm &raquo;</a></span>
+</div>
