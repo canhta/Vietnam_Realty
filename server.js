@@ -11,9 +11,8 @@ var indexRouter = require("./routes/index");
 var userRouter = require("./routes/api/user");
 var profileRouter = require("./routes/api/profile");
 var sellRouter = require("./routes/api/sell");
-var buyRouter = require("./routes/api/buy");
-var scheduleBuyRouter = require("./routes/admin/scheduleBuy");
-var scheduleSellRouter = require("./routes/admin/scheduleSell");
+var findRouter = require("./routes/api/find");
+var scheduleRouter = require("./routes/admin/schedule");
 
 var app = express();
 
@@ -38,9 +37,8 @@ app.use("/", indexRouter);
 app.use("/api/users", userRouter);
 app.use("/api/profiles", profileRouter);
 app.use("/api/sells", sellRouter);
-app.use("/api/buys", buyRouter); //Database config
-app.use("/admin/schedule", scheduleBuyRouter);
-app.use("/admin/schedule", scheduleSellRouter);
+app.use("/api/finds", findRouter); //Database config
+app.use("/admin/schedule", scheduleRouter);
 const db = require("./config/database");
 mongoose.connect(
   db.mongoURI,

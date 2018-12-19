@@ -1,9 +1,9 @@
 const Validator = require("validator");
 const isEmpty = require("./is-empty");
+const validateScheduleInput = require("./schedule");
 
 module.exports = function validateSellInput(data) {
-  let errors = {};
-
+  let errors = validateScheduleInput(data);
   data.hinhThuc = !isEmpty(data.hinhThuc) ? data.hinhThuc : "";
   data.loai = !isEmpty(data.loai) ? data.loai : "";
   data.diachi = !isEmpty(data.diachi) ? data.diachi : "";
