@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 const mongoose = require("mongoose");
 const passport = require("passport");
-
+const isEmpty = require("../../validation/is-empty");
 const Find = require("../../models/Find");
 const Profile = require("../../models/Profile");
 
@@ -18,7 +18,7 @@ module.exports = router;
 //@desc   Get all finds
 //@access Public
 router.get("/", (req, res, next) => {
-  Find.find()
+  Find.find() //cần sua thanh sate
     .sort({ date: -1 })
     .then(find => {
       // if (find.length === 0) {
@@ -71,6 +71,7 @@ router.post(
         from: req.body.from,
         to: req.body.to
       },
+      state: "NEW",
       timePost: {
         fromPost: req.body.fromPost,
         toPost: req.body.toPost
