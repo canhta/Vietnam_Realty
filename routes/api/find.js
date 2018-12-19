@@ -19,12 +19,13 @@ module.exports = router;
 //@access Public
 router.get("/", (req, res, next) => {
   Find.find() //cần sua thanh sate
-    .sort({ date: -1 })
+    // .map(val => val)
     .then(find => {
+      let value = find.map(res => res);
       // if (find.length === 0) {
       //   res.status(404).json({ noFindPost: "No find posts found." });
       // }
-      res.json(find);
+      res.json(value);
     })
     .catch(err =>
       res.status(404).json({ noFindFounds: "No find posts found." })

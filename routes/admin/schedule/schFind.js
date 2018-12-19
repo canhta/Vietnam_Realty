@@ -74,9 +74,10 @@ router.post(
         .then(find => {
           Find.findOneAndUpdate(
             true,
-            { $set: { state: "READY" } },
+            { $set: { state: _state } },
             { new: false }
           ).then(ress => res.json(ress));
+          // res.json(find);
         })
         .catch(err =>
           res.status(404).json({ noFindFound: "No find post for this ID." })

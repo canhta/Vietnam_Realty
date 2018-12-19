@@ -74,7 +74,7 @@ router.post(
         .then(find => {
           Sell.findOneAndUpdate(
             true,
-            { $set: { state: "READY" } },
+            { $set: { state: _state } },
             { new: false }
           ).then(ress => res.json(ress));
         })
