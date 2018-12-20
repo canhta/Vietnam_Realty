@@ -1,72 +1,30 @@
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-  <a class=" navbar-brand" href="#">Gosuu</a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarTogglerDemo02"
-    aria-controls="navbarTogglerDemo02"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<!-- Header -->
 
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
-      <li class="nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle"
-          href="/product"
-          id="navbarDropdownMenuLink"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          User</a
-        >
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="/users">Members list</a>
-          <a class="dropdown-item" href="/users/create">Register</a>
-          <a class="dropdown-item" href="#">Profile</a>
+<header class="header">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="header_content d-flex flex-row align-items-center justify-content-start">
+          <div class="logo">
+            <a href="#"><img src="images/logo.png" alt=""></a>
+          </div>
+          <nav class="main_nav">
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about.html">About us</a></li>
+              <li class="active"><a href="properties.html">Properties</a></li>
+              <li><a href="news.html">News</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </nav>
+          <div class="phone_num ml-auto">
+            <div class="phone_num_inner">
+              <img src="images/phone.png" alt=""><span>652-345 3222 11</span>
+            </div>
+          </div>
+          <div class="hamburger ml-auto"><i class="fa fa-bars" aria-hidden="true"></i></div>
         </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle"
-          href="/product"
-          id="navbarDropdownMenuLink"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-          >Product</a
-        >
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="/product">Products list</a>
-          <a class="dropdown-item" href="/product/create">New products</a>
-          <a class="dropdown-item" href="#">Payment</a>
-        </div>
-      </li>
-      <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0" action="/users/search" method="get">
-      <input
-        class="form-control mr-sm-2"
-        type="search"
-        placeholder="Search"
-        name="_name"
-      />
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-        Search
-      </button>
-    </form>
+      </div>
+    </div>
   </div>
-</nav>
-<br /><br /><br />
+</header>
