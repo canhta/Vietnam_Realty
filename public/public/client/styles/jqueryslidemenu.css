@@ -1,0 +1,90 @@
+.jqueryslidemenu{
+position:relative; float:left; height:33px; margin:1px 0 0 0; font-size:14px;
+width: 100%;
+}
+
+.jqueryslidemenu ul{
+margin: 0;
+padding: 0;
+list-style-type: none;
+}
+
+/*Top level list items*/
+.jqueryslidemenu ul li{
+position: relative;
+display: inline; border:1px #959595 solid; border-width:0px 0px 0px 1px;
+float: left;
+}
+
+/*Top level menu link items style*/
+.jqueryslidemenu ul li a{
+display: block;
+color: #0d59b3;
+padding: 7px 16px 8px 15px;
+border: 1px solid #FFF;
+text-decoration: none;
+text-transform: uppercase;
+}
+
+* html .jqueryslidemenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+display: inline-block;
+}
+
+.jqueryslidemenu ul li a:link, .jqueryslidemenu ul li a:visited{
+color: #0d59b3;
+}
+
+.jqueryslidemenu ul li a:hover, .jqueryslidemenu ul li a.current{
+background: #39b54a; /*tab link background during hover state*/
+color: white;
+}
+.jqueryslidemenu ul li a.kygui{background:#FFF; font-weight:bold; color:#17a92a; border-right:1px #959595 solid;}
+/*1st sub level menu*/
+.jqueryslidemenu ul li ul{
+position: absolute;
+left: 0;
+display: block;
+visibility: hidden;
+background:#FFF; z-index:99999;
+}
+
+/*Sub level menu list items (undo style from Top level List Items)*/
+.jqueryslidemenu ul li ul li{
+display: list-item;
+float: none;
+}
+
+/*All subsequent sub menu levels vertical offset after 1st level sub menu */
+.jqueryslidemenu ul li ul li ul{
+top: 0;
+}
+
+/* Sub level menu links style */
+.jqueryslidemenu ul li ul li a{
+font: normal 13px Arial, Helvetica, sans-serif;
+width:190px;
+padding: 7px 0 7px 18px;
+margin: 0;
+border-top-width: 0; text-indent:12px;
+border-bottom: 1px solid #959595; background:url(../images/arr-sub.png) no-repeat left center;
+text-transform: uppercase;
+}
+
+.jqueryslidemenuz ul li ul li a:hover{ /*sub menus hover style*/
+background: #edebeb;
+color: #0d59b3;
+}
+
+/* ######### CSS classes applied to down and right arrow images  ######### */
+
+.downarrowclass{
+position: absolute;
+top: 12px;
+right: 7px; display:none;
+}
+
+.rightarrowclass{
+position: absolute;
+top: 6px;
+right: 5px;
+}
