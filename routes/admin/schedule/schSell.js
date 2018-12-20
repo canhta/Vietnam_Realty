@@ -86,13 +86,8 @@ router.delete(
   passport.authenticate("jwt", { session: false }),
   roleMiddleware.requiredADMIN,
   (req, res, next) => {
-    Sell.findById(req.params.id)
-      .then(find => {
-        //Delete
-        Sell.remove().then(() => {
-          res.json({ success: true });
-        });
-      })
+    Sell.findByIdAndRemove(req.params.id)
+      .then(find => res.json({ success: true }))
       .catch(err => {
         res.status(404).json({ noFindFound: "Not find post found" });
       });
