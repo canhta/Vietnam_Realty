@@ -8,8 +8,7 @@
   },
   "scripts": {
     "start": "node server",
-    "dev": "nodemon server",
-    "front": "nodemon test"
+    "dev": "nodemon server"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
