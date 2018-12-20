@@ -21,10 +21,11 @@ router.get("/", (req, res, next) => {
   Find.find() //cần sua thanh sate
     // .map(val => val)
     .then(find => {
-      let value = find.map(res => res);
-      // if (find.length === 0) {
-      //   res.status(404).json({ noFindPost: "No find posts found." });
-      // }
+      let value = find.filter(val => {
+        return val.state === req.query.state;
+      });
+      console.log(value.length);
+
       res.json(value);
     })
     .catch(err =>
