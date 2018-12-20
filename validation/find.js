@@ -7,7 +7,7 @@ module.exports = function validateFindInput(data) {
   data.hinhThuc = !isEmpty(data.hinhThuc) ? data.hinhThuc : "sell";
   data.loai = !isEmpty(data.loai) ? data.loai : "";
   data.diachi = !isEmpty(data.diachi) ? data.diachi : "";
-  data.dienTich = !isEmpty(data.dienTich) ? data.dienTich : "";
+  data.dienTich = !isEmpty(data.dienTich) ? data.dienTich : "0";
   data.title = !isEmpty(data.title) ? data.title : "";
   data.noiDung = !isEmpty(data.noiDung) ? data.noiDung : "";
 

@@ -21,7 +21,7 @@ const FindSchema = new Schema({
     required: true
   },
   dienTich: {
-    type: String,
+    type: Number,
     required: true
   },
   chiTiet: [

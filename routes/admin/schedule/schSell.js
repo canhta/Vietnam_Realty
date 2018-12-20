@@ -70,17 +70,11 @@ router.post(
       _state === "POSTED" ||
       _state === "EXPIRED"
     ) {
-      Sell.findById(req.params.id)
-        .then(find => {
-          Sell.findOneAndUpdate(
-            true,
-            { $set: { state: _state } },
-            { new: false }
-          ).then(ress => res.json(ress));
-        })
-        .catch(err =>
-          res.status(404).json({ noSellFound: "No sell post for this ID." })
-        );
+      Find.findByIdAndUpdate(
+        req.params.id,
+        { state: _state },
+        { new: true }
+      ).then(value => res.json(value));
     } else return res.status(400).json({ invalid: "errors state" });
   }
 );

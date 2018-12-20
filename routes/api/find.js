@@ -1,13 +1,12 @@
 var express = require("express");
 var router = express.Router();
-const mongoose = require("mongoose");
 const passport = require("passport");
-const isEmpty = require("../../validation/is-empty");
 const Find = require("../../models/Find");
 const Profile = require("../../models/Profile");
 
 const validateFindInput = require("../../validation/find");
-
+//middleware
+const roleMiddleware = require("../../middlewares/roleMiddleware");
 //@route  GET api/finds/test
 //@desc   Test finds route
 //@access Public
@@ -17,22 +16,53 @@ module.exports = router;
 //@route  GET api/finds
 //@desc   Get all finds
 //@access Public
-router.get("/", (req, res, next) => {
-  Find.find() //cần sua thanh sate
+router.get("/all", (req, res, next) => {
+  Find.find(
+    { state: "POSTED" },
+    "hinhThuc loai diachi dienTich chiTiet gia timePost"
+  ) //cần sua thanh sate
     // .map(val => val)
     .then(find => {
-      let value = find.filter(val => {
-        return val.state === req.query.state;
-      });
-      console.log(value.length);
-
-      res.json(value);
+      res.json(find);
     })
     .catch(err =>
       res.status(404).json({ noFindFounds: "No find posts found." })
     );
 });
+//@route  GET api/finds
+//@desc   Get filter finds
+//@access Public
+router.get("/", (req, res, next) => {
+  let _query = {
+    diachi: req.query.diachi,
+    loai: req.query.loai,
+    gia: parseInt(req.query.gia),
+    dienTich: parseInt(req.query.dienTich)
+  };
+  console.log(_query);
 
+  Find.find()
+    .where("state")
+    .equals("POSTED")
+    .where("diachi")
+    .equals(_query.diachi)
+    .where("loai")
+    .equals(_query.loai)
+    // .where("from")
+    // .gte(_query.gia)
+    // .where("dienTich")
+    // .equals(_query.dienTich())
+    // .sort({ dienTich: -1 })
+    .select("loai diachi dienTich chiTiet gia timePost")
+    .then(find => {
+      console.log(find.state);
+      console.log("-------------------All----------------");
+      res.json(find);
+    })
+    .catch(err =>
+      res.status(404).json({ noFindFounds: "No find posts found." })
+    );
+});
 //@route  GET api/finds/:id
 //@desc   Get find by id
 //@access Public
@@ -50,6 +80,7 @@ router.get("/:id", (req, res, next) => {
 router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
+  roleMiddleware.requiredMEMBER,
   (req, res, next) => {
     const { errors, isValid } = validateFindInput(req.body);
 

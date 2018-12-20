@@ -1,11 +1,11 @@
 var express = require("express");
 var router = express.Router();
-const mongoose = require("mongoose");
 const passport = require("passport");
 
 const Sell = require("../../models/Sell");
 const Profile = require("../../models/Profile");
-
+//middleware
+const roleMiddleware = require("../../middlewares/roleMiddleware");
 const validateSellInput = require("../../validation/sell");
 
 //@route  GET api/sells/test
@@ -14,23 +14,56 @@ const validateSellInput = require("../../validation/sell");
 router.get("/test", (req, res) => res.json({ msg: "Sells works" }));
 module.exports = router;
 
-//@route  GET api/sells
+//@route  GET api/sells/all
 //@desc   Get all sells
 //@access Public
-router.get("/", (req, res, next) => {
-  Sell.find()
-    .sort({ date: -1 })
+router.get("/all", (req, res, next) => {
+  Sell.find(
+    { state: "POSTED" },
+    "hinhThuc loai diachi dienTich chiTiet gia timePost"
+  ) //cần sua thanh sate
+    // .map(val => val)
     .then(sell => {
-      // if (sell.length === 0) {
-      //   res.status(404).json({ noSellPost: "No Sell posts found." });
-      // }
       res.json(sell);
     })
     .catch(err =>
       res.status(404).json({ noSellFounds: "No sell posts found." })
     );
 });
+//@route  GET api/sells
+//@desc   Get filter sells
+//@access Public
+router.get("/", (req, res, next) => {
+  let _query = {
+    diachi: req.query.diachi,
+    loai: req.query.loai,
+    gia: parseInt(req.query.gia),
+    dienTich: parseInt(req.query.dienTich)
+  };
+  console.log(_query);
 
+  Sell.find()
+    .where("state")
+    .equals("POSTED")
+    .where("diachi")
+    .equals(_query.diachi)
+    .where("loai")
+    .equals(_query.loai)
+    // .where("from")
+    // .gte(_query.gia)
+    // .where("dienTich")
+    // .equals(_query.dienTich())
+    // .sort({ dienTich: -1 })
+    .select("loai diachi dienTich chiTiet gia timePost")
+    .then(sell => {
+      console.log(sell.state);
+      console.log("-------------------All----------------");
+      res.json(sell);
+    })
+    .catch(err =>
+      res.status(404).json({ noSellFounds: "No sellS posts found." })
+    );
+});
 //@route  GET api/sells/:id
 //@desc   Get sell by id
 //@access Public
@@ -48,6 +81,7 @@ router.get("/:id", (req, res, next) => {
 router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
+  roleMiddleware.requiredMEMBER,
   (req, res, next) => {
     const { errors, isValid } = validateSellInput(req.body);
 
@@ -89,6 +123,7 @@ router.post(
 router.delete(
   "/:id",
   passport.authenticate("jwt", { session: false }),
+  roleMiddleware.requiredMEMBER,
   (req, res, next) => {
     Profile.findOne({ user: req.user.id }).then(profile => {
       Sell.findById(req.params.id)
