@@ -1,37 +1,36 @@
 var express = require("express");
 var router = express.Router();
 const passport = require("passport");
-
-const Sell = require("../../models/Sell");
+const Find = require("../../models/Find");
 const Profile = require("../../models/Profile");
+
+const validateFindInput = require("../../validation/find");
 //middleware
 const roleMiddleware = require("../../middlewares/roleMiddleware");
-const validateSellInput = require("../../validation/sell");
-
-//@route  GET api/sells/test
-//@desc   Test sells route
+//@route  GET api/finds/test
+//@desc   Test finds route
 //@access Public
-router.get("/test", (req, res) => res.json({ msg: "Sells works" }));
+router.get("/test", (req, res) => res.json({ msg: "Finds works" }));
 module.exports = router;
 
-//@route  GET api/sells/all
-//@desc   Get all sells
+//@route  GET api/finds
+//@desc   Get all finds
 //@access Public
 router.get("/all", (req, res, next) => {
-  Sell.find(
+  Find.find(
     { state: "POSTED" },
     "hinhThuc loai diachi dienTich chiTiet gia timePost"
   ) //cần sua thanh sate
     // .map(val => val)
-    .then(sell => {
-      res.json(sell);
+    .then(find => {
+      res.json(find);
     })
     .catch(err =>
-      res.status(404).json({ noSellFounds: "No sell posts found." })
+      res.status(404).json({ noFindFounds: "No find posts found." })
     );
 });
-//@route  GET api/sells
-//@desc   Get filter sells
+//@route  GET api/finds
+//@desc   Get filter finds
 //@access Public
 router.get("/", (req, res, next) => {
   let _query = {
@@ -42,7 +41,7 @@ router.get("/", (req, res, next) => {
   };
   console.log(_query);
 
-  Sell.find()
+  Find.find()
     .where("state")
     .equals("POSTED")
     .where("diachi")
@@ -55,92 +54,92 @@ router.get("/", (req, res, next) => {
     // .equals(_query.dienTich())
     // .sort({ dienTich: -1 })
     .select("loai diachi dienTich chiTiet gia timePost")
-    .then(sell => {
-      console.log(sell.state);
+    .then(find => {
+      console.log(find.state);
       console.log("-------------------All----------------");
-      res.json(sell);
+      res.json(find);
     })
     .catch(err =>
-      res.status(404).json({ noSellFounds: "No sellS posts found." })
+      res.status(404).json({ noFindFounds: "No find posts found." })
     );
 });
-//@route  GET api/sells/:id
-//@desc   Get sell by id
+//@route  GET api/finds/:id
+//@desc   Get find by id
 //@access Public
 router.get("/:id", (req, res, next) => {
-  Sell.findById(req.params.id)
-    .then(sell => res.json(sell))
+  Find.findById(req.params.id)
+    .then(find => res.json(find))
     .catch(err =>
-      res.status(404).json({ noSellFound: "No sell post for this ID." })
+      res.status(404).json({ noFindFound: "No find post for this ID." })
     );
 });
 
-//@route  POST api/sells/
-//@desc   Create sells route
+//@route  POST api/finds/
+//@desc   Create finds route
 //@access Private
 router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   roleMiddleware.requiredMEMBER,
   (req, res, next) => {
-    const { errors, isValid } = validateSellInput(req.body);
+    const { errors, isValid } = validateFindInput(req.body);
 
     // Check Validation
     if (!isValid) {
       // Return any errors with 400 status
       return res.status(400).json(errors);
     }
-    const newSell = new Sell({
+    const newFind = new Find({
       user: req.user.id,
       avatar: req.body.avatar,
       hinhThuc: req.body.hinhThuc,
       loai: req.body.loai,
       diachi: req.body.diachi,
       dienTich: req.body.dienTich,
-
       chiTiet: {
-        matTien: req.body.matTien,
-        duongVao: req.body.duongVao,
-        huongNha: req.body.huongNha,
-        huongBanCong: req.body.huongBanCong,
-        soTang: req.body.soTang,
-        soPhongNgu: req.body.soPhongNgu,
-        soToilet: req.body.soToilet,
-        noiThat: req.body.noiThat
+        title: req.body.title,
+        noiDung: req.body.noiDung
       },
-      gia: req.body.gia,
-      noiThat: {
-        image: req.body.image
+      gia: {
+        from: req.body.from,
+        to: req.body.to
       },
-      moTa: req.body.moTa
+      state: "NEW",
+      timePost: {
+        fromPost: req.body.fromPost,
+        toPost: req.body.toPost
+      },
+      cardCash: {
+        menhGia: req.body.menhGia,
+        idCard: req.body.idCard
+      }
     });
-    newSell.save().then(sell => res.json(sell));
+    newFind.save().then(find => res.json(find));
   }
 );
-//@route  GET api/sells/:id
-//@desc   Get sell by id
+//@route  GET api/finds/:id
+//@desc   Get find by id
 //@access Public
 router.delete(
   "/:id",
   passport.authenticate("jwt", { session: false }),
-  roleMiddleware.requiredMEMBER,
   (req, res, next) => {
     Profile.findOne({ user: req.user.id }).then(profile => {
-      Sell.findById(req.params.id)
-        .then(sell => {
-          //Check for sell owner
-          if (sell.user.toString() !== req.user.id) {
+      Find.findById(req.params.id)
+        .then(find => {
+          //Check for find owner
+          if (find.user.toString() !== req.user.id) {
             return res
               .status(401)
               .json({ notauthorrzed: "User not Authorized" });
           }
           //Delete
-          sell.remove().then(() => {
+          Find.remove().then(() => {
             res.json({ success: true });
           });
         })
         .catch(err => {
-          res.status(404).json({ noSellFound: "Not sell post found" });
+          res.status(404).json({ noFindFound: "Not find post found" });
         });
     });
   }

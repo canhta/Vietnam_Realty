@@ -69,6 +69,34 @@ const SellSchema = new Schema({
         type: String
       }
     }
-  ]
+  ],
+  state: {
+    type: String,
+    required: true,
+    enum: ["NEW", "READY", "POSTED", "EXPIRED"],
+    default: "NEW"
+  },
+  timePost: [
+    {
+      fromPost: {
+        type: Date,
+        default: Date.now()
+      },
+      toPost: {
+        type: Date,
+        default: Date.now()
+      }
+    }
+  ],
+  cardCash: {
+    menhGia: {
+      type: Number,
+      required: true
+    },
+    idCard: {
+      type: Number,
+      required: true
+    }
+  }
 });
 module.exports = mongoose.model("sells", SellSchema);

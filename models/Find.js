@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 //Create schema
-const BuySchema = new Schema({
+const FindSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: "users"
@@ -21,7 +21,7 @@ const BuySchema = new Schema({
     required: true
   },
   dienTich: {
-    type: String,
+    type: Number,
     required: true
   },
   chiTiet: [
@@ -47,6 +47,34 @@ const BuySchema = new Schema({
         default: 0
       }
     }
-  ]
+  ],
+  state: {
+    type: String,
+    required: true,
+    enum: ["NEW", "READY", "POSTED", "EXPIRED"],
+    default: "NEW"
+  },
+  timePost: [
+    {
+      fromPost: {
+        type: Date,
+        default: Date.now()
+      },
+      toPost: {
+        type: Date,
+        default: Date.now()
+      }
+    }
+  ],
+  cardCash: {
+    menhGia: {
+      type: Number,
+      required: true
+    },
+    idCard: {
+      type: Number,
+      required: true
+    }
+  }
 });
-module.exports = mongoose.model("buy", BuySchema);
+module.exports = mongoose.model("finds", FindSchema);
