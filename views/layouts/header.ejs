@@ -17,6 +17,7 @@
               <li><a href="contact.html">Contact</a></li>
             </ul>
           </nav>
+          <% if (true) { %>
           <div class="phone_num ml-auto">
             <div class="phone_num_inner">
               <a href="#loginModal" role="button" data-toggle="modal"><span>Login</span></a>
@@ -27,6 +28,13 @@
               <a href="#registerModal" role="button" data-toggle="modal"><span>Register</span></a>
             </div>
           </div>
+          <% } else { %>
+          <div class="phone_num ml-auto">
+            <div class="phone_num_inner">
+              <a href="#" role="button" data-toggle="modal"><span>Logout</span></a>
+            </div>
+          </div>
+          <% } %>
           <div class="hamburger ml-auto"><i class="fa fa-bars" aria-hidden="true"></i></div>
         </div>
       </div>
