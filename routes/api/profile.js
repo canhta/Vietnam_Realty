@@ -14,7 +14,7 @@ var User = require("../../models/User");
 //@access Public
 router.get("/test", (req, res) => res.json({ msg: "Posts works" }));
 
-//@route  GET api/profile
+//@route  GET api/profiles
 //@desc   Get current users profile
 //@access Private
 router.get(
@@ -34,7 +34,7 @@ router.get(
       .catch(err => res.status(404).json(err));
   }
 );
-//@route  POST api/profiles
+//@route  POST api/profile
 //@desc   Create user profile
 //@access Private
 router.post(

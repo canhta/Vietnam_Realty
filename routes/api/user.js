@@ -102,13 +102,11 @@ router.post("/login", (req, res, next) => {
       }; // Create JWT Payload
       // Sign Token
       jwt.sign(payload, keys.secretOfKey, { expiresIn: 3600 }, (err, token) => {
-        res.json({
+        console.log({
           success: true,
           token: "Bearer " + token
         });
-        var decoded = jwt.decode(token, { complete: true });
-        console.log(decoded.header);
-        console.log(decoded.payload);
+        res.redirect("/api/profiles");
       }); //exprires token
     });
   });
