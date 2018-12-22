@@ -75,14 +75,6 @@
 
                                 <div class="form-row">
                                     <div class="col-sm-2">
-                                        <h5 style="line-height:40px">Dự án:</h5>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <select id="idDuAn" class="form-control">
-                                            <option selected>--Dự án--</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-2">
                                         <h5 style="line-height:40px">Diện tích:</h5>
                                     </div>
                                     <div class="form-group col-md-4">
@@ -102,7 +94,7 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <select id="idDonVi" class="form-control">
-                                            <option selected>--Đơn vị--</option>
+                                            <option value=""></option>
                                         </select>
                                     </div>
                                 </div>
@@ -353,7 +345,7 @@
         };
 
         var chooseTinhThanhPho = document.getElementById('idTinhThanhPho');
-        
+
         chooseTinhThanhPho.addEventListener('click', function () {
             if (chooseTinhThanhPho.value === 'Hà Nội') {
                 renderQuanHuyen(listQuanHuyenHaNoi);
@@ -361,8 +353,8 @@
             else if (chooseTinhThanhPho.value === 'Hồ CHí Minh') {
                 renderQuanHuyen(listQuanHuyenHoChiMinh);
             }
-            else{
-                renderQuanHuyen({"QUANHUYEN": "--Quận/Huyện--"});
+            else {
+                renderQuanHuyen({ "QUANHUYEN": "--Quận/Huyện--" });
             }
         });
 
@@ -374,23 +366,39 @@
             document.getElementById('idQuanHuyen').innerHTML = contentQuanHuyen;
         }
 
-        /* Loại */
-        var chooseHinhThuc = document.getElementById('idHinhThuc');
 
+        /* Loại */
+        var contentLoaiDatBan = '<option value="Bán căn hộ chung cư">Bán căn hộ chung cư</option>' +
+        '<option value="Bán nhà riêng">Bán nhà riêng</option>' +
+        '<option value="Bán nhà mặt phố">Bán nhà mặt phố</option>' +
+        '<option value="Bán kho, nhà xưởng">Bán kho, nhà xưởng</option>';
+        
+        var contentLoaiDatThue = '<option value="Cho thuê căn hộ chung cư">Cho thuê căn hộ chung cư</option>' +
+        '<option value="Cho thuê nhà trọ, phòng trọ">Cho thuê nhà trọ, phòng trọ</option>' +
+        '<option value="Cho thuê văn phòng">Cho thuê văn phòng</option>';
+        
+        /* Đơn vị */
+        var listDonViBan = '<option value="Thỏa thuận">Thỏa thuận</option>' +
+            '<option value="Triệu">Triệu</option>' +
+            '<option value="Tỷ">Tỷ</option>' +
+            '<option value="Trăm nghìn/m2">Trăm nghìn/m2</option>' +
+            '<option value="Triệu/m2">Triệu/m2</option>';
+
+        var listDonViThue = '<option value="Thỏa thuận">Thỏa thuận</option>' +
+            '<option value="Trăm nghìn/Tháng">Trăm nghìn/Tháng</option>' +
+            '<option value="Triệu/Tháng">Triệu/Tháng</option>' +
+            '<option value="Trăm nghìn/m2/Tháng">Trăm nghìn/m2/Tháng</option>' +
+            '<option value="Triệu/m2/Tháng">Triệu/m2/Tháng</option>' +
+            '<option value="Nghìn/m2/Tháng">Nghìn/m2/Tháng</option>';
+
+        var chooseHinhThuc = document.getElementById('idHinhThuc');
         chooseHinhThuc.addEventListener('click', function () {
             if (chooseHinhThuc.value == 'sell') {
-                var contentLoaiDatBan = '<option value="Bán căn hộ chung cư">Bán căn hộ chung cư</option>' +
-                    '<option value="Bán nhà riêng">Bán nhà riêng</option>' +
-                    '<option value="Bán nhà mặt phố">Bán nhà mặt phố</option>' +
-                    '<option value="Bán kho, nhà xưởng">Bán kho, nhà xưởng</option>';
-
+                renderDonVi(listDonViBan);
                 renderLoai(contentLoaiDatBan);
             }
             else if (chooseHinhThuc.value == 'rent') {
-                var contentLoaiDatThue = '<option value="Cho thuê căn hộ chung cư">Cho thuê căn hộ chung cư</option>' +
-                    '<option value="Cho thuê nhà trọ, phòng trọ">Cho thuê nhà trọ, phòng trọ</option>' +
-                    '<option value="Cho thuê văn phòng">Cho thuê văn phòng</option>';
-
+                renderDonVi(listDonViThue)
                 renderLoai(contentLoaiDatThue);
             }
             else {
@@ -399,9 +407,14 @@
 
         });
 
-        function renderLoai(content) {
-            document.getElementById('idLoai').innerHTML = content;
+        function renderLoai(contentLoai) {
+            document.getElementById('idLoai').innerHTML = contentLoai;
         }
+
+        function renderDonVi(contentDonVi) {
+            document.getElementById('idDonVi').innerHTML = contentDonVi;
+        }
+
     </script>
 </body>
 
