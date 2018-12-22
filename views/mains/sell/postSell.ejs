@@ -48,16 +48,18 @@
                                         <h5 style="line-height:40px">Tỉnh/Thành phố:</h5>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <select id="tinhThanhPho" class="form-control">
-                                            <option selected value="">Hà Nội</option>
+                                        <select id="idTinhThanhPho" class="form-control">
+                                            <option value="Tỉnh/Thành Phố" selected>--Tỉnh/Thành phố--</option>
+                                            <option value="Hà Nội">Hà Nội</option>
+                                            <option value="Hồ CHí Minh">Hồ CHí Minh</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-2">
                                         <h5 style="line-height:40px">Quận/Huyện:</h5>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <select id="quanHuyen" class="form-control">
-
+                                        <select id="idQuanHuyen" class="form-control">
+                                            <option value="">--Quận/Huyện--</option>
                                         </select>
                                     </div>
                                 </div>
@@ -283,12 +285,12 @@
             </div>
         </div>
     </div>
-    
+
     <% include ../../layouts/javascript%>
     <script type="text/javascript">
+        /* Tỉnh thành phố */
         // Hà Nội
         var listQuanHuyenHaNoi = {
-            "QUANHUYEN": "--Quận/Huyện--",
             "Quận Ba Đình": "Quận Ba Đình",
             "Quận Hoàn Kiếm": "Quận Hoàn Kiếm",
             "Quận Hai Bà Trưng": "Quận Hai Bà Trưng",
@@ -323,16 +325,56 @@
 
         // Hồ Chí Minh
         var listQuanHuyenHoChiMinh = {
-            
+            "Quận 1": "Quận 1",
+            "Quận 2": "Quận 2",
+            "Quận 3": "Quận 3",
+            "Quận 4": "Quận 4",
+            "Quận 5": "Quận 5",
+            "Quận 6": "Quận 6",
+            "Quận 7": "Quận 7",
+            "Quận 8": "Quận 8",
+            "Quận 9": "Quận 9",
+            "Quận 10": "Quận 10",
+            "Quận 11": "Quận 11",
+            "Quận 12": "Quận 12",
+            "Quận Gò Vấp": "Quận Gò Vấp",
+            "Quận Tân Bình": "Quận Tân Bình",
+            "Quận Tân Phú": "Quận Tân Phú",
+            "Quận Bình Thạnh": "Quận Bình Thạnh",
+            "Quận Phú Nhuận": "Quận Phú Nhuận",
+            "Quận Thủ Đức": "Quận Thủ Đức",
+            "Quận Bình Tân": "Quận Bình Tân",
+            "Huyện Bình Chánh": "Huyện Bình Chánh",
+            "Huyện Củ Chi": "Huyện Củ Chi",
+            "Huyện Hóc Môn": "Huyện Hóc Môn",
+            "Huyện Nhà Bè": "Huyện Nhà Bè",
+            "Huyện Cần Giờ": "Huyện Cần Giờ",
+            "Quận/Huyện khác": "Quận/Huyện khác"
         };
 
-        var contentQuanHuyen = '';
-        for (x in listQuanHuyen) {
-            contentQuanHuyen += '<option value=' + x + '>' + listQuanHuyen[x] + '</option>'
-        }
-        document.getElementById('quanHuyen').innerHTML = contentQuanHuyen;
+        var chooseTinhThanhPho = document.getElementById('idTinhThanhPho');
+        
+        chooseTinhThanhPho.addEventListener('click', function () {
+            if (chooseTinhThanhPho.value === 'Hà Nội') {
+                renderQuanHuyen(listQuanHuyenHaNoi);
+            }
+            else if (chooseTinhThanhPho.value === 'Hồ CHí Minh') {
+                renderQuanHuyen(listQuanHuyenHoChiMinh);
+            }
+            else{
+                renderQuanHuyen({"QUANHUYEN": "--Quận/Huyện--"});
+            }
+        });
 
-        // Loại
+        function renderQuanHuyen(listQuanHuyen) {
+            var contentQuanHuyen = '';
+            for (x in listQuanHuyen) {
+                contentQuanHuyen += '<option value=' + x + '>' + listQuanHuyen[x] + '</option>';
+            }
+            document.getElementById('idQuanHuyen').innerHTML = contentQuanHuyen;
+        }
+
+        /* Loại */
         var chooseHinhThuc = document.getElementById('idHinhThuc');
 
         chooseHinhThuc.addEventListener('click', function () {
@@ -342,22 +384,22 @@
                     '<option value="Bán nhà mặt phố">Bán nhà mặt phố</option>' +
                     '<option value="Bán kho, nhà xưởng">Bán kho, nhà xưởng</option>';
 
-                render(contentLoaiDatBan);
+                renderLoai(contentLoaiDatBan);
             }
             else if (chooseHinhThuc.value == 'rent') {
                 var contentLoaiDatThue = '<option value="Cho thuê căn hộ chung cư">Cho thuê căn hộ chung cư</option>' +
                     '<option value="Cho thuê nhà trọ, phòng trọ">Cho thuê nhà trọ, phòng trọ</option>' +
                     '<option value="Cho thuê văn phòng">Cho thuê văn phòng</option>';
 
-                render(contentLoaiDatThue);
+                renderLoai(contentLoaiDatThue);
             }
             else {
-                render('<option value="">--Loại--</option>');
+                renderLoai('<option value="">--Loại--</option>');
             }
 
         });
 
-        function render(content) {
+        function renderLoai(content) {
             document.getElementById('idLoai').innerHTML = content;
         }
     </script>
