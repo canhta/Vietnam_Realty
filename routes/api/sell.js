@@ -1,11 +1,9 @@
 var express = require("express");
 var router = express.Router();
-const passport = require("passport");
 
 const Sell = require("../../models/Sell");
 const Profile = require("../../models/Profile");
 //middleware
-const roleMiddleware = require("../../middlewares/roleMiddleware");
 const validateSellInput = require("../../validation/sell");
 
 //@route  GET api/sells/test
@@ -78,71 +76,59 @@ router.get("/:id", (req, res, next) => {
 //@route  POST api/sells/
 //@desc   Create sells route
 //@access Private
-router.post(
-  "/",
-  passport.authenticate("jwt", { session: false }),
-  roleMiddleware.requiredMEMBER,
-  (req, res, next) => {
-    const { errors, isValid } = validateSellInput(req.body);
+router.post("/", (req, res, next) => {
+  const { errors, isValid } = validateSellInput(req.body);
 
-    // Check Validation
-    if (!isValid) {
-      // Return any errors with 400 status
-      return res.status(400).json(errors);
-    }
-    const newSell = new Sell({
-      user: req.user.id,
-      avatar: req.body.avatar,
-      hinhThuc: req.body.hinhThuc,
-      loai: req.body.loai,
-      diachi: req.body.diachi,
-      dienTich: req.body.dienTich,
-
-      chiTiet: {
-        matTien: req.body.matTien,
-        duongVao: req.body.duongVao,
-        huongNha: req.body.huongNha,
-        huongBanCong: req.body.huongBanCong,
-        soTang: req.body.soTang,
-        soPhongNgu: req.body.soPhongNgu,
-        soToilet: req.body.soToilet,
-        noiThat: req.body.noiThat
-      },
-      gia: req.body.gia,
-      noiThat: {
-        image: req.body.image
-      },
-      moTa: req.body.moTa
-    });
-    newSell.save().then(sell => res.json(sell));
+  // Check Validation
+  if (!isValid) {
+    // Return any errors with 400 status
+    return res.status(400).json(errors);
   }
-);
+  const newSell = new Sell({
+    user: req.user.id,
+    avatar: req.body.avatar,
+    hinhThuc: req.body.hinhThuc,
+    loai: req.body.loai,
+    diachi: req.body.diachi,
+    dienTich: req.body.dienTich,
+
+    chiTiet: {
+      matTien: req.body.matTien,
+      duongVao: req.body.duongVao,
+      huongNha: req.body.huongNha,
+      huongBanCong: req.body.huongBanCong,
+      soTang: req.body.soTang,
+      soPhongNgu: req.body.soPhongNgu,
+      soToilet: req.body.soToilet,
+      noiThat: req.body.noiThat
+    },
+    gia: req.body.gia,
+    noiThat: {
+      image: req.body.image
+    },
+    moTa: req.body.moTa
+  });
+  newSell.save().then(sell => res.json(sell));
+});
 //@route  GET api/sells/:id
 //@desc   Get sell by id
 //@access Public
-router.delete(
-  "/:id",
-  passport.authenticate("jwt", { session: false }),
-  roleMiddleware.requiredMEMBER,
-  (req, res, next) => {
-    Profile.findOne({ user: req.user.id }).then(profile => {
-      Sell.findById(req.params.id)
-        .then(sell => {
-          //Check for sell owner
-          if (sell.user.toString() !== req.user.id) {
-            return res
-              .status(401)
-              .json({ notauthorrzed: "User not Authorized" });
-          }
-          //Delete
-          sell.remove().then(() => {
-            res.json({ success: true });
-          });
-        })
-        .catch(err => {
-          res.status(404).json({ noSellFound: "Not sell post found" });
+router.delete("/:id", (req, res, next) => {
+  Profile.findOne({ user: req.user.id }).then(profile => {
+    Sell.findById(req.params.id)
+      .then(sell => {
+        //Check for sell owner
+        if (sell.user.toString() !== req.user.id) {
+          return res.status(401).json({ notauthorrzed: "User not Authorized" });
+        }
+        //Delete
+        sell.remove().then(() => {
+          res.json({ success: true });
         });
-    });
-  }
-);
+      })
+      .catch(err => {
+        res.status(404).json({ noSellFound: "Not sell post found" });
+      });
+  });
+});
 module.exports = router;

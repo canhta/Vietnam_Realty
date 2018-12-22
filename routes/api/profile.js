@@ -1,7 +1,5 @@
 var express = require("express");
 var router = express.Router();
-var mongoose = require("mongoose");
-var passport = require("passport");
 
 //Load input validation
 const validateProfileInput = require("../../validation/profile");
@@ -17,76 +15,68 @@ router.get("/test", (req, res) => res.json({ msg: "Posts works" }));
 //@route  GET api/profiles
 //@desc   Get current users profile
 //@access Private
-router.get(
-  "/",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    const errors = {};
-    Profile.findOne({ user: req.user.id })
-      .populate("user", ["fullname", "avatar"])
-      .then(profile => {
-        if (!profile) {
-          errors.noprofile = "There is no profile for this user!";
-          return res.status(404).json(errors);
-        }
-        res.json(profile);
-      })
-      .catch(err => res.status(404).json(err));
-  }
-);
+router.get("/", (req, res) => {
+  const errors = {};
+  Profile.findOne({ user: req.user.id })
+    .populate("user", ["fullname", "avatar"])
+    .then(profile => {
+      if (!profile) {
+        errors.noprofile = "There is no profile for this user!";
+        return res.status(404).json(errors);
+      }
+      res.json(profile);
+    })
+    .catch(err => res.status(404).json(err));
+});
 //@route  POST api/profile
 //@desc   Create user profile
 //@access Private
-router.post(
-  "/",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    const { errors, isValid } = validateProfileInput(req.body);
+router.post("/", (req, res) => {
+  const { errors, isValid } = validateProfileInput(req.body);
 
-    // Check Validation
-    if (!isValid) {
-      // Return any errors with 400 status
-      return res.status(400).json(errors);
-    }
-    // Get fields
-    const profileFields = {};
-    profileFields.user = req.user.id;
-    if (req.body.dateOfBirth) profileFields.dateOfBirth = req.body.dateOfBirth;
-    if (req.body.gender) profileFields.gender = req.body.gender;
-    if (req.body.phone) profileFields.phone = req.body.phone;
-    // Adress
-    profileFields.social = {};
-    if (req.body.city) profileFields.adress.city = req.body.city;
-    if (req.body.district) profileFields.adress.district = req.body.district;
-    if (req.body.commnune) profileFields.adress.commnune = req.body.commnune;
-
-    Profile.findOne({ user: req.user.id }).then(profile => {
-      if (profile) {
-        //Update
-        Profile.findOneAndUpdate(
-          { user: req.user.id },
-          { $set: profileFields },
-          { new: true }
-        )
-          .then(profile => res.json(profile))
-          .catch(err => res.json("USER: " + req.user.id + "::" + err));
-      } else {
-        // Create
-
-        // Check if phone exists
-        Profile.findOne({ phone: profileFields.phone }).then(profile => {
-          if (profile) {
-            errors.phone = "That phone number already exists";
-            res.status(400).json(errors);
-          }
-
-          // Save Profile
-          new Profile(profileFields).save().then(profile => res.json(profile));
-        });
-      }
-    });
+  // Check Validation
+  if (!isValid) {
+    // Return any errors with 400 status
+    return res.status(400).json(errors);
   }
-);
+  // Get fields
+  const profileFields = {};
+  profileFields.user = req.user.id;
+  if (req.body.dateOfBirth) profileFields.dateOfBirth = req.body.dateOfBirth;
+  if (req.body.gender) profileFields.gender = req.body.gender;
+  if (req.body.phone) profileFields.phone = req.body.phone;
+  // Adress
+  profileFields.social = {};
+  if (req.body.city) profileFields.adress.city = req.body.city;
+  if (req.body.district) profileFields.adress.district = req.body.district;
+  if (req.body.commnune) profileFields.adress.commnune = req.body.commnune;
+
+  Profile.findOne({ user: req.user.id }).then(profile => {
+    if (profile) {
+      //Update
+      Profile.findOneAndUpdate(
+        { user: req.user.id },
+        { $set: profileFields },
+        { new: true }
+      )
+        .then(profile => res.json(profile))
+        .catch(err => res.json("USER: " + req.user.id + "::" + err));
+    } else {
+      // Create
+
+      // Check if phone exists
+      Profile.findOne({ phone: profileFields.phone }).then(profile => {
+        if (profile) {
+          errors.phone = "That phone number already exists";
+          res.status(400).json(errors);
+        }
+
+        // Save Profile
+        new Profile(profileFields).save().then(profile => res.json(profile));
+      });
+    }
+  });
+});
 
 //@route  POST api/profile/user/:user_id
 //@desc   Get profile by user id
@@ -127,15 +117,11 @@ router.get("/all", (req, res, next) => {
 // @route   DELETE api/profile
 // @desc    Delete user and profile
 // @access  Private
-router.delete(
-  "/",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    Profile.findOneAndRemove({ user: req.user.id }).then(() => {
-      User.findOneAndRemove({ _id: req.user.id }).then(() => {
-        res.json({ success: true });
-      });
+router.delete("/", (req, res) => {
+  Profile.findOneAndRemove({ user: req.user.id }).then(() => {
+    User.findOneAndRemove({ _id: req.user.id }).then(() => {
+      res.json({ success: true });
     });
-  }
-);
+  });
+});
 module.exports = router;

@@ -5,7 +5,7 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const passport = require("passport");
+const session = require("express-session");
 //Routers
 var indexRouter = require("./routes/index");
 var userRouter = require("./routes/api/user");
@@ -15,6 +15,7 @@ var findRouter = require("./routes/api/find");
 var scheduleFINDRouter = require("./routes/admin/schedule/schFind");
 var scheduleSELLRouter = require("./routes/admin/schedule/schSell");
 var managerRouter = require("./routes/admin/manager/maUser");
+const db = require("./config/database");
 var app = express();
 
 // view engine setup
@@ -29,10 +30,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-//Passport middleware
-app.use(passport.initialize());
-//Passport Config
-require("./config/passport")(passport);
+//Session Config
+app.use(
+  session({
+    secret: "2C44-4D44-WppQ38S",
+    resave: true,
+    saveUninitialized: true
+  })
+);
 //config Routers
 app.use("/", indexRouter);
 app.use("/api/users", userRouter);
@@ -42,7 +47,7 @@ app.use("/api/finds", findRouter); //Database config
 app.use("/admin/schedule/finds", scheduleFINDRouter);
 app.use("/admin/schedule/sells", scheduleSELLRouter);
 app.use("/admin/manager", managerRouter);
-const db = require("./config/database");
+
 mongoose.connect(
   db.mongoURI,
   { useNewUrlParser: true },

@@ -2,30 +2,25 @@ var express = require("express");
 var router = express.Router();
 var gravatar = require("gravatar");
 var bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const keys = require("../../config/database");
-const passport = require("passport");
+const authentication = require("../../middlewares/Authentication");
 //Load input validation
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 
 // Load User model
 const User = require("../../models/User");
-//middleware
-const roleMiddleware = require("../../middlewares/roleMiddleware");
-
 //@route  GET api/users/
 //@desc   Test users route
 //@access Public
 router.get("/test", (req, res) => res.json({ msg: "Posts works" }));
 
-//@route  GET api/users/register
-//@desc   register route
-//@access Public
-router.get("/register", (req, res, next) => res.json({ msg: "GET works" }));
-// @route   GET api/users/register
-// @desc    Register user
-// @access  Public
+// //@route  GET api/users/register
+// //@desc   register route
+// //@access Public
+// router.get("/register", (req, res, next) => res.json({ msg: "GET works" }));
+// // @route   GET api/users/register
+// // @desc    Register user
+// // @access  Public
 router.post("/register", (req, res, next) => {
   const { errors, isValid } = validateRegisterInput(req.body);
 
@@ -94,20 +89,9 @@ router.post("/login", (req, res, next) => {
         return res.status(400).json({ errors });
       }
       //User matched
-      const payload = {
-        id: user.id,
-        role: user.role,
-        name: user.name,
-        avatar: user.avatar
-      }; // Create JWT Payload
-      // Sign Token
-      jwt.sign(payload, keys.secretOfKey, { expiresIn: 3600 }, (err, token) => {
-        console.log({
-          success: true,
-          token: "Bearer " + token
-        });
-        res.redirect("/api/profiles");
-      }); //exprires token
+      req.session.user = user;
+      req.session.role = user.role;
+      res.redirect("/api/users/current");
     });
   });
 });
@@ -115,18 +99,13 @@ router.post("/login", (req, res, next) => {
 // @route   GET api/users/current
 // @desc    Return Current user
 // @access  Private
-router.get(
-  "/current",
-  passport.authenticate("jwt", { session: false }),
-  roleMiddleware.requiredMEMBER,
-  (req, res) => {
-    res.json({
-      id: req.user._id,
-      name: req.user.name,
-      email: req.user.email,
-      role: req.user.role,
-      avatar: req.user.avatar
-    });
-  }
-);
+router.get("/current", authentication.MEMBER, (req, res) => {
+  res.json({
+    req: req.session.user
+  });
+});
+router.get("/logout", (req, res) => {
+  req.session.destroy();
+  res.send("logout success!");
+});
 module.exports = router;
