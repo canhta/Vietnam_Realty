@@ -87,7 +87,8 @@
                                         <h5 style="line-height:40px">Giá:</h5>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <input name="gia" type="text" class="form-control" value='' id="idGia" placeholder="--Giá--">
+                                        <input name="gia" type="text" class="form-control" value='' id="idGia"
+                                            placeholder="--Giá--">
                                     </div>
                                     <div class="col-sm-2">
                                         <h5 style="line-height:40px">Đơn vị:</h5>
@@ -287,10 +288,9 @@
 
     <% include ../../layouts/javascript%>
     <script type="text/javascript">
-<<<<<<< HEAD
+
         /*==============================================THÔNG TIN CƠ BẢN==============================================*/
-=======
->>>>>>> ffb8436fa49a19f72df3719a0510d8531866bdd9
+
         /* Tỉnh thành phố */
         // Hà Nội
         var listQuanHuyenHaNoi = {
@@ -356,11 +356,6 @@
         };
 
         var chooseTinhThanhPho = document.getElementById('idTinhThanhPho');
-<<<<<<< HEAD
-
-=======
-        
->>>>>>> ffb8436fa49a19f72df3719a0510d8531866bdd9
         chooseTinhThanhPho.addEventListener('click', function () {
             if (chooseTinhThanhPho.value === 'Hà Nội') {
                 renderQuanHuyen(listQuanHuyenHaNoi);
@@ -368,13 +363,10 @@
             else if (chooseTinhThanhPho.value === 'Hồ CHí Minh') {
                 renderQuanHuyen(listQuanHuyenHoChiMinh);
             }
-<<<<<<< HEAD
+
             else {
                 renderQuanHuyen({ "QUANHUYEN": "--Quận/Huyện--" });
-=======
-            else{
-                renderQuanHuyen({"QUANHUYEN": "--Quận/Huyện--"});
->>>>>>> ffb8436fa49a19f72df3719a0510d8531866bdd9
+
             }
         });
 
@@ -386,11 +378,7 @@
             document.getElementById('idQuanHuyen').innerHTML = contentQuanHuyen;
         }
 
-<<<<<<< HEAD
-=======
-        /* Loại */
-        var chooseHinhThuc = document.getElementById('idHinhThuc');
->>>>>>> ffb8436fa49a19f72df3719a0510d8531866bdd9
+
 
         /* Loại */
         var contentLoaiDatBan = '<option value="Bán căn hộ chung cư">Bán căn hộ chung cư</option>' +
@@ -419,26 +407,14 @@
         var chooseHinhThuc = document.getElementById('idHinhThuc');
         chooseHinhThuc.addEventListener('click', function () {
             if (chooseHinhThuc.value == 'sell') {
-<<<<<<< HEAD
+
                 renderDonVi(listDonViBan);
                 renderLoai(contentLoaiDatBan);
             }
             else if (chooseHinhThuc.value == 'rent') {
                 renderDonVi(listDonViThue)
-=======
-                var contentLoaiDatBan = '<option value="Bán căn hộ chung cư">Bán căn hộ chung cư</option>' +
-                    '<option value="Bán nhà riêng">Bán nhà riêng</option>' +
-                    '<option value="Bán nhà mặt phố">Bán nhà mặt phố</option>' +
-                    '<option value="Bán kho, nhà xưởng">Bán kho, nhà xưởng</option>';
 
-                renderLoai(contentLoaiDatBan);
-            }
-            else if (chooseHinhThuc.value == 'rent') {
-                var contentLoaiDatThue = '<option value="Cho thuê căn hộ chung cư">Cho thuê căn hộ chung cư</option>' +
-                    '<option value="Cho thuê nhà trọ, phòng trọ">Cho thuê nhà trọ, phòng trọ</option>' +
-                    '<option value="Cho thuê văn phòng">Cho thuê văn phòng</option>';
 
->>>>>>> ffb8436fa49a19f72df3719a0510d8531866bdd9
                 renderLoai(contentLoaiDatThue);
             }
             else {
@@ -447,52 +423,47 @@
 
         });
 
-<<<<<<< HEAD
+
         function renderLoai(contentLoai) {
             document.getElementById('idLoai').innerHTML = contentLoai;
-=======
-        function renderLoai(content) {
-            document.getElementById('idLoai').innerHTML = content;
->>>>>>> ffb8436fa49a19f72df3719a0510d8531866bdd9
-        }
 
-        function renderDonVi(contentDonVi) {
-            document.getElementById('idDonVi').innerHTML = contentDonVi;
-        }
 
-        /* Tổng giá tiền */
-        var docGia = document.getElementById('idGia');
-        var docDonVi = document.getElementById('idDonVi');
-        var caculate = document.getElementById('idCaculate');
-
-        caculate.addEventListener('click', function () {
-            if (docDonVi.value === 'Thỏa thuận' && docGia.value !== '') {
-                alert('Giá không được là "Thỏa Thuận"');
+            function renderDonVi(contentDonVi) {
+                document.getElementById('idDonVi').innerHTML = contentDonVi;
             }
-            else {
-                document.getElementById('idTongGiaTien').value = docGia.value + ' ' + docDonVi.value;
+
+            /* Tổng giá tiền */
+            var docGia = document.getElementById('idGia');
+            var docDonVi = document.getElementById('idDonVi');
+            var caculate = document.getElementById('idCaculate');
+
+            caculate.addEventListener('click', function () {
+                if (docDonVi.value === 'Thỏa thuận' && docGia.value !== '') {
+                    alert('Giá không được là "Thỏa Thuận"');
+                }
+                else {
+                    document.getElementById('idTongGiaTien').value = docGia.value + ' ' + docDonVi.value;
+                }
+            });
+
+            /*=================================================CHI TIẾT=========================================*/
+            var listHuongNha_BanCong = '<option value="">KXĐ</option>' +
+                '<option value="Đông">Đông</option>' +
+                '<option value="Tây">Tây</option>' +
+                '<option value="Nam">Nam</option>' +
+                '<option value="Bắc">Bắc</option>' +
+                '<option value="Đông - Bắc">Đông - Bắc</option>' +
+                '<option value="Tây - Bắc">Tây - Bắc</option>' +
+                '<option value="Tây - Nam">Tây - Nam</option>' +
+                '<option value="Đông - Nam">Đông - Nam</option>';
+
+            function renderHuongNha_BanCong() {
+                document.getElementById('idHuongNha').innerHTML = listHuongNha_BanCong;
+                document.getElementById('idHuongBanCong').innerHTML = listHuongNha_BanCong;
             }
-        });
 
-        /*=================================================CHI TIẾT=========================================*/
-        var listHuongNha_BanCong = '<option value="">KXĐ</option>' +
-            '<option value="Đông">Đông</option>' +
-            '<option value="Tây">Tây</option>' +
-            '<option value="Nam">Nam</option>' +
-            '<option value="Bắc">Bắc</option>' +
-            '<option value="Đông - Bắc">Đông - Bắc</option>' +
-            '<option value="Tây - Bắc">Tây - Bắc</option>' +
-            '<option value="Tây - Nam">Tây - Nam</option>' +
-            '<option value="Đông - Nam">Đông - Nam</option>';
-
-        function renderHuongNha_BanCong() {
-            document.getElementById('idHuongNha').innerHTML = listHuongNha_BanCong;
-            document.getElementById('idHuongBanCong').innerHTML = listHuongNha_BanCong;
+            renderHuongNha_BanCong();
         }
-
-        renderHuongNha_BanCong();
-
-
     </script>
 
 </body>
