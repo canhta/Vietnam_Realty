@@ -8,13 +8,7 @@ const bodyParser = require("body-parser");
 const session = require("express-session");
 //Routers
 var indexRouter = require("./routes/index");
-var userRouter = require("./routes/api/user");
-var profileRouter = require("./routes/api/profile");
-var sellRouter = require("./routes/api/sell");
-var findRouter = require("./routes/api/find");
-var scheduleFINDRouter = require("./routes/admin/schedule/schFind");
-var scheduleSELLRouter = require("./routes/admin/schedule/schSell");
-var managerRouter = require("./routes/admin/manager/maUser");
+
 const db = require("./config/database");
 var app = express();
 
@@ -33,52 +27,14 @@ app.use(express.static(path.join(__dirname, "public")));
 //Session Config
 app.use(
   session({
-    secret: db.secretOfKey,
+    secret: "2C44-4D44-WppQ38S",
     resave: true,
     saveUninitialized: true
   })
 );
 //config Routers
-app.use("/", indexRouter, express.static(path.join(__dirname, "public")));
+app.use("/", indexRouter);
 
-app.use(
-  "/api/users",
-  userRouter,
-  express.static(path.join(__dirname, "public"))
-);
-app.use(
-  "/api/profiles",
-  profileRouter,
-  express.static(path.join(__dirname, "public"))
-);
-
-app.use(
-  "/api/sells",
-  sellRouter,
-  express.static(path.join(__dirname, "public"))
-);
-app.use(express.static(path.join(__dirname, "public")));
-app.use(
-  "/api/finds",
-  findRouter,
-  express.static(path.join(__dirname, "public"))
-); //Database config
-app.use(
-  "/admin/schedule/finds",
-  scheduleFINDRouter,
-  express.static(path.join(__dirname, "public"))
-);
-app.use(
-  "/admin/schedule/sells",
-  scheduleSELLRouter,
-  express.static(path.join(__dirname, "public"))
-);
-
-app.use(
-  "/admin/manager",
-  managerRouter,
-  express.static(path.join(__dirname, "public"))
-);
 
 mongoose.connect(
   db.mongoURI,
@@ -104,8 +60,5 @@ app.use(function(err, req, res, next) {
   res.render("error");
 });
 
-<<<<<<< HEAD
-app.listen(4000, () => console.log("Start on port 4000."));
-=======
-app.listen(3000, () => console.log("Start on port 3000."));
->>>>>>> ffb8436fa49a19f72df3719a0510d8531866bdd9
+var port = 3000;
+app.listen(port, () => console.log("Start on port ") + port);
