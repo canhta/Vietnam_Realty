@@ -33,7 +33,7 @@ app.use(express.static(path.join(__dirname, "public")));
 //Session Config
 app.use(
   session({
-    secret: "2C44-4D44-WppQ38S",
+    secret: db.secretOfKey,
     resave: true,
     saveUninitialized: true
   })
@@ -43,7 +43,7 @@ app.use("/", indexRouter);
 app.use("/api/users", userRouter);
 app.use("/api/profiles", profileRouter);
 app.use("/api/sells", sellRouter);
-app.use("/api/finds", findRouter); //Database config
+app.use("/", findRouter); //Database config
 app.use("/admin/schedule/finds", scheduleFINDRouter);
 app.use("/admin/schedule/sells", scheduleSELLRouter);
 app.use("/admin/manager", managerRouter);
@@ -72,4 +72,4 @@ app.use(function(err, req, res, next) {
   res.render("error");
 });
 
-app.listen(4000, () => console.log("Start on port 3000."));
+app.listen(3000, () => console.log("Start on port 3000."));

@@ -7,8 +7,7 @@ const validateFindInput = require("../../validation/find");
 //@route  GET api/finds/test
 //@desc   Test finds route
 //@access Public
-router.get("/test", (req, res) => res.json({ msg: "Finds works" }));
-module.exports = router;
+router.get("/finds/test", (req, res) => res.render("mains/find/listFind"));
 
 //@route  GET api/finds
 //@desc   Get all finds
@@ -20,7 +19,10 @@ router.get("/all", (req, res, next) => {
   ) //cần sua thanh sate
     // .map(val => val)
     .then(find => {
-      res.json(find);
+      // res.json(find);
+      console.log(find);
+
+      res.render("mains/find/listFind", { find: find });
     })
     .catch(err =>
       res.status(404).json({ noFindFounds: "No find posts found." })
@@ -54,7 +56,8 @@ router.get("/", (req, res, next) => {
     .then(find => {
       console.log(find.state);
       console.log("-------------------All----------------");
-      res.json(find);
+      // res.json(find);
+      res.render("mains/find/listFind", { find: find });
     })
     .catch(err =>
       res.status(404).json({ noFindFounds: "No find posts found." })
@@ -65,7 +68,7 @@ router.get("/", (req, res, next) => {
 //@access Public
 router.get("/:id", (req, res, next) => {
   Find.findById(req.params.id)
-    .then(find => res.json(find))
+    .then(find => res.render("mains/find/detailFind", { find: find }))
     .catch(err =>
       res.status(404).json({ noFindFound: "No find post for this ID." })
     );
@@ -107,7 +110,9 @@ router.post("/", (req, res, next) => {
       idCard: req.body.idCard
     }
   });
-  newFind.save().then(find => res.json(find));
+  newFind
+    .save()
+    .then(find => res.render("mains/find/listFind", { find: find }));
 });
 //@route  GET api/finds/:id
 //@desc   Get find by id
@@ -122,7 +127,7 @@ router.delete("/:id", (req, res, next) => {
         }
         //Delete
         Find.remove().then(() => {
-          res.json({ success: true });
+          res.render("mains/find/listFind", { find: find });
         });
       })
       .catch(err => {
