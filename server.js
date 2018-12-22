@@ -104,8 +104,7 @@ app.use(function(err, req, res, next) {
   res.render("error");
 });
 
-<<<<<<< HEAD
+
 app.listen(4000, () => console.log("Start on port 4000."));
-=======
-app.listen(3000, () => console.log("Start on port 3000."));
->>>>>>> ffb8436fa49a19f72df3719a0510d8531866bdd9
+
+
