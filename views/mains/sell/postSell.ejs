@@ -7,10 +7,10 @@
 
 <body>
     <div class="super_container">
-        <% include ../../layouts/header%>
-        <% include ../../layouts/menu%>
-        <% include ../../layouts/home%>
-        <% include ../../layouts/search%>
+        <%-include("../../layouts/header")%>
+        <%-include("../../layouts/menu")%>
+        <%-include("../../layouts/home")%>
+        <%-include("../../layouts/search")%>
         <div class="container">
             <div class="row">
                 <div class="col-sm-1"></div>
@@ -87,7 +87,8 @@
                                         <h5 style="line-height:40px">Giá:</h5>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <input name="gia" type="text" class="form-control" value='' id="idGia" placeholder="--Giá--">
+                                        <input name="gia" type="text" class="form-control" value='' id="idGia"
+                                            placeholder="--Giá--">
                                     </div>
                                     <div class="col-sm-2">
                                         <h5 style="line-height:40px">Đơn vị:</h5>
@@ -103,10 +104,10 @@
                                     <div class="col-sm-2">
                                         <h5 style="line-height:40px">Tổng giá tiền:</h5>
                                     </div>
-                                    <div class="col-sm-9">
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" readonly id="idTongGiaTien">
                                     </div>
-                                    <button type="button" class="btn btn-primary btn-sm col-sm-1" style="height: 40px"
+                                    <button type="button" class="btn btn-primary btn-sm col-sm-2" style="height: 50px"
                                         id="idCaculate">Caculate</button>
                                 </div>
 
@@ -214,7 +215,6 @@
                             <div class="card-header">
                                 <h3>Hình ảnh và video</h3>
                             </div>
-
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="customFile">
                                 <label class="custom-file-label" for="customFile">Choose file</label>
@@ -232,13 +232,13 @@
                                         <h5 style="line-height:40px">Ngày bắt đầu:</h5>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <input name="fromPost" type="date" class="form-control">
+                                        <input name="fromPost" type="date" class="form-control" id="idFromDate">
                                     </div>
                                     <div class="col-sm-2">
                                         <h5 style="line-height:40px">Ngày kết thúc:</h5>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <input name="toPost" type="date" class="form-control">
+                                        <input name="toPost" type="date" class="form-control" id="idToDate">
                                     </div>
                                 </div>
 
@@ -246,11 +246,12 @@
                                     <div class="col-sm-2">
                                         <h5 style="line-height:40px">Phí đăng bài:</h5>
                                     </div>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" readonly id="idSoTienCanTra">
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" readonly id="idPhiDangBai">
                                     </div>
-                                    <button type="button" class="btn btn-primary btn-sm col-sm-1" style="height: 40px"
-                                        id="idCaculateSTCT">Caculate</button>
+                                    <button type="button" class="btn btn-primary btn-sm col-sm-2" style="height: 50px"
+                                        id="idCaculatePDB">Caculate</button>
+
                                 </div>
                                 <hr>
                                 <div class="form-row">
@@ -280,12 +281,12 @@
                     </form>
                 </div>
                 <div class="col-sm-1"></div>
-                <% include ../../layouts/footer%>
+                <%-include("../../layouts/footer")%>
             </div>
         </div>
     </div>
 
-    <% include ../../layouts/javascript%>
+    <%-include("../../layouts/javascript")%>
     <script type="text/javascript">
         /*==============================================THÔNG TIN CƠ BẢN==============================================*/
         /* Tỉnh thành phố */
@@ -455,7 +456,28 @@
 
         renderHuongNha_BanCong();
 
+        /*=============================================Xử lý button caculate tính phí đăng bài================================*/
+        var docFromDate = document.getElementById('idFromDate');
+        var docToDate = document.getElementById('idToDate');
 
+        idCaculatePDB.addEventListener('click', function () {
+            var fromDate = new Date(docFromDate.value);
+            var toDate = new Date(docToDate.value);
+
+            var numberOfDay = toDate.getFullYear() * 365 + toDate.getMonth() * 30 + toDate.getDate() -
+                fromDate.getFullYear() * 365 - fromDate.getMonth() * 30 - fromDate.getDate();
+
+            if (numberOfDay < 0) {
+                alert('Nhập ngày không hợp lệ');
+            }
+            else if (numberOfDay > 0) {
+                document.getElementById('idPhiDangBai').value = numberOfDay * 10000;
+            }
+            else {
+                alert('Mời nhập ngày');
+            }
+
+        });
     </script>
 
 </body>
