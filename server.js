@@ -29,7 +29,7 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+
 //Session Config
 app.use(
   session({
@@ -89,12 +89,12 @@ mongoose.connect(
       : console.log("Database connected.")
 );
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
@@ -106,5 +106,4 @@ app.use(function(err, req, res, next) {
 
 
 app.listen(4000, () => console.log("Start on port 4000."));
-
 
