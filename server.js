@@ -41,16 +41,44 @@ app.use(
 //config Routers
 app.use("/", indexRouter, express.static(path.join(__dirname, "public")));
 
-app.use("/api/users", userRouter, express.static(path.join(__dirname, "public")));
-app.use("/api/profiles", profileRouter, express.static(path.join(__dirname, "public")));
+app.use(
+  "/api/users",
+  userRouter,
+  express.static(path.join(__dirname, "public"))
+);
+app.use(
+  "/api/profiles",
+  profileRouter,
+  express.static(path.join(__dirname, "public"))
+);
 
-app.use("/api/sells", sellRouter, express.static(path.join(__dirname, "public")));
+app.use(
+  "/api/sells",
+  sellRouter,
+  express.static(path.join(__dirname, "public"))
+);
 app.use(express.static(path.join(__dirname, "public")));
-app.use("/api/finds", findRouter, express.static(path.join(__dirname, "public"))); //Database config
-app.use("/admin/schedule/finds", scheduleFINDRouter, express.static(path.join(__dirname, "public")));
-app.use("/admin/schedule/sells", scheduleSELLRouter, express.static(path.join(__dirname, "public")));
+app.use(
+  "/api/finds",
+  findRouter,
+  express.static(path.join(__dirname, "public"))
+); //Database config
+app.use(
+  "/admin/schedule/finds",
+  scheduleFINDRouter,
+  express.static(path.join(__dirname, "public"))
+);
+app.use(
+  "/admin/schedule/sells",
+  scheduleSELLRouter,
+  express.static(path.join(__dirname, "public"))
+);
 
-app.use("/admin/manager", managerRouter, express.static(path.join(__dirname, "public")));
+app.use(
+  "/admin/manager",
+  managerRouter,
+  express.static(path.join(__dirname, "public"))
+);
 
 mongoose.connect(
   db.mongoURI,
@@ -76,4 +104,8 @@ app.use(function (err, req, res, next) {
   res.render("error");
 });
 
+<<<<<<< HEAD
+app.listen(4000, () => console.log("Start on port 4000."));
+=======
 app.listen(3000, () => console.log("Start on port 3000."));
+>>>>>>> ffb8436fa49a19f72df3719a0510d8531866bdd9
