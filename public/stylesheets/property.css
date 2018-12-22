@@ -348,6 +348,36 @@ section
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
 }
+.main_nav ul li div button {
+	border: none;
+	border-radius: 22px;
+	background: rgba(63,111,206,0.85);
+	font-size: 16px;
+	font-weight: 500;
+	color: #FFFFFF;
+}
+.main_nav ul li div button:hover {
+	border: none;
+	background: rgba(63,111,206,0.85);
+	border-radius: 22px;
+	font-size: 16px;
+	font-weight: 500;
+	color: #2cd983;
+}
+.main_nav ul li div button:focus {
+	border: none;
+	background: rgba(63,111,206,0.85);
+	font-size: 16px;
+	font-weight: 500;
+	color: #2cd983;
+}
+
+.main_nav ul li div {
+	background: rgba(63,111,206,0.85);
+	font-size: 16px;
+	font-weight: 500;
+	color: #FFFFFF;
+}
 .main_nav ul li.active a,
 .main_nav ul li a:hover
 {

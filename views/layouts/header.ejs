@@ -11,10 +11,19 @@
           <nav class="main_nav">
             <ul>
               <li><a href="index.html">Home</a></li>
-              <li><a href="about.html">About us</a></li>
-              <li class="active"><a href="properties.html">Properties</a></li>
-              <li><a href="news.html">News</a></li>
-              <li><a href="contact.html">Contact</a></li>
+              <li><a href="about.html">Nhà đất bán</a></li>
+              <li><a href="properties.html">Nhà đất mua</a></li>
+              <li>
+              <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Post
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Cần thuê</a>
+                    <a class="dropdown-item" href="#">Cần bán</a>
+                  </div>
+                </div>
+              </li>
             </ul>
           </nav>
           <% if (true) { %>
@@ -29,16 +38,17 @@
             </div>
           </div>
           <% } else { %>
+            <div class="phone_num ml-auto">
+                <div class="phone_num_inner">
+                  <a href="#" role="button" data-toggle="modal"><span>Profile</span></a>
+                </div>
+              </div>
           <div class="phone_num ml-auto">
             <div class="phone_num_inner">
               <a href="#" role="button" data-toggle="modal"><span>Logout</span></a>
             </div>
           </div>
-          <div class="phone_num ml-auto">
-            <div class="phone_num_inner">
-              <a href="#" role="button" data-toggle="modal"><span>Profile</span></a>
-            </div>
-          </div>
+          
           <% } %>
           <div class="hamburger ml-auto"><i class="fa fa-bars" aria-hidden="true"></i></div>
         </div>
