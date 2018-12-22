@@ -39,14 +39,18 @@ app.use(
   })
 );
 //config Routers
-app.use("/", indexRouter);
-app.use("/api/users", userRouter);
-app.use("/api/profiles", profileRouter);
-app.use("/api/sells", sellRouter);
-app.use("/", findRouter); //Database config
-app.use("/admin/schedule/finds", scheduleFINDRouter);
-app.use("/admin/schedule/sells", scheduleSELLRouter);
-app.use("/admin/manager", managerRouter);
+app.use("/", indexRouter, express.static(path.join(__dirname, "public")));
+
+app.use("/api/users", userRouter, express.static(path.join(__dirname, "public")));
+app.use("/api/profiles", profileRouter, express.static(path.join(__dirname, "public")));
+
+app.use("/api/sells", sellRouter, express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public")));
+app.use("/api/finds", findRouter, express.static(path.join(__dirname, "public"))); //Database config
+app.use("/admin/schedule/finds", scheduleFINDRouter, express.static(path.join(__dirname, "public")));
+app.use("/admin/schedule/sells", scheduleSELLRouter, express.static(path.join(__dirname, "public")));
+
+app.use("/admin/manager", managerRouter, express.static(path.join(__dirname, "public")));
 
 mongoose.connect(
   db.mongoURI,

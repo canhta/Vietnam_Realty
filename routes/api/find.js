@@ -7,7 +7,7 @@ const validateFindInput = require("../../validation/find");
 //@route  GET api/finds/test
 //@desc   Test finds route
 //@access Public
-router.get("/finds/test", (req, res) => res.render("mains/find/listFind"));
+router.get("/test", (req, res) => res.render("mains/find/listFind"));
 
 //@route  GET api/finds
 //@desc   Get all finds
