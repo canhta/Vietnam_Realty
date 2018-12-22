@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../../layouts/head%>
+</head>
+
+<body>
+    <div class="super_container">
+        <% include ../../layouts/header%>
+        <% include ../../layouts/menu%>
+        <% include ../../layouts/home%>
+        <% include ../../layouts/search%>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10">
+                    <div class="card text-white bg-info mb-3 col-sm-12">
+                        <div class="card-header">
+                            <h3>Thông tin cơ bản</h3>
+                        </div>
+                        <div class="card-body">
+                            <form class="">
+                                <div class="form-row">
+                                    <div class="col-sm-2">
+                                        <h5 style="line-height:40px">Tiêu đề:</h5>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="Title">
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col-sm-2">
+                                        <h5 style="line-height:40px">Hình thức:</h5>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <select name="hinhThuc" id="inputState" class="form-control">
+                                            <option  selected>--Hình thức--</option>
+                                            <option value="Nhà đất bán">Nhà đất bán</option>
+                                            <option value="Nhà đất cho thuê">Nhà đất cho thuê</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <h5 style="line-height:40px">Loại:</h5>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <select id="inputState" class="form-control">
+                                            <option selected>--Phân mục--</option>
+                                            <option>...</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col-sm-2">
+                                        <h5 style="line-height:40px">Tỉnh/Thành phố:</h5>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <select id="tinhThanhPho" class="form-control">
+                                            <option selected value="">Hà Nội</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <h5 style="line-height:40px">Quận/Huyện:</h5>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <select id="quanHuyen" class="form-control">
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col-sm-2">
+                                        <h5 style="line-height:40px">Địa chỉ:</h5>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="Địa chỉ">
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col-sm-2">
+                                        <h5 style="line-height:40px">Dự án:</h5>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <select id="inputState" class="form-control">
+                                            <option selected>--Dự án--</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <h5 style="line-height:40px">Diện tích:</h5>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                            <input type="text" class="form-control" placeholder="--Diện tích--">
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col-sm-2">
+                                        <h5 style="line-height:40px">Giá:</h5>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                            <input type="text" class="form-control" placeholder="--Giá--">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <h5 style="line-height:40px">Đơn vị:</h5>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <select id="inputState" class="form-control">
+                                            <option selected>--Đơn vị--</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col-sm-2">
+                                        <h5 style="line-height:40px">Tổng giá tiền:</h5>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" readonly>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="card text-white bg-info mb-3 col-sm-12">
+                        <div class="card-header">
+                            <h3>Thông tin mô tả</h3>
+                        </div>
+
+                        <div class="form-row">
+                            <label for="exampleFormControlTextarea1" class="col-sm-12">Tối đa chỉ 3000 ký tự</label>
+                            <div class="form-group col-sm-8">
+                                <textarea class="form-control" style="height:200px" id="exampleFormControlTextarea1"
+                                    rows="3"></textarea>
+                            </div>
+                            <div class="col-sm-4">
+                                Giới thiệu chung về bất động sản của bạn. Ví dụ: Khu nhà có vị trí thuận lợi: Gần công
+                                viên, gần trường học ... Tổng diện tích 52m2, đường đi ô tô vào tận cửa.
+                                <p style="color:rgb(168, 226, 7)">Lưu ý: tin rao chỉ để mệnh giá tiền Việt Nam Đồng.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+            <% include ../../layouts/footer%>
+        </div>
+        <% include ../../layouts/javascript%>
+
+        <script type="text/javascript">
+            var listQuanHuyen = {
+                "QUANHUYEN": "--Quận/Huyện--",
+                "Quận Ba Đình": "Quận Ba Đình",
+                "Quận Hoàn Kiếm": "Quận Hoàn Kiếm",
+                "Quận Hai Bà Trưng": "Quận Hai Bà Trưng",
+                "Quận Đống Đa": "Quận Đống Đa",
+                "Quận Tây Hồ": "Quận Tây Hồ",
+                "Quận Cầu Giấy": "Quận Cầu Giấy",
+                "Quận Thanh Xuân": "Quận Thanh Xuân",
+                "Quận Hoàng Mai": "Quận Hoàng Mai",
+                "Quận Long Biên": "Quận Long Biên",
+                "Huyện Từ Liêm": "Huyện Từ Liêm",
+                "Huyện Thanh Trì": "Huyện Thanh Trì",
+                "Huyện Gia Lâm": "Huyện Gia Lâm",
+                "Huyện Đông Anh": "Huyện Đông Anh",
+                "Huyện Sóc Sơn": "Huyện Sóc Sơn",
+                "Quận Hà Đông": "Quận Hà Đông",
+                "Thị xã Sơn Tây": "Thị xã Sơn Tây",
+                "Huyện Ba Vì": "Huyện Ba Vì",
+                "Huyện Phúc Thọ": "Huyện Phúc Thọ",
+                "Huyện Thạch Thất": "Huyện Thạch Thất",
+                "Huyện Quốc Oai": "Huyện Quốc Oai",
+                "Huyện Chương Mỹ": "Huyện Chương Mỹ",
+                "Huyện Đan Phượng": "Huyện Đan Phượng",
+                "Huyện Hoài Đức": "Huyện Hoài Đức",
+                "Huyện Thanh Oai": "Huyện Thanh Oai",
+                "Huyện Mỹ Đức": "Huyện Mỹ Đức",
+                "Huyện Ứng Hoà": "Huyện Ứng Hoà",
+                "Huyện Thường Tín": "Huyện Thường Tín",
+                "Huyện Phú Xuyên": "Huyện Phú Xuyên",
+                "Huyện Mê Linh": "Huyện Mê Linh",
+                "Quận/Huyện khác": "Quận/Huyện khác"
+            };
+
+            var content = '';
+            for(x in listQuanHuyen)
+            {
+                content += '<option value='+ x +'>' + listQuanHuyen[x] + '</option>'
+            }
+            document.getElementById('quanHuyen').innerHTML = content;
+        </script>
+</body>
+
+</html>
+
