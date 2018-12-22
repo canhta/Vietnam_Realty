@@ -87,8 +87,7 @@
                                         <h5 style="line-height:40px">Giá:</h5>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <input name="gia" type="text" class="form-control" value='' id="idGia"
-                                            placeholder="--Giá--">
+                                        <input name="gia" type="text" class="form-control" value='' id="idGia" placeholder="--Giá--">
                                     </div>
                                     <div class="col-sm-2">
                                         <h5 style="line-height:40px">Đơn vị:</h5>
@@ -288,9 +287,7 @@
 
     <% include ../../layouts/javascript%>
     <script type="text/javascript">
-
         /*==============================================THÔNG TIN CƠ BẢN==============================================*/
-
         /* Tỉnh thành phố */
         // Hà Nội
         var listQuanHuyenHaNoi = {
@@ -356,6 +353,7 @@
         };
 
         var chooseTinhThanhPho = document.getElementById('idTinhThanhPho');
+
         chooseTinhThanhPho.addEventListener('click', function () {
             if (chooseTinhThanhPho.value === 'Hà Nội') {
                 renderQuanHuyen(listQuanHuyenHaNoi);
@@ -363,10 +361,8 @@
             else if (chooseTinhThanhPho.value === 'Hồ CHí Minh') {
                 renderQuanHuyen(listQuanHuyenHoChiMinh);
             }
-
             else {
                 renderQuanHuyen({ "QUANHUYEN": "--Quận/Huyện--" });
-
             }
         });
 
@@ -377,7 +373,6 @@
             }
             document.getElementById('idQuanHuyen').innerHTML = contentQuanHuyen;
         }
-
 
 
         /* Loại */
@@ -407,14 +402,11 @@
         var chooseHinhThuc = document.getElementById('idHinhThuc');
         chooseHinhThuc.addEventListener('click', function () {
             if (chooseHinhThuc.value == 'sell') {
-
                 renderDonVi(listDonViBan);
                 renderLoai(contentLoaiDatBan);
             }
             else if (chooseHinhThuc.value == 'rent') {
                 renderDonVi(listDonViThue)
-
-
                 renderLoai(contentLoaiDatThue);
             }
             else {
@@ -423,47 +415,47 @@
 
         });
 
-
         function renderLoai(contentLoai) {
             document.getElementById('idLoai').innerHTML = contentLoai;
-
-
-            function renderDonVi(contentDonVi) {
-                document.getElementById('idDonVi').innerHTML = contentDonVi;
-            }
-
-            /* Tổng giá tiền */
-            var docGia = document.getElementById('idGia');
-            var docDonVi = document.getElementById('idDonVi');
-            var caculate = document.getElementById('idCaculate');
-
-            caculate.addEventListener('click', function () {
-                if (docDonVi.value === 'Thỏa thuận' && docGia.value !== '') {
-                    alert('Giá không được là "Thỏa Thuận"');
-                }
-                else {
-                    document.getElementById('idTongGiaTien').value = docGia.value + ' ' + docDonVi.value;
-                }
-            });
-
-            /*=================================================CHI TIẾT=========================================*/
-            var listHuongNha_BanCong = '<option value="">KXĐ</option>' +
-                '<option value="Đông">Đông</option>' +
-                '<option value="Tây">Tây</option>' +
-                '<option value="Nam">Nam</option>' +
-                '<option value="Bắc">Bắc</option>' +
-                '<option value="Đông - Bắc">Đông - Bắc</option>' +
-                '<option value="Tây - Bắc">Tây - Bắc</option>' +
-                '<option value="Tây - Nam">Tây - Nam</option>' +
-                '<option value="Đông - Nam">Đông - Nam</option>';
-
-            function renderHuongNha_BanCong() {
-                document.getElementById('idHuongNha').innerHTML = listHuongNha_BanCong;
-                document.getElementById('idHuongBanCong').innerHTML = listHuongNha_BanCong;
-            }
-
-            renderHuongNha_BanCong();
         }
+
+        function renderDonVi(contentDonVi) {
+            document.getElementById('idDonVi').innerHTML = contentDonVi;
+        }
+
+        /* Tổng giá tiền */
+        var docGia = document.getElementById('idGia');
+        var docDonVi = document.getElementById('idDonVi');
+        var caculate = document.getElementById('idCaculate');
+
+        caculate.addEventListener('click', function () {
+            if (docDonVi.value === 'Thỏa thuận' && docGia.value !== '') {
+                alert('Giá không được là "Thỏa Thuận"');
+            }
+            else {
+                document.getElementById('idTongGiaTien').value = docGia.value + ' ' + docDonVi.value;
+            }
+        });
+
+        /*=================================================CHI TIẾT=========================================*/
+        var listHuongNha_BanCong = '<option value="">KXĐ</option>' +
+            '<option value="Đông">Đông</option>' +
+            '<option value="Tây">Tây</option>' +
+            '<option value="Nam">Nam</option>' +
+            '<option value="Bắc">Bắc</option>' +
+            '<option value="Đông - Bắc">Đông - Bắc</option>' +
+            '<option value="Tây - Bắc">Tây - Bắc</option>' +
+            '<option value="Tây - Nam">Tây - Nam</option>' +
+            '<option value="Đông - Nam">Đông - Nam</option>';
+
+        function renderHuongNha_BanCong() {
+            document.getElementById('idHuongNha').innerHTML = listHuongNha_BanCong;
+            document.getElementById('idHuongBanCong').innerHTML = listHuongNha_BanCong;
+        }
+
+        renderHuongNha_BanCong();
+
+
     </script>
 
 </body>
