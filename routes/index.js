@@ -3,7 +3,7 @@ var router = express.Router();
 router.get("/", (req, res) => res.render("mains/sell/postSell.ejs"));
 
 
-router.get("/test", (req, res) => res.render("mains/sell/postSell"));
+router.get("/test", (req, res) => res.render("mains/admin/listFind"));
 
 /* GET home page. */
 router.get("/", function(req, res, next) {
