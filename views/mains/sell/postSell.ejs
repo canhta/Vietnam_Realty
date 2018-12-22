@@ -281,7 +281,13 @@
                     </form>
                 </div>
                 <div class="col-sm-1"></div>
+<<<<<<< HEAD
                 <%-include("../../layouts/footer")%>
+=======
+
+                <%-include("../../layouts/footer")%>
+
+>>>>>>> master
             </div>
         </div>
     </div>
@@ -466,6 +472,7 @@
 
             var numberOfDay = toDate.getFullYear() * 365 + toDate.getMonth() * 30 + toDate.getDate() -
                 fromDate.getFullYear() * 365 - fromDate.getMonth() * 30 - fromDate.getDate();
+<<<<<<< HEAD
 
             if (numberOfDay < 0) {
                 alert('Nhập ngày không hợp lệ');
@@ -477,8 +484,22 @@
                 alert('Mời nhập ngày');
             }
 
+=======
+
+            if (numberOfDay < 0) {
+                alert('Nhập ngày không hợp lệ');
+            }
+            else if (numberOfDay >= 0) {
+                document.getElementById('idPhiDangBai').value = numberOfDay * 10000;
+            }
+            else {
+                alert('Mời nhập ngày');
+            }
+
+>>>>>>> master
         });
     </script>
+    
 
 </body>
 

@@ -10,7 +10,7 @@ const validateSellInput = require("../../validation/sell");
 //@desc   Test sells route
 //@access Public
 router.get("/test", (req, res) => res.json({ msg: "Sells works" }));
-module.exports = router;
+router.get("/", (req, res) => res.render("mains/sell/postSell"));
 
 //@route  GET api/sells/all
 //@desc   Get all sells

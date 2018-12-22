@@ -29,24 +29,56 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+
 //Session Config
 app.use(
   session({
-    secret: "2C44-4D44-WppQ38S",
+    secret: db.secretOfKey,
     resave: true,
     saveUninitialized: true
   })
 );
 //config Routers
-app.use("/", indexRouter);
-app.use("/api/users", userRouter);
-app.use("/api/profiles", profileRouter);
-app.use("/api/sells", sellRouter);
-app.use("/api/finds", findRouter); //Database config
-app.use("/admin/schedule/finds", scheduleFINDRouter);
-app.use("/admin/schedule/sells", scheduleSELLRouter);
-app.use("/admin/manager", managerRouter);
+app.use("/", indexRouter, express.static(path.join(__dirname, "public")));
+
+app.use(
+  "/api/users",
+  userRouter,
+  express.static(path.join(__dirname, "public"))
+);
+app.use(
+  "/api/profiles",
+  profileRouter,
+  express.static(path.join(__dirname, "public"))
+);
+
+app.use(
+  "/api/sells",
+  sellRouter,
+  express.static(path.join(__dirname, "public"))
+);
+app.use(express.static(path.join(__dirname, "public")));
+app.use(
+  "/api/finds",
+  findRouter,
+  express.static(path.join(__dirname, "public"))
+); //Database config
+app.use(
+  "/admin/schedule/finds",
+  scheduleFINDRouter,
+  express.static(path.join(__dirname, "public"))
+);
+app.use(
+  "/admin/schedule/sells",
+  scheduleSELLRouter,
+  express.static(path.join(__dirname, "public"))
+);
+
+app.use(
+  "/admin/manager",
+  managerRouter,
+  express.static(path.join(__dirname, "public"))
+);
 
 mongoose.connect(
   db.mongoURI,
@@ -57,12 +89,12 @@ mongoose.connect(
       : console.log("Database connected.")
 );
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
@@ -72,4 +104,6 @@ app.use(function(err, req, res, next) {
   res.render("error");
 });
 
+
 app.listen(4000, () => console.log("Start on port 4000."));
+
