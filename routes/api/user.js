@@ -14,7 +14,6 @@ const User = require("../../models/User");
 //@access Public
 router.get("/test", (req, res) => res.json({ msg: "Posts works" }));
 
-
 // //@route  GET api/users/register
 // //@desc   register route
 // //@access Public
@@ -90,7 +89,7 @@ router.post("/login", (req, res, next) => {
         return res.status(400).json({ errors });
       }
       //User matched
-      req.session.user = user.id;
+      req.session.id = user.id;
       req.session.role = user.role;
       res.redirect("/api/users/current");
     });
@@ -101,7 +100,9 @@ router.post("/login", (req, res, next) => {
 // @desc    Return Current user
 // @access  Private
 router.get("/current", authentication.MEMBER, (req, res) => {
-  User.findById(req.session.user).then(user=> res.render("test",{user:user.name}))
+  User.findById(req.session.user).then(user =>
+    res.render("test", { user: user.name })
+  );
 });
 router.get("/logout", (req, res) => {
   req.session.destroy();

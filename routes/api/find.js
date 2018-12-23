@@ -13,21 +13,19 @@ router.get("/test", (req, res) => res.json("test FIND"));
 //@desc   Get all finds
 //@access Public
 router.get("/all", (req, res, next) => {
-  Find.find(
-    { state: "POSTED" },
-    "hinhThuc loai diachi dienTich chiTiet gia timePost"
-  ) //cần sua thanh sate
+  Find.find({ state: "NEW" }) //cần sửa thành POSTED
     // .map(val => val)
     .then(find => {
-      // res.json(find);
       console.log(find);
+
       return res.render("mains/find/listFind", {
-        find: find,
-        title: "ALL FIND"
+        finds: find,
+        title: "ALL FIND",
+        total: find.length
       });
     })
     .catch(err =>
-      res.status(404).json({ noFindFounds: "No find posts found." })
+      res.status(404).json({ noSellFounds: "No find posts found." })
     );
 });
 //@route  GET api/finds
@@ -89,19 +87,23 @@ router.post("/", (req, res, next) => {
     return res.status(400).json(errors);
   }
   const newFind = new Find({
-    user: req.user.id,
-    avatar: req.body.avatar,
+    user: req.session.id,
     hinhThuc: req.body.hinhThuc,
     loai: req.body.loai,
-    diachi: req.body.diachi,
+    adress: {
+      diachi: req.body.diachi,
+      thanhPho: req.body.thanhPho,
+      quan: req.body.quan
+    },
     dienTich: req.body.dienTich,
     chiTiet: {
       title: req.body.title,
       noiDung: req.body.noiDung
     },
-    gia: {
+    cost: {
       from: req.body.from,
-      to: req.body.to
+      to: req.body.to,
+      donVi: req.body.donVi
     },
     state: "NEW",
     timePost: {

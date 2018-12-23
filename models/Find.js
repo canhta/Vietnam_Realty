@@ -16,10 +16,22 @@ const FindSchema = new Schema({
     type: String,
     required: true
   },
-  diachi: {
-    type: String,
-    required: true
-  },
+  adress: [
+    {
+      diachi: {
+        type: String,
+        required: true
+      },
+      thanhPho: {
+        type: String,
+        required: true
+      },
+      quan: {
+        type: String,
+        required: true
+      }
+    }
+  ],
   dienTich: {
     type: Number,
     required: true
@@ -36,7 +48,7 @@ const FindSchema = new Schema({
       }
     }
   ],
-  gia: [
+  cost: [
     {
       from: {
         type: Number,
@@ -45,6 +57,10 @@ const FindSchema = new Schema({
       to: {
         type: Number,
         default: 0
+      },
+      donVi: {
+        type: String,
+        required: true
       }
     }
   ],

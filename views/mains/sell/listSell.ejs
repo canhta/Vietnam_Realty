@@ -1,245 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <%-include("../../layouts/head")%>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="super_container">
-            <%-include("../../layouts/header")%>
-            <%-include("../../layouts/menu")%>
-            <%-include("../../layouts/home")%>
-            <%-include("../../layouts/search")%>
-        <main>
-    
+      <%-include("../../layouts/header")%> <%-include("../../layouts/menu")%>
+      <%-include("../../layouts/home")%> <%-include("../../layouts/search")%>
+      <main>
         <!-- Properties -->
-    
+
         <div class="properties">
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <div class="section_title">25 Properties found</div>
-                        <div class="section_subtitle">Search your dream home</div>
-                    </div>
-                </div>
-                <div class="row properties_row">
-                    
-                    <!-- Property -->
-                    <div class="col-xl-4 col-lg-6 property_col">
-                        <div class="property">
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <div class="section_title"><%= total %> Properties found</div>
+                <div class="section_subtitle">Search your dream home</div>
+              </div>
+            </div>
+            <div class="row properties_row">
+                    <% if (locals.sells) for(let i=0;i<total; i++){ var sell = sells[i] %>
+                     
+
+                        <!-- Property -->
+                        <div class="col-xl-4 col-lg-6 property_col">
+                          <div class="property">
                             <div class="property_image">
-                                <img src="images/property_1.jpg" alt="">
+                              <img src="images/property_1.jpg" alt="" />
                             </div>
                             <div class="property_body text-center">
-                                <div class="property_location">Miami</div>
-                                <div class="property_title"><a href="property.html">Sea view property</a></div>
-                                <div class="property_price">$ 1. 234 981</div>
+                              <div class="property_location">
+                                <%= sell.adress[0].thanhPho %>
+                              </div>
+                              <div class="property_title">
+                                <a href="property.html"><%= sell.loai %></a>
+                              </div>
+                              <div class="property_price">
+                                <%= sell.cost[0].gia %> <%= sell.cost[0].donVi %>
+                              </div>
                             </div>
-                            <div class="property_footer d-flex flex-row align-items-center justify-content-start">
-                                <div><div class="property_icon"><img src="images/icon_1.png" alt=""></div><span>650 Diện tích</span></div>
-                                <div><div class="property_icon"><img src="images/icon_2.png" alt=""></div><span>3 phòng ngủ</span></div>
-                                <div><div class="property_icon"><img src="images/icon_3.png" alt=""></div><span>3 phòng tắm</span></div>
+                            <div
+                              class="property_footer d-flex flex-row align-items-center justify-content-start"
+                            >
+                              <div>
+                                <div class="property_icon">
+                                  <img src="images/icon_1.png" alt="" />
+                                </div>
+                                <span><%= sell.dienTich %> m2</span>
+                              </div>
+                              <div>
+                                <div class="property_icon">
+                                  <img src="images/icon_2.png" alt="" />
+                                </div>
+                                <span><%= sell.chiTiet[0].soTang %> tầng</span>
+                              </div>
+                              <div>
+                                <div class="property_icon">
+                                  <img src="images/icon_3.png" alt="" />
+                                </div>
+                                <span><%= sell.chiTiet[0].soToilet %> toilet</span>
+                              </div>
                             </div>
+                          </div>
                         </div>
-                    </div>
-    
-                    <!-- Property -->
-                    <div class="col-xl-4 col-lg-6 property_col">
-                        <div class="property">
-                            <div class="property_image">
-                                <img src="images/property_2.jpg" alt="">
-                            </div>
-                            <div class="property_body text-center">
-                                <div class="property_location">Los Angeles</div>
-                                <div class="property_title"><a href="property.html">2 Floor Town House</a></div>
-                                <div class="property_price">$ 1. 234 981</div>
-                            </div>
-                            <div class="property_footer d-flex flex-row align-items-center justify-content-start">
-                                <div><div class="property_icon"><img src="images/icon_1.png" alt=""></div><span>650 Diện tích</span></div>
-                                <div><div class="property_icon"><img src="images/icon_2.png" alt=""></div><span>3 phòng ngủ</span></div>
-                                <div><div class="property_icon"><img src="images/icon_3.png" alt=""></div><span>3 phòng tắm</span></div>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <!-- Property -->
-                    <div class="col-xl-4 col-lg-6 property_col">
-                        <div class="property">
-                            <div class="property_image">
-                                <img src="images/property_3.jpg" alt="">
-                            </div>
-                            <div class="property_body text-center">
-                                <div class="property_location">Florida</div>
-                                <div class="property_title"><a href="property.html">Vacation Home</a></div>
-                                <div class="property_price">$ 1. 234 981</div>
-                            </div>
-                            <div class="property_footer d-flex flex-row align-items-center justify-content-start">
-                                <div><div class="property_icon"><img src="images/icon_1.png" alt=""></div><span>650 Diện tích</span></div>
-                                <div><div class="property_icon"><img src="images/icon_2.png" alt=""></div><span>3 phòng ngủ</span></div>
-                                <div><div class="property_icon"><img src="images/icon_3.png" alt=""></div><span>3 phòng tắm</span></div>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <!-- Property -->
-                    <div class="col-xl-4 col-lg-6 property_col">
-                        <div class="property">
-                            <div class="property_image">
-                                <img src="images/property_4.jpg" alt="">
-                            </div>
-                            <div class="property_body text-center">
-                                <div class="property_location">Miami</div>
-                                <div class="property_title"><a href="property.html">Sea view property</a></div>
-                                <div class="property_price">$ 1. 234 981</div>
-                            </div>
-                            <div class="property_footer d-flex flex-row align-items-center justify-content-start">
-                                <div><div class="property_icon"><img src="images/icon_1.png" alt=""></div><span>650 Diện tích</span></div>
-                                <div><div class="property_icon"><img src="images/icon_2.png" alt=""></div><span>3 phòng ngủ</span></div>
-                                <div><div class="property_icon"><img src="images/icon_3.png" alt=""></div><span>3 phòng tắm</span></div>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <!-- Property -->
-                    <div class="col-xl-4 col-lg-6 property_col">
-                        <div class="property">
-                            <div class="property_image">
-                                <img src="images/property_5.jpg" alt="">
-                            </div>
-                            <div class="property_body text-center">
-                                <div class="property_location">New York</div>
-                                <div class="property_title"><a href="property.html">Sea view property</a></div>
-                                <div class="property_price">$ 1. 234 981</div>
-                            </div>
-                            <div class="property_footer d-flex flex-row align-items-center justify-content-start">
-                                <div><div class="property_icon"><img src="images/icon_1.png" alt=""></div><span>650 Diện tích</span></div>
-                                <div><div class="property_icon"><img src="images/icon_2.png" alt=""></div><span>3 phòng ngủ</span></div>
-                                <div><div class="property_icon"><img src="images/icon_3.png" alt=""></div><span>3 phòng tắm</span></div>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <!-- Property -->
-                    <div class="col-xl-4 col-lg-6 property_col">
-                        <div class="property">
-                            <div class="property_image">
-                                <img src="images/property_6.jpg" alt="">
-                            </div>
-                            <div class="property_body text-center">
-                                <div class="property_location">Miami</div>
-                                <div class="property_title"><a href="property.html">Sea view property</a></div>
-                                <div class="property_price">$ 1. 234 981</div>
-                            </div>
-                            <div class="property_footer d-flex flex-row align-items-center justify-content-start">
-                                <div><div class="property_icon"><img src="images/icon_1.png" alt=""></div><span>650 Diện tích</span></div>
-                                <div><div class="property_icon"><img src="images/icon_2.png" alt=""></div><span>3 phòng ngủ</span></div>
-                                <div><div class="property_icon"><img src="images/icon_3.png" alt=""></div><span>3 phòng tắm</span></div>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <!-- Property -->
-                    <div class="col-xl-4 col-lg-6 property_col">
-                        <div class="property">
-                            <div class="property_image">
-                                <img src="images/property_7.jpg" alt="">
-                            </div>
-                            <div class="property_body text-center">
-                                <div class="property_location">Miami</div>
-                                <div class="property_title"><a href="property.html">Sea view property</a></div>
-                                <div class="property_price">$ 1. 234 981</div>
-                            </div>
-                            <div class="property_footer d-flex flex-row align-items-center justify-content-start">
-                                <div><div class="property_icon"><img src="images/icon_1.png" alt=""></div><span>650 Diện tích</span></div>
-                                <div><div class="property_icon"><img src="images/icon_2.png" alt=""></div><span>3 phòng ngủ</span></div>
-                                <div><div class="property_icon"><img src="images/icon_3.png" alt=""></div><span>3 phòng tắm</span></div>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <!-- Property -->
-                    <div class="col-xl-4 col-lg-6 property_col">
-                        <div class="property">
-                            <div class="property_image">
-                                <img src="images/property_8.jpg" alt="">
-                            </div>
-                            <div class="property_body text-center">
-                                <div class="property_location">San Francisco</div>
-                                <div class="property_title"><a href="property.html">Sea view property</a></div>
-                                <div class="property_price">$ 1. 234 981</div>
-                            </div>
-                            <div class="property_footer d-flex flex-row align-items-center justify-content-start">
-                                <div><div class="property_icon"><img src="images/icon_1.png" alt=""></div><span>650 Diện tích</span></div>
-                                <div><div class="property_icon"><img src="images/icon_2.png" alt=""></div><span>3 phòng ngủ</span></div>
-                                <div><div class="property_icon"><img src="images/icon_3.png" alt=""></div><span>3 phòng tắm</span></div>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <!-- Property -->
-                    <div class="col-xl-4 col-lg-6 property_col">
-                        <div class="property">
-                            <div class="property_image">
-                                <img src="images/property_9.jpg" alt="">
-                            </div>
-                            <div class="property_body text-center">
-                                <div class="property_location">Miami</div>
-                                <div class="property_title"><a href="property.html">Sea view property</a></div>
-                                <div class="property_price">$ 1. 234 981</div>
-                            </div>
-                            <div class="property_footer d-flex flex-row align-items-center justify-content-start">
-                                <div><div class="property_icon"><img src="images/icon_1.png" alt=""></div><span>650 Diện tích</span></div>
-                                <div><div class="property_icon"><img src="images/icon_2.png" alt=""></div><span>3 phòng ngủ</span></div>
-                                <div><div class="property_icon"><img src="images/icon_3.png" alt=""></div><span>3 phòng tắm</span></div>
-                            </div>
-                        </div>
-                    </div>
-    
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="pagination">
-                            <ul>
-                                <li class="active"><a href="#">01.</a></li>
-                                <li><a href="#">02.</a></li>
-                                <li><a href="#">03.</a></li>
-                                <li><a href="#">04.</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                    <% } %>
             </div>
         </div>
-    
         <!-- Newsletter -->
-    
-        <div class="newsletter">
-            <div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="images/newsletter.jpg" data-speed="0.8"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <div class="newsletter_content d-flex flex-lg-row flex-column align-items-start justify-content-start">
-                            <div class="newsletter_title_container">
-                                <div class="newsletter_title">Are you buying or selling?</div>
-                                <div class="newsletter_subtitle">Search your dream home</div>
-                            </div>
-                            <div class="newsletter_form_container">
-                                <form action="#" class="newsletter_form">
-                                    <input type="email" class="newsletter_input" placeholder="Your e-mail address" required="required">
-                                    <button class="newsletter_button">subscribe now</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-        </main>
-        <%-include("../../layouts/footer")%>
+      </main>
+      <%-include("../../layouts/footer")%>
     </div>
     <%-include("../../layouts/javascript")%>
-</body>
-
+  </body>
 </html>
