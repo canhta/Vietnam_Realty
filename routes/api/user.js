@@ -52,7 +52,12 @@ router.post("/register", (req, res, next) => {
           newUser.password = hash;
           newUser
             .save()
-            .then(user => res.json(user))
+            .then(user => {
+              //User matched
+              req.session.user = user.id;
+              req.session.role = user.role;
+              return res.render("mains/user/editProfile", { user: user });
+            })
             .catch(err => console.log(err));
         });
       });
@@ -104,8 +109,17 @@ router.get("/current", (req, res) => {
     res.send({ user: user.name, role: user.role, id: user.id })
   );
 });
-router.get("/logout", (req, res) => {
-  req.session.destroy();
-  return res.redirect("/");
+// GET /logout
+router.get("/logout", (req, res, next) => {
+  if (req.session) {
+    // delete session object
+    req.session.destroy(function(err) {
+      if (err) {
+        return next(err);
+      } else {
+        return res.redirect("/");
+      }
+    });
+  }
 });
 module.exports = router;
