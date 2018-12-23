@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <% include ../../layouts/head%>
+    <%-include("../../layouts/head")%>
 </head>
 
 <body>
@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-sm-1"></div>
                 <div class="col-sm-10">
-                    <form>
+                    <form action="/api/finds" method="POST">
                         <div class="card text-white bg-info mb-3 col-sm-12">
                             <div class="card-header">
                                 <h3>Thông tin cơ bản</h3>
@@ -29,8 +29,8 @@
                                     <div class="form-group col-md-4">
                                         <select name="hinhThuc" id="idHinhThuc" class="form-control">
                                             <option value="" selected>--Hình thức--</option>
-                                            <option value="sell">Nhà đất bán</option>
-                                            <option value="rent">Nhà đất cho thuê</option>
+                                            <option value="sell">Cần mua nhà</option>
+                                            <option value="rent">Cần thuê nhà</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-2">
@@ -48,7 +48,7 @@
                                         <h5 style="line-height:40px">Tỉnh/Thành phố:</h5>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <select id="idTinhThanhPho" class="form-control">
+                                        <select name="thanhPho" id="idTinhThanhPho" class="form-control">
                                             <option value="Tỉnh/Thành Phố" selected>--Tỉnh/Thành phố--</option>
                                             <option value="Hà Nội">Hà Nội</option>
                                             <option value="Hồ CHí Minh">Hồ CHí Minh</option>
@@ -58,27 +58,23 @@
                                         <h5 style="line-height:40px">Quận/Huyện:</h5>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <select id="idQuanHuyen" class="form-control">
+                                        <select name="quan" id="idQuanHuyen" class="form-control">
                                             <option value="">--Quận/Huyện--</option>
                                         </select>
                                     </div>
                                 </div>
 
-                                <div class="form-row">
-                                    <div class="col-sm-2">
-                                        <h5 style="line-height:40px">Địa chỉ:</h5>
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <input name="diachi" type="text" class="form-control" placeholder="Địa chỉ">
-                                    </div>
-                                </div>
+            
 
                                 <div class="form-row">
                                     <div class="col-sm-2">
                                         <h5 style="line-height:40px">Diện tích:</h5>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <input name="dienTich" type="text" class="form-control" placeholder="--Diện tích--">
+                                        <input name="fromDienTich" type="text" class="form-control" placeholder="Từ">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <input name="toDienTich" type="text" class="form-control" placeholder="Đến">
                                     </div>
                                 </div>
 
@@ -86,139 +82,30 @@
                                     <div class="col-sm-2">
                                         <h5 style="line-height:40px">Giá:</h5>
                                     </div>
-                                    <div class="form-group col-md-4">
-                                        <input name="gia" type="text" class="form-control" value='' id="idGia" placeholder="--Giá--">
+                                    <div class="form-group col-md-2">
+                                        <input name="fromCost" type="text" class="form-control" value='' id="idFromGia" placeholder="Từ">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <input name="fromCost" type="text" class="form-control" value='' id="idToGia" placeholder="Đến">
                                     </div>
                                     <div class="col-sm-2">
                                         <h5 style="line-height:40px">Đơn vị:</h5>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <select id="idDonVi" class="form-control">
+                                        <select name="donVi" id="idDonVi" class="form-control">
                                             <option value=""></option>
                                         </select>
                                     </div>
                                 </div>
 
-                                <div class="form-row">
-                                    <div class="col-sm-2">
-                                        <h5 style="line-height:40px">Tổng giá tiền:</h5>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" readonly id="idTongGiaTien">
-                                    </div>
-                                    <button type="button" class="btn btn-primary btn-sm col-sm-2" style="height: 50px"
-                                        id="idCaculate">Caculate</button>
-                                </div>
 
 
                             </div>
                         </div>
 
-                        <div class="card text-white bg-info mb-3 col-sm-12">
-                            <div class="card-header">
-                                <h3>Thông tin mô tả</h3>
-                            </div>
+                       
 
-                            <div class="form-row">
-                                <label for="exampleFormControlTextarea1" class="col-sm-12">Tối đa chỉ 3000 ký tự</label>
-                                <div class="form-group col-sm-8">
-                                    <textarea name="moTa" class="form-control" style="height:150px" id="exampleFormControlTextarea1"
-                                        rows="3"></textarea>
-                                </div>
-                                <div class="col-sm-4">
-                                    Giới thiệu chung về bất động sản của bạn. Ví dụ: Khu nhà có vị trí thuận lợi: Gần
-                                    công
-                                    viên, gần trường học ... Tổng diện tích 52m2, đường đi ô tô vào tận cửa.
-                                    <p style="color:rgb(168, 226, 7)">Lưu ý: tin rao chỉ để mệnh giá tiền Việt Nam
-                                        Đồng.</p>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="card text-white bg-info mb-3 col-sm-12">
-                            <div class="card-header">
-                                <h3>Chi tiết</h3>
-                            </div>
-
-                            <div class="form-row">
-                                <label for="exampleFormControlTextarea1" class="col-sm-12">Quý vị nên điền đầy đủ thông
-                                    tin vào các mục dưới đây để tin đăng có hiệu quả hơn
-                                </label>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="col-sm-2">
-                                    <h5 style="line-height:40px">Mặt tiền(m):</h5>
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <input name="matTien" type="text" class="form-control">
-                                </div>
-                                <div class="col-sm-2">
-                                    <h5 style="line-height:40px">Đường vào(m):</h5>
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <input name="duongVao" type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="col-sm-2">
-                                    <h5 style="line-height:40px">Hướng nhà:</h5>
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <select name="huongNha" id="idHuongNha" class="form-control"></select>
-                                </div>
-                                <div class="col-sm-2">
-                                    <h5 style="line-height:40px">Hướng ban công:</h5>
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <select name="huongBanCong" id="idHuongBanCong" class="form-control"></select>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="col-sm-2">
-                                    <h5 style="line-height:40px">Số tầng:</h5>
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <input name="soTang" type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="col-sm-2">
-                                    <h5 style="line-height:40px">Số phòng ngủ:</h5>
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <input name="soPhongNgu" type="text" class="form-control">
-                                </div>
-                                <div class="col-sm-2">
-                                    <h5 style="line-height:40px">Số toilet:</h5>
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <input name="soToilet" type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="col-sm-2">
-                                    <h5>Nội thất:</h>
-                                </div>
-                                <div class="form-group col-sm-10">
-                                    <input name="noiThat" type="text" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card text-white bg-info mb-3 col-sm-12">
-                            <div class="card-header">
-                                <h3>Hình ảnh và video</h3>
-                            </div>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="customFile">
-                                <label class="custom-file-label" for="customFile">Choose file</label>
-                            </div>
-                        </div>
 
                         <div class="card text-white bg-info mb-3 col-sm-12">
                             <div class="card-header">
@@ -239,17 +126,6 @@
                                     <div class="form-group col-md-4">
                                         <input name="toPost" type="date" class="form-control">
                                     </div>
-                                </div>
-
-                                <div class="form-row">
-                                    <div class="col-sm-2">
-                                        <h5 style="line-height:40px">Phí đăng bài:</h5>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" readonly id="idSoTienCanTra">
-                                    </div>
-                                    <button type="button" class="btn btn-primary btn-sm col-sm-2" style="height: 50px"
-                                        id="idCaculateSTCT">Caculate</button>
                                 </div>
                                 <hr>
                                 <div class="form-row">
@@ -279,7 +155,7 @@
                     </form>
                 </div>
                 <div class="col-sm-1"></div>
-                <% include ../../layouts/footer%>
+                <%-include("../../layouts/footer")%>
             </div>
         </div>
     </div>
@@ -375,30 +251,25 @@
 
 
         /* Loại */
-        var contentLoaiDatBan = '<option value="Bán căn hộ chung cư">Bán căn hộ chung cư</option>' +
-            '<option value="Bán nhà riêng">Bán nhà riêng</option>' +
-            '<option value="Bán nhà mặt phố">Bán nhà mặt phố</option>' +
-            '<option value="Bán kho, nhà xưởng">Bán kho, nhà xưởng</option>';
+        var contentLoaiDatBan = '<option value="Mua căn hộ chung cư">Mua căn hộ chung cư</option>' +
+            '<option value="Mua nhà riêng">Mua nhà riêng</option>' +
+            '<option value="Mua nhà mặt phố">Mua nhà mặt phố</option>' +
+            '<option value="Mua kho, nhà xưởng">Mua kho, nhà xưởng</option>';
 
-        var contentLoaiDatThue = '<option value="Cho thuê căn hộ chung cư">Cho thuê căn hộ chung cư</option>' +
-            '<option value="Cho thuê nhà trọ, phòng trọ">Cho thuê nhà trọ, phòng trọ</option>' +
-            '<option value="Cho thuê văn phòng">Cho thuê văn phòng</option>';
+        var contentLoaiDatThue = '<option value="Thuê căn hộ chung cư">Thuê căn hộ chung cư</option>' +
+            '<option value="Thuê nhà trọ, phòng trọ">Thuê nhà trọ, phòng trọ</option>' +
+            '<option value="Thuê văn phòng">Thuê văn phòng</option>';
 
         /* Đơn vị */
         var listDonViBan = '<option value="Thỏa thuận">Thỏa thuận</option>' +
             '<option value="Triệu">Triệu</option>' +
-            '<option value="Tỷ">Tỷ</option>' +
-            '<option value="Trăm nghìn/m2">Trăm nghìn/m2</option>' +
-            '<option value="Triệu/m2">Triệu/m2</option>';
-
+            '<option value="Tỷ">Tỷ</option>';
         var listDonViThue = '<option value="Thỏa thuận">Thỏa thuận</option>' +
-            '<option value="Trăm nghìn/Tháng">Trăm nghìn/Tháng</option>' +
-            '<option value="Triệu/Tháng">Triệu/Tháng</option>' +
-            '<option value="Trăm nghìn/m2/Tháng">Trăm nghìn/m2/Tháng</option>' +
-            '<option value="Triệu/m2/Tháng">Triệu/m2/Tháng</option>' +
-            '<option value="Nghìn/m2/Tháng">Nghìn/m2/Tháng</option>';
+            '<option value="Triệu">Triệu</option>' +
+            '<option value="Tỷ">Tỷ</option>';
 
         var chooseHinhThuc = document.getElementById('idHinhThuc');
+
         chooseHinhThuc.addEventListener('click', function () {
             if (chooseHinhThuc.value == 'sell') {
                 renderDonVi(listDonViBan);
@@ -422,21 +293,8 @@
             document.getElementById('idDonVi').innerHTML = contentDonVi;
         }
 
-        /* Tổng giá tiền */
-        var docGia = document.getElementById('idGia');
-        var docDonVi = document.getElementById('idDonVi');
-        var caculate = document.getElementById('idCaculate');
 
-        caculate.addEventListener('click', function () {
-            if (docDonVi.value === 'Thỏa thuận' && docGia.value !== '') {
-                alert('Giá không được là "Thỏa Thuận"');
-            }
-            else {
-                document.getElementById('idTongGiaTien').value = docGia.value + ' ' + docDonVi.value;
-            }
-        });
-
-        /*=================================================CHI TIẾT=========================================*/
+        /*=================================================Chi TIẾT=========================================*/
         var listHuongNha_BanCong = '<option value="">KXĐ</option>' +
             '<option value="Đông">Đông</option>' +
             '<option value="Tây">Tây</option>' +

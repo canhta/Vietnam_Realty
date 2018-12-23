@@ -79,6 +79,7 @@ router.get("/", (req, res, next) =>
 //@desc   Create finds route
 //@access Private
 router.post("/", (req, res, next) => {
+  // console.log("comhere");
   const { errors, isValid } = validateFindInput(req.body);
 
   // Check Validation
@@ -87,22 +88,20 @@ router.post("/", (req, res, next) => {
     return res.status(400).json(errors);
   }
   const newFind = new Find({
-    user: req.session.id,
+  // user: req.session.id,
     hinhThuc: req.body.hinhThuc,
     loai: req.body.loai,
     adress: {
-      diachi: req.body.diachi,
       thanhPho: req.body.thanhPho,
       quan: req.body.quan
     },
-    dienTich: req.body.dienTich,
-    chiTiet: {
-      title: req.body.title,
-      noiDung: req.body.noiDung
+    dienTich:{
+      fromDienTich: req.body.fromDienTich,
+      toDienTich : req.body.toDienTich
     },
     cost: {
-      from: req.body.from,
-      to: req.body.to,
+      fromCost: req.body.from,
+      toCost: req.body.to,
       donVi: req.body.donVi
     },
     state: "NEW",
@@ -118,7 +117,8 @@ router.post("/", (req, res, next) => {
   newFind
     .save()
     .then(find =>
-      res.render("mains/find/listFind", { find: find, title: "POST FIND" })
+      // res.render("mains/find/listFind", { find: find, title: "POST FIND" })
+      res.json(find)
     );
 });
 //@route  GET api/finds/:id
