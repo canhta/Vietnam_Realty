@@ -8,7 +8,13 @@
           class="header_content d-flex flex-row align-items-center justify-content-start"
         >
           <div class="logo">
-            <a href="#"><img src="images/logo_large.png" width="50px" height="70px" alt=""/></a>
+            <a href="#"
+              ><img
+                src="images/logo_large.png"
+                width="50px"
+                height="70px"
+                alt=""
+            /></a>
           </div>
           <nav class="main_nav">
             <ul>
@@ -42,7 +48,7 @@
               </li>
             </ul>
           </nav>
-          <% if (false) { %>
+          <% if (userID==="") { %>
           <div class="phone_num ml-auto">
             <div class="phone_num_inner">
               <a href="#loginModal" role="button" data-toggle="modal"
@@ -67,7 +73,7 @@
           </div>
           <div class="phone_num ml-auto">
             <div class="phone_num_inner">
-              <a href="#" role="button" data-toggle="modal"
+              <a href="api/users/logout/" role="button" data-toggle="modal"
                 ><span>Logout</span></a
               >
             </div>

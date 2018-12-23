@@ -91,7 +91,7 @@ router.post("/login", (req, res, next) => {
       //User matched
       req.session.user = user.id;
       req.session.role = user.role;
-      res.redirect("/api/users/current");
+      res.redirect("/");
     });
   });
 });
@@ -106,6 +106,6 @@ router.get("/current", (req, res) => {
 });
 router.get("/logout", (req, res) => {
   req.session.destroy();
-  res.send("logout success!");
+  return res.redirect("/");
 });
 module.exports = router;
