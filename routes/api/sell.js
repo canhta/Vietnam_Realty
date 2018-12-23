@@ -89,11 +89,14 @@ router.post("/", (req, res, next) => {
     return res.status(400).json(errors);
   }
   const newSell = new Sell({
-    user: req.user.id,
-    avatar: req.body.avatar,
+    user: req.session.id,
     hinhThuc: req.body.hinhThuc,
     loai: req.body.loai,
-    diachi: req.body.diachi,
+    adress: {
+      diachi: req.body.diachi,
+      thanhPho: req.body.thanhPho,
+      quan: req.body.quan
+    },
     dienTich: req.body.dienTich,
 
     chiTiet: {
@@ -106,11 +109,23 @@ router.post("/", (req, res, next) => {
       soToilet: req.body.soToilet,
       noiThat: req.body.noiThat
     },
-    gia: req.body.gia,
-    noiThat: {
+    moTa: req.body.moTa,
+    cost: {
+      gia: req.body.gia,
+      donVi: req.body.donVi
+    },
+    imageURL: {
       image: req.body.image
     },
-    moTa: req.body.moTa
+    state: "NEW",
+    timePost: {
+      fromPost: req.body.fromPost,
+      toPost: req.body.toPost
+    },
+    cardCash: {
+      menhGia: req.body.menhGia,
+      idCard: req.body.idCard
+    }
   });
   newSell.save().then(sell => res.json(sell));
 });
