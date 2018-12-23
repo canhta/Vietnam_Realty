@@ -22,16 +22,15 @@
             <div class="row properties_row">
                     <% if (locals.sells) for(let i=0;i<total; i++){ var sell = sells[i] %>
                      
-
                         <!-- Property -->
                         <div class="col-xl-4 col-lg-6 property_col">
                           <div class="property">
                               <div class="property_image">
                                   <img src="images/property_4.jpg" alt="">
                                   <% if (sell.hinhThuc==="rent"){ %>
-                                  <div class="tag_offer property_tag"><a href="#">RENT</a></div>
+                                  <div class="tag_offer property_tag"><a href="#">CHo thuê</a></div>
                                   <% } else { %>
-                                  <div class="tag_featured property_tag"><a href="#">SELL</a></div>
+                                  <div class="tag_featured property_tag"><a href="#">Bán nhà</a></div>
                                   <% } %>
                                 </div>
                             <div class="property_body text-center">
@@ -46,7 +45,7 @@
                               </div>
                             </div>
                             <div
-                              class="property_footer d-flex flex-row align-items-center justify-content-start"
+                              class="property_footer d-flex flex-row align-items-center justify-content-start text-center"
                             >
                               <div>
                                 <div class="property_icon">

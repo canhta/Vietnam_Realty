@@ -93,7 +93,7 @@ router.post("/", (req, res, next) => {
     return res.status(400).json(errors);
   }
   const newSell = new Sell({
-    //user: req.session.id,
+    user: req.session.user,
     hinhThuc: req.body.hinhThuc,
     loai: req.body.loai,
     adress: {
