@@ -42,7 +42,7 @@
               </li>
             </ul>
           </nav>
-          <% if (true) { %>
+          <% if (false) { %>
           <div class="phone_num ml-auto">
             <div class="phone_num_inner">
               <a href="#loginModal" role="button" data-toggle="modal"
@@ -60,7 +60,7 @@
           <% } else { %>
           <div class="phone_num ml-auto">
             <div class="phone_num_inner">
-              <a href="#" role="button" data-toggle="modal"
+              <a href="/api/profiles" role="button" data-toggle="modal"
                 ><span>Profile</span></a
               >
             </div>
@@ -85,5 +85,3 @@
 
 <%-include("../authentication/login")%>
 <%-include("../authentication/register")%>
-
-<script></script>
