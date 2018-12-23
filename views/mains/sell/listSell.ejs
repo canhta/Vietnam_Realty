@@ -34,7 +34,7 @@
                                 <%= sell.adress[0].thanhPho %>
                               </div>
                               <div class="property_title">
-                                <a href="property.html"><%= sell.loai %></a>
+                                <a href="/api/sells/<%= sell._id %>"><%= sell.loai %></a>
                               </div>
                               <div class="property_price">
                                 <%= sell.cost[0].gia %> <%= sell.cost[0].donVi %>
