@@ -7,7 +7,7 @@ const validateFindInput = require("../../validation/find");
 //@route  GET api/finds/test
 //@desc   Test finds route
 //@access Public
-router.get("/test", (req, res) => res.render("mains/find/listFind"));
+router.get("/test", (req, res) => res.json("test FIND"));
 
 //@route  GET api/finds
 //@desc   Get all finds
@@ -21,8 +21,10 @@ router.get("/all", (req, res, next) => {
     .then(find => {
       // res.json(find);
       console.log(find);
-
-      res.render("mains/find/listFind", { find: find });
+      return res.render("mains/find/listFind", {
+        find: find,
+        title: "ALL FIND"
+      });
     })
     .catch(err =>
       res.status(404).json({ noFindFounds: "No find posts found." })
@@ -31,38 +33,37 @@ router.get("/all", (req, res, next) => {
 //@route  GET api/finds
 //@desc   Get filter finds
 //@access Public
-router.get("/", (req, res, next) => {
-  let _query = {
-    diachi: req.query.diachi,
-    loai: req.query.loai,
-    gia: parseInt(req.query.gia),
-    dienTich: parseInt(req.query.dienTich)
-  };
-  console.log(_query);
+// router.get("/", (req, res, next) => {
+//   let _query = {
+//     diachi: req.query.diachi,
+//     loai: req.query.loai,
+//     gia: parseInt(req.query.gia),
+//     dienTich: parseInt(req.query.dienTich)
+//   };
+//   console.log(_query);
 
-  Find.find()
-    .where("state")
-    .equals("POSTED")
-    .where("diachi")
-    .equals(_query.diachi)
-    .where("loai")
-    .equals(_query.loai)
-    // .where("from")
-    // .gte(_query.gia)
-    // .where("dienTich")
-    // .equals(_query.dienTich())
-    // .sort({ dienTich: -1 })
-    .select("loai diachi dienTich chiTiet gia timePost")
-    .then(find => {
-      console.log(find.state);
-      console.log("-------------------All----------------");
-      // res.json(find);
-      res.render("mains/find/listFind", { find: find });
-    })
-    .catch(err =>
-      res.status(404).json({ noFindFounds: "No find posts found." })
-    );
-});
+//   Find.find()
+//     .where("state")
+//     .equals("POSTED")
+//     .where("diachi")
+//     .equals(_query.diachi)
+//     .where("loai")
+//     .equals(_query.loai)
+//     // .where("from")
+//     // .gte(_query.gia)
+//     // .where("dienTich")
+//     // .equals(_query.dienTich())
+//     // .sort({ dienTich: -1 })
+//     .select("loai diachi dienTich chiTiet gia timePost")
+//     .then(find => {
+//       console.log("--------All query----------------");
+//       // res.json(find);
+//       return res.render("mains/find/listFind", { find: find });
+//     })
+//     .catch(err =>
+//       res.status(404).json({ noFindFounds: "No find posts found." })
+//     );
+// });
 //@route  GET api/finds/:id
 //@desc   Get find by id
 //@access Public
@@ -73,7 +74,9 @@ router.get("/:id", (req, res, next) => {
       res.status(404).json({ noFindFound: "No find post for this ID." })
     );
 });
-
+router.get("/", (req, res, next) =>
+  res.render("mains/find/postFind", { title: "POST FIND" })
+);
 //@route  POST api/finds/
 //@desc   Create finds route
 //@access Private
@@ -112,7 +115,9 @@ router.post("/", (req, res, next) => {
   });
   newFind
     .save()
-    .then(find => res.render("mains/find/listFind", { find: find }));
+    .then(find =>
+      res.render("mains/find/listFind", { find: find, title: "POST FIND" })
+    );
 });
 //@route  GET api/finds/:id
 //@desc   Get find by id

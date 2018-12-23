@@ -10,15 +10,12 @@ const Authentication = require("../../middlewares/Authentication");
 //@route  GET api/profile/test
 //@desc   Test profile route
 //@access Public
-router.get("/test", (req, res) => res.json({ msg: "Posts works" }));
+router.get("/test", (req, res) => res.json({ msg: "Profile works" }));
 
-router.get("/demo", function(req, res){
-  res.render("main/")
-})
 //@route  GET api/profiles
 //@desc   Get current users profile
 //@access Private
-router.get("/",Authentication.MEMBER, (req, res) => {
+router.get("/", Authentication.MEMBER, (req, res) => {
   const errors = {};
   Profile.findOne({ user: req.session.user._id })
     .populate("user", ["name", "avatar"])
