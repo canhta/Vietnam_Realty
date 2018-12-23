@@ -16,11 +16,13 @@ router.get("/test", (req, res) => res.json({ msg: "Profile works" }));
 //@desc   Get current users profile
 //@access Private
 router.get("/", Authentication.MEMBER, (req, res) => {
+  
   const errors = {};
-  Profile.findOne({ user: req.session.user._id })
+  Profile.findOne({ user: req.session.user })
     .populate("user", ["name", "avatar"])
     .then(profile => {
       console.log(profile);
+      console.log(user);
       if (!profile) {
         errors.noprofile = "There is no profile for this user!";
         return res.status(404).json(errors);
