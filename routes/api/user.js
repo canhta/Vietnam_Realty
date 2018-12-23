@@ -89,7 +89,7 @@ router.post("/login", (req, res, next) => {
         return res.status(400).json({ errors });
       }
       //User matched
-      req.session.id = user.id;
+      req.session.user = user.id;
       req.session.role = user.role;
       res.redirect("/api/users/current");
     });
@@ -99,9 +99,9 @@ router.post("/login", (req, res, next) => {
 // @route   GET api/users/current
 // @desc    Return Current user
 // @access  Private
-router.get("/current", authentication.MEMBER, (req, res) => {
+router.get("/current", (req, res) => {
   User.findById(req.session.user).then(user =>
-    res.render("test", { user: user.name })
+    res.send({ user: user.name, role: user.role, id: user.id })
   );
 });
 router.get("/logout", (req, res) => {

@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 const Find = require("../../models/Find");
 const Profile = require("../../models/Profile");
+const User = require("../../models/User");
 
 const validateFindInput = require("../../validation/find");
 //@route  GET api/finds/test
@@ -16,8 +17,6 @@ router.get("/all", (req, res, next) => {
   Find.find({ state: "NEW" }) //cần sửa thành POSTED
     // .map(val => val)
     .then(find => {
-      console.log(find);
-
       return res.render("mains/find/listFind", {
         finds: find,
         title: "ALL FIND",
@@ -81,23 +80,25 @@ router.get("/", (req, res, next) =>
 router.post("/", (req, res, next) => {
   // console.log("comhere");
   const { errors, isValid } = validateFindInput(req.body);
-
+  User.findById(req.session.user).then(user =>
+    console.log(`this is session user: ${user}`)
+  );
   // Check Validation
   if (!isValid) {
     // Return any errors with 400 status
     return res.status(400).json(errors);
   }
   const newFind = new Find({
-  // user: req.session.id,
+    user: req.session.user,
     hinhThuc: req.body.hinhThuc,
     loai: req.body.loai,
     adress: {
       thanhPho: req.body.thanhPho,
       quan: req.body.quan
     },
-    dienTich:{
+    dienTich: {
       fromDienTich: req.body.fromDienTich,
-      toDienTich : req.body.toDienTich
+      toDienTich: req.body.toDienTich
     },
     cost: {
       fromCost: req.body.from,
@@ -114,12 +115,10 @@ router.post("/", (req, res, next) => {
       idCard: req.body.idCard
     }
   });
-  newFind
-    .save()
-    .then(find =>
-      // res.render("mains/find/listFind", { find: find, title: "POST FIND" })
-      res.json(find)
-    );
+  newFind.save().then(find =>
+    // res.render("mains/find/listFind", { find: find, title: "POST FIND" })
+    res.json(find)
+  );
 });
 //@route  GET api/finds/:id
 //@desc   Get find by id
