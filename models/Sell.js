@@ -16,10 +16,22 @@ const SellSchema = new Schema({
     type: String,
     required: true
   },
-  diachi: {
-    type: String,
-    required: true
-  },
+  adress: [
+    {
+      diachi: {
+        type: String,
+        required: true
+      },
+      thanhPho: {
+        type: String,
+        required: true
+      },
+      quan: {
+        type: String,
+        required: true
+      }
+    }
+  ],
   dienTich: {
     type: Number,
     required: true
@@ -58,11 +70,19 @@ const SellSchema = new Schema({
   moTa: {
     type: String
   },
-  gia: {
-    type: Number,
-    required: true,
-    default: 0
-  },
+  cost: [
+    {
+      gia: {
+        type: Number,
+        required: true,
+        default: 0
+      },
+      donVi: {
+        type: String,
+        required: true
+      }
+    }
+  ],
   imageURL: [
     {
       image: {

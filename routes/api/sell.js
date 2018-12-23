@@ -14,17 +14,15 @@ router.get("/test", (req, res) => res.json("Sells works"));
 //@desc   Get all sells
 //@access Public
 router.get("/all", (req, res, next) => {
-  Sell.find(
-    { state: "POSTED" },
-    "hinhThuc loai diachi dienTich chiTiet gia timePost"
-  ) //cần sua thanh sate
+  Sell.find({ state: "POSTED" }, "hinhThuc loai adress dienTich chiTiet cost ") //cần sua thanh sate
     // .map(val => val)
     .then(sell => {
-      console.log("HELLO SELL All");
+      console.log(sell);
 
       return res.render("mains/sell/listSell", {
-        sell: sell,
-        title: "ALL SELL"
+        sells: sell,
+        title: "ALL SELL",
+        total: sell.length
       });
     })
     .catch(err =>
