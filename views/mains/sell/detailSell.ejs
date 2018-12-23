@@ -42,7 +42,11 @@
                   <div
                     class="intro_price_container ml-lg-auto d-flex flex-column align-items-start justify-content-center"
                   >
-                    <div>For Sale</div>
+                    <% if (sell.hinhThuc==="rent"){ %>
+                    <div class="text-center">For Rent</div>
+                    <% } else { %>
+                    <div class="text-center">For Sale</div>
+                    <% } %>
                     <div class="intro_price">
                       <%= sell.cost[0].gia %> <%= sell.cost[0].donVi %>
                     </div>
@@ -194,6 +198,21 @@
 
                   <!-- Description -->
 
+                  <div class="property_description">
+                    <div class="property_title">
+                      <% if (sell.hinhThuc==="rent"){ %>
+                      <div>
+                        Giá cho thuê: <%= sell.cost[0].gia %> <%=
+                        sell.cost[0].donVi %>
+                      </div>
+                      <% } else { %>
+                      <div>
+                        Giá bán: <%= sell.cost[0].gia %> <%= sell.cost[0].donVi
+                        %>
+                      </div>
+                      <% } %>
+                    </div>
+                  </div>
                   <div class="property_description">
                     <div class="property_title">Mô tả</div>
                     <div class="property_text property_text_2">
