@@ -15,14 +15,13 @@ const ProfileSchema = new Schema({
   },
   adress: [
     {
-      city: {
-        type: String
+      thanhPho: {
+        type: String,
+        required: true
       },
-      district: {
-        type: String
-      },
-      commnune: {
-        type: String
+      quan: {
+        type: String,
+        required: true
       }
     }
   ],

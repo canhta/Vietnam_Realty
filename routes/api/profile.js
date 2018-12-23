@@ -17,7 +17,7 @@ router.get("/test", (req, res) => res.json({ msg: "Profile works" }));
 //@access Private
 router.get("/", Authentication.MEMBER, (req, res) => {
   const errors = {};
-  Profile.findOne({ user: req.session.user._id })
+  Profile.findOne({ user: req.session.user })
     .populate("user", ["name", "avatar"])
     .then(profile => {
       console.log(profile);
@@ -42,7 +42,7 @@ router.post("/", (req, res) => {
   }
   // Get fields
   const profileFields = {};
-  profileFields.user = req.user.id;
+  profileFields.user = req.session.user;
   if (req.body.dateOfBirth) profileFields.dateOfBirth = req.body.dateOfBirth;
   if (req.body.gender) profileFields.gender = req.body.gender;
   if (req.body.phone) profileFields.phone = req.body.phone;
@@ -52,16 +52,16 @@ router.post("/", (req, res) => {
   if (req.body.district) profileFields.adress.district = req.body.district;
   if (req.body.commnune) profileFields.adress.commnune = req.body.commnune;
 
-  Profile.findOne({ user: req.user.id }).then(profile => {
+  Profile.findOne({ user: req.session.id }).then(profile => {
     if (profile) {
       //Update
       Profile.findOneAndUpdate(
-        { user: req.user.id },
+        { user: req.session.id },
         { $set: profileFields },
         { new: true }
       )
         .then(profile => res.json(profile))
-        .catch(err => res.json("USER: " + req.user.id + "::" + err));
+        .catch(err => res.json("USER: " + req.session.id + "::" + err));
     } else {
       // Create
 
@@ -73,7 +73,9 @@ router.post("/", (req, res) => {
         }
 
         // Save Profile
-        new Profile(profileFields).save().then(profile => res.json(profile));
+        new Profile(profileFields).save().then(profile => {
+          return res.render("/api/profile", { profile });
+        });
       });
     }
   });
