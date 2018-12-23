@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-sm-1"></div>
                 <div class="col-sm-10">
-                    <form action="" method="POST">
+                    <form action="/api/sells" method="POST">
                         <div class="card text-white bg-info mb-3 col-sm-12">
                             <div class="card-header">
                                 <h3>Thông tin cơ bản</h3>
@@ -51,7 +51,7 @@
                                         <select name="thanhPho" id="idTinhThanhPho" class="form-control">
                                             <option value="Tỉnh/Thành Phố" selected>--Tỉnh/Thành phố--</option>
                                             <option value="Hà Nội">Hà Nội</option>
-                                            <option value="Hồ CHí Minh">Hồ CHí Minh</option>
+                                            <option value="Hồ CHí Minh">Hồ Chí Minh</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-2">
@@ -94,7 +94,7 @@
                                         <h5 style="line-height:40px">Đơn vị:</h5>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <select id="idDonVi" class="form-control">
+                                        <select name="donVi" id="idDonVi" class="form-control">
                                             <option value=""></option>
                                         </select>
                                     </div>
@@ -361,7 +361,7 @@
             if (chooseTinhThanhPho.value === 'Hà Nội') {
                 renderQuanHuyen(listQuanHuyenHaNoi);
             }
-            else if (chooseTinhThanhPho.value === 'Hồ CHí Minh') {
+            else if (chooseTinhThanhPho.value === 'Hồ Chí Minh') {
                 renderQuanHuyen(listQuanHuyenHoChiMinh);
             }
             else {
