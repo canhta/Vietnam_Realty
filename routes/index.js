@@ -5,7 +5,7 @@ var router = express.Router();
 
 router.get("/", function(req, res, next) {
   let userID = req.session.user;
-  console.log(userID);
+  console.log("--------------------" + userID + "--------------------");
 
   res.render("mains/home", { title: "Express", userID: userID });
 });
