@@ -40,7 +40,7 @@ const FindSchema = new Schema({
       }
     }
   ],
-  
+
   cost: [
     {
       fromCost: {
