@@ -48,7 +48,7 @@ const FindSchema = new Schema({
       }
     }
   ],
-  gia: [
+  cost: [
     {
       from: {
         type: Number,
@@ -57,6 +57,10 @@ const FindSchema = new Schema({
       to: {
         type: Number,
         default: 0
+      },
+      donVi: {
+        type: String,
+        required: true
       }
     }
   ],
