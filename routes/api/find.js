@@ -13,7 +13,7 @@ router.get("/test", (req, res) => res.json("test FIND"));
 //@desc   Get all finds
 //@access Public
 router.get("/all", (req, res, next) => {
-  Find.find({ state: "POSTED" }, "hinhThuc loai adress dienTich chiTiet cost ") //cần sua thanh sate
+  Find.find({ state: "NEW" }) //cần sửa thành POSTED
     // .map(val => val)
     .then(find => {
       console.log(find);
@@ -25,7 +25,7 @@ router.get("/all", (req, res, next) => {
       });
     })
     .catch(err =>
-      res.status(404).json({ noFindFounds: "No find posts found." })
+      res.status(404).json({ noSellFounds: "No find posts found." })
     );
 });
 //@route  GET api/finds

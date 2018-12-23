@@ -14,7 +14,7 @@ router.get("/test", (req, res) => res.json("Sells works"));
 //@desc   Get all sells
 //@access Public
 router.get("/all", (req, res, next) => {
-  Sell.find({ state: "POSTED" }, "hinhThuc loai adress dienTich chiTiet cost ") //cần sua thanh sate
+  Sell.find({ state: "NEW" }) //cần sửa thành POSTED
     // .map(val => val)
     .then(sell => {
       console.log(sell);
