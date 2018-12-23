@@ -3,10 +3,10 @@ const Schema = mongoose.Schema;
 
 //Create schema
 const FindSchema = new Schema({
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: "users"
-  },
+  // user: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: "users"
+  // },
   hinhThuc: {
     type: String,
     required: true,
@@ -18,10 +18,6 @@ const FindSchema = new Schema({
   },
   adress: [
     {
-      diachi: {
-        type: String,
-        required: true
-      },
       thanhPho: {
         type: String,
         required: true
@@ -32,29 +28,26 @@ const FindSchema = new Schema({
       }
     }
   ],
-  dienTich: {
-    type: Number,
-    required: true
-  },
-  chiTiet: [
+  dienTich: [
     {
-      title: {
-        type: String,
+      fromDienTich: {
+        type: Number,
         required: true
       },
-      noiDung: {
-        type: String,
+      toDienTich: {
+        type: Number,
         required: true
       }
     }
   ],
+  
   cost: [
     {
-      from: {
+      fromCost: {
         type: Number,
         default: 0
       },
-      to: {
+      toCost: {
         type: Number,
         default: 0
       },
