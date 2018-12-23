@@ -1,203 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <%-include("../../layouts/head")%>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="super_container">
-        <%-include("../../layouts/header")%>
-        <%-include("../../layouts/menu")%>
-		<%-include("../../layouts/home")%>
-		<%-include("../../layouts/search")%>
-        <main>
-			<!-- Intro -->
-		
-			<div class="intro">
-				<div class="container">
-					<div class="row">
-						<div class="col">
-							<div class="intro_content d-flex flex-lg-row flex-column align-items-start justify-content-start">
-								<div class="intro_title_container">
-									<div class="intro_title">Mô tả cơ bản</div>
-									<div class="intro_tags">
-										<ul>
-											<li><a href="#">3 phòng ngủ</a></li>
-											<li><a href="#">3 phòng tắm</a></li>
-											<li><a href="#">Nội thất</a></li>
-											<li><a href="#">Diện tích</a></li>
-											<li><a href="#">2 tầng</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="intro_price_container ml-lg-auto d-flex flex-column align-items-start justify-content-center">
-									<div>For Sale</div>
-									<div class="intro_price">$980,000</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="intro_slider_container">
-		
-					<!-- Intro Slider -->
-					<div class="owl-carousel owl-theme intro_slider">
-						<!-- Slide -->
-						<div class="owl-item"><img src="images/intro_1.jpg" alt=""></div>
-						<!-- Slide -->
-						<div class="owl-item"><img src="images/intro_1.jpg" alt=""></div>
-						<!-- Slide -->
-						<div class="owl-item"><img src="images/intro_1.jpg" alt=""></div>
-					</div>
-		
-					<!-- Intro Slider Nav -->
-					<div class="intro_slider_nav_container">
-						<div class="container">
-							<div class="row">
-								<div class="col">
-									<div class="intro_slider_nav_content d-flex flex-row align-items-start justify-content-end">
-										<div class="intro_slider_nav intro_slider_prev"><i class="fa fa-chevron-left" aria-hidden="true"></i></div>
-										<div class="intro_slider_nav intro_slider_next"><i class="fa fa-chevron-right" aria-hidden="true"></i></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		
-			<!-- Property -->
-		
-			<div class="property">
-				<div class="container">
-					<div class="row">
-						
-						<!-- Sidebar -->
-		
-						<div class="col-lg-3">
-							<div class="sidebar">
-		
-								<!-- Realtor -->
-								<div class="sidebar_realtor">
-									<div class="sidebar_realtor_image"><img src="images/sidebar_realtor.jpg" alt=""></div>
-									<div class="sidebar_realtor_body text-center">
-										<div class="sidebar_realtor_title"><a href="#">Maria Williams</a></div>
-										<div class="sidebar_realtor_subtitle">Senior Realtor</div>
-										<div class="sidebar_realtor_phone"><span>call us: </span>652 345 3222 11</div>
-										<div class="realtor_link"><a href="#">+</a></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-						<!-- Property Content -->
-						<div class="col-lg-8 offset-lg-1">
-							<div class="property_content">
-								<div class="property_icons">
-									<div class="property_title">Extra Facilities</div>
-									<div class="property_text property_text_1">
-										<p>Donec ullamcorper nulla non metus auctor fringi lla. Curabitur blandit tempus porttitor.</p>
-									</div>
-									<div class="property_rooms d-flex flex-sm-row flex-column align-items-start justify-content-start">
-		
-										<!-- Property Room Item -->
-										<div class="property_room">
-											<div class="property_room_title">Phòng ngủ</div>
-											<div class="property_room_content d-flex flex-row align-items-center justify-content-start">
-												<div class="room_icon"><img src="images/room_1.png" alt=""></div>
-												<div class="room_num">4</div>
-											</div>
-										</div>
-		
-										<!-- Property Room Item -->
-										<div class="property_room">
-											<div class="property_room_title">Nhà tắm </div>
-											<div class="property_room_content d-flex flex-row align-items-center justify-content-start">
-												<div class="room_icon"><img src="images/room_2.png" alt=""></div>
-												<div class="room_num">3</div>
-											</div>
-										</div>
-		
-										<!-- Property Room Item -->
-										<div class="property_room">
-											<div class="property_room_title">Diện tích</div>
-											<div class="property_room_content d-flex flex-row align-items-center justify-content-start">
-												<div class="room_icon"><img src="images/room_3.png" alt=""></div>
-												<div class="room_num">7100 Sq Ft</div>
-											</div>
-										</div>
-		
-										<!-- Property Room Item -->
-										<div class="property_room">
-											<div class="property_room_title">Số tầng</div>
-											<div class="property_room_content d-flex flex-row align-items-center justify-content-start">
-												<div class="room_icon"><img src="images/room_5.png" alt=""></div>
-												<div class="room_num">2</div>
-											</div>
-										</div>
-		
-									</div>
-								</div>
-		
-								<!-- Description -->
-		
-								<div class="property_description">
-									<div class="property_title">Mô tả</div>
-									<div class="property_text property_text_2">
-										<p>Donec ullamcorper nulla non metus auctor fringi lla. Curabitur blandit tempus porttitor.Sed lectus urna, ultricies sit amet risus eget, euismod imperdiet augue. Duis imperdiet, purus a pellentesque sodales, sapien mauris rhoncus eros, ac blandit elit leo ac diam. Sed lectus urna, ultricies sit amet risus eget, euismod imperdiet augue. Duis imperdiet, purus a pellentesque sodales, sapien mauris rhoncus eros, ac blandit elit leo ac diam</p>
-									</div>
-								</div>
-		
-								<!-- Additional Details -->
-		
-								<div class="additional_details">
-									<div class="property_title">Chi tiết bổ sung</div>
-									<div class="details_container">
-										<ul>
-											<li><span>Mặt tiền: </span>Main Floor Master Bedroom, Walk-In Closet</li>
-											<li><span>Hướng nhà: </span>Breakfast Counter/Bar, Living/Dining Combo</li>
-											<li><span>Đường vào: </span>Bay Window</li>
-											<li><span>Hướng ban công: </span>Mid Level</li>
-											<li><span>Nội thất: </span>Mid Level</li>
-											<li><span>Địa chỉ: </span>Raised Foundation, Vinyl Tile, Wall-to-Wall Carpet, Wood</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		
-			<!-- Newsletter -->
-		
-			<div class="newsletter">
-				<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="images/newsletter.jpg" data-speed="0.8"></div>
-				<div class="container">
-					<div class="row">
-						<div class="col">
-							<div class="newsletter_content d-flex flex-lg-row flex-column align-items-start justify-content-start">
-								<div class="newsletter_title_container">
-									<div class="newsletter_title">Are you buying or selling?</div>
-									<div class="newsletter_subtitle">Search your dream home</div>
-								</div>
-								<div class="newsletter_form_container">
-									<form action="#" class="newsletter_form">
-										<input type="email" class="newsletter_input" placeholder="Your e-mail address" required="required">
-										<button class="newsletter_button">subscribe now</button>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		
-        </main>
-        <%-include("../../layouts/footer")%>
+      <%-include("../../layouts/header")%> <%-include("../../layouts/menu")%>
+      <%-include("../../layouts/home")%> <%-include("../../layouts/search")%>
+      <main>
+        <!-- Intro -->
+
+        <div class="intro">
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <div
+                  class="intro_content d-flex flex-lg-row flex-column align-items-start justify-content-start"
+                >
+                  <div class="intro_title_container">
+                    <div class="intro_title">Mô tả cơ bản</div>
+                    <div class="intro_tags">
+                      <ul>
+                        <li>
+                          <a href="#"><%= sell.chiTiet[0].soTang%> tầng</a>
+                        </li>
+                        <li>
+                          <a href="#"
+                            ><%= sell.chiTiet[0].soPhongNgu %> phòng ngủ</a
+                          >
+                        </li>
+                        <li>
+                          <a href="#"
+                            ><%= sell.chiTiet[0].soToilet %> phòng tắm</a
+                          >
+                        </li>
+                        <li><a href="#"><%= sell.dienTich %> m2</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div
+                    class="intro_price_container ml-lg-auto d-flex flex-column align-items-start justify-content-center"
+                  >
+                    <div>For Sale</div>
+                    <div class="intro_price">
+                      <%= sell.cost[0].gia %> <%= sell.cost[0].donVi %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="intro_slider_container">
+            <!-- Intro Slider -->
+            <div class="owl-carousel owl-theme intro_slider">
+              <!-- Slide -->
+              <div class="owl-item">
+                <img src="images/intro_1.jpg" alt="" />
+              </div>
+              <!-- Slide -->
+              <div class="owl-item">
+                <img src="images/intro_1.jpg" alt="" />
+              </div>
+              <!-- Slide -->
+              <div class="owl-item">
+                <img src="images/intro_1.jpg" alt="" />
+              </div>
+            </div>
+
+            <!-- Intro Slider Nav -->
+            <div class="intro_slider_nav_container">
+              <div class="container">
+                <div class="row">
+                  <div class="col">
+                    <div
+                      class="intro_slider_nav_content d-flex flex-row align-items-start justify-content-end"
+                    >
+                      <div class="intro_slider_nav intro_slider_prev">
+                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                      </div>
+                      <div class="intro_slider_nav intro_slider_next">
+                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Property -->
+
+        <div class="property">
+          <div class="container">
+            <div class="row">
+              <!-- Sidebar -->
+
+              <div class="col-lg-3">
+                <div class="sidebar">
+                  <!-- Realtor -->
+                  <div class="sidebar_realtor">
+                    <div class="sidebar_realtor_image">
+                      <img src="images/sidebar_realtor.jpg" alt="" />
+                    </div>
+                    <div class="sidebar_realtor_body text-center">
+                      <div class="sidebar_realtor_title">
+                        <a href="#">Maria Williams</a>
+                      </div>
+                      <div class="sidebar_realtor_subtitle">Senior Realtor</div>
+                      <div class="sidebar_realtor_phone">
+                        <span>call us: </span>652 345 3222 11
+                      </div>
+                      <div class="realtor_link"><a href="#">+</a></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Property Content -->
+              <div class="col-lg-8 offset-lg-1">
+                <div class="property_content">
+                  <div class="property_icons">
+                    <div class="property_title">Tiện ích bổ sung</div>
+                    <div class="property_text property_text_1">
+                      <p>
+                        Donec ullamcorper nulla non metus auctor fringi lla.
+                        Curabitur blandit tempus porttitor.
+                      </p>
+                    </div>
+                    <div
+                      class="property_rooms d-flex flex-sm-row flex-column align-items-start justify-content-start"
+                    >
+                      <!-- Property Room Item -->
+                      <div class="property_room">
+                        <div class="property_room_title">Phòng ngủ</div>
+                        <div
+                          class="property_room_content d-flex flex-row align-items-center justify-content-start"
+                        >
+                          <div class="room_icon">
+                            <img src="images/room_1.png" alt="" />
+                          </div>
+                          <div class="room_num">
+                            <%= sell.chiTiet[0].soPhongNgu %>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Property Room Item -->
+                      <div class="property_room">
+                        <div class="property_room_title">Nhà tắm</div>
+                        <div
+                          class="property_room_content d-flex flex-row align-items-center justify-content-start"
+                        >
+                          <div class="room_icon">
+                            <img src="images/room_2.png" alt="" />
+                          </div>
+                          <div class="room_num">
+                            <%= sell.chiTiet[0].soToilet %>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Property Room Item -->
+                      <div class="property_room">
+                        <div class="property_room_title">Diện tích</div>
+                        <div
+                          class="property_room_content d-flex flex-row align-items-center justify-content-start"
+                        >
+                          <div class="room_icon">
+                            <img src="images/room_3.png" alt="" />
+                          </div>
+                          <div class="room_num"><%= sell.dienTich %> m2</div>
+                        </div>
+                      </div>
+
+                      <!-- Property Room Item -->
+                      <div class="property_room">
+                        <div class="property_room_title">Số tầng</div>
+                        <div
+                          class="property_room_content d-flex flex-row align-items-center justify-content-start"
+                        >
+                          <div class="room_icon">
+                            <img src="images/room_5.png" alt="" />
+                          </div>
+                          <div class="room_num">
+                            <%= sell.chiTiet[0].soTang%>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Description -->
+
+                  <div class="property_description">
+                    <div class="property_title">Mô tả</div>
+                    <div class="property_text property_text_2">
+                      <p><%= sell.moTa%></p>
+                    </div>
+                  </div>
+
+                  <!-- Additional Details -->
+
+                  <div class="additional_details">
+                    <div class="property_title">Chi tiết bổ sung</div>
+                    <div class="details_container">
+                      <ul>
+                        <li>
+                          <span>Mặt tiền: </span><%= sell.chiTiet[0].matTien%>
+                        </li>
+                        <li>
+                          <span>Hướng nhà: </span><%= sell.chiTiet[0].huongNha%>
+                        </li>
+                        <li>
+                          <span>Đường vào: </span><%= sell.chiTiet[0].duongVao%>
+                        </li>
+                        <li>
+                          <span>Hướng ban công: </span><%=
+                          sell.chiTiet[0].huongBanCong%>
+                        </li>
+                        <li>
+                          <span>Nội thất: </span><%= sell.chiTiet[0].noiThat %>
+                        </li>
+                        <li>
+                          <span>Địa chỉ: </span> <%= sell.adress[0].diachi %>,
+                          <%= sell.adress[0].quan %> , <%=
+                          sell.adress[0].thanhPho %>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Newsletter -->
+
+        <div class="newsletter">
+          <div
+            class="parallax_background parallax-window"
+            data-parallax="scroll"
+            data-image-src="images/newsletter.jpg"
+            data-speed="0.8"
+          ></div>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <div
+                  class="newsletter_content d-flex flex-lg-row flex-column align-items-start justify-content-start"
+                >
+                  <div class="newsletter_title_container">
+                    <div class="newsletter_title">
+                      Are you buying or selling?
+                    </div>
+                    <div class="newsletter_subtitle">
+                      Search your dream home
+                    </div>
+                  </div>
+                  <div class="newsletter_form_container">
+                    <form action="#" class="newsletter_form">
+                      <input
+                        type="email"
+                        class="newsletter_input"
+                        placeholder="Your e-mail address"
+                        required="required"
+                      />
+                      <button class="newsletter_button">subscribe now</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <%-include("../../layouts/footer")%>
     </div>
     <%-include("../../layouts/javascript")%>
-</body>
-
+  </body>
 </html>

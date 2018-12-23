@@ -68,7 +68,11 @@ router.get("/all", (req, res, next) => {
 //@access Public
 router.get("/:id", (req, res, next) => {
   Sell.findById(req.params.id)
-    .then(sell => res.json(sell))
+    .then(sell => {
+      console.log(sell);
+
+      res.render("mains/sell/detailSell", { title: "DETAIL SELL", sell: sell });
+    })
     .catch(err =>
       res.status(404).json({ noSellFound: "No sell post for this ID." })
     );
