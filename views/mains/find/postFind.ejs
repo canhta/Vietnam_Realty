@@ -1,326 +1,350 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <%-include("../../layouts/head")%>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="super_container">
-        <%-include("../../layouts/header")%>
-        <%-include("../../layouts/menu")%>
-        <%-include("../../layouts/home")%>
-        <%-include("../../layouts/search")%>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-10">
-                    <form action="/api/finds" method="POST">
-                        <div class="card text-white bg-info mb-3 col-sm-12">
-                            <div class="card-header">
-                                <h3>Thông tin cơ bản</h3>
-                            </div>
-                            <div class="card-body">
+      <%-include("../../layouts/header")%> <%-include("../../layouts/menu")%>
+      <%-include("../../layouts/home")%> <%-include("../../layouts/search")%>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-1"></div>
+          <div class="col-sm-10">
+            <form action="/api/finds" method="POST">
+              <div class="card text-white bg-info mb-3 col-sm-12">
+                <div class="card-header"><h3>Thông tin cơ bản</h3></div>
+                <div class="card-body">
+                  <div class="form-row">
+                    <div class="col-sm-2">
+                      <h5 style="line-height:40px">Hình thức:</h5>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <select
+                        name="hinhThuc"
+                        id="idHinhThuc"
+                        class="form-control"
+                      >
+                        <option value="" selected>--Hình thức--</option>
+                        <option value="sell">Cần mua nhà</option>
+                        <option value="rent">Cần thuê nhà</option>
+                      </select>
+                    </div>
+                    <div class="col-sm-2">
+                      <h5 style="line-height:40px">Loại:</h5>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <select name="loai" id="idLoai" class="form-control">
+                        <option value="">--Loại--</option>
+                      </select>
+                    </div>
+                  </div>
 
-                                <div class="form-row">
-                                    <div class="col-sm-2">
-                                        <h5 style="line-height:40px">Hình thức:</h5>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <select name="hinhThuc" id="idHinhThuc" class="form-control">
-                                            <option value="" selected>--Hình thức--</option>
-                                            <option value="sell">Cần mua nhà</option>
-                                            <option value="rent">Cần thuê nhà</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <h5 style="line-height:40px">Loại:</h5>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <select name="loai" id="idLoai" class="form-control">
-                                            <option value="">--Loại--</option>
-                                        </select>
-                                    </div>
-                                </div>
+                  <div class="form-row">
+                    <div class="col-sm-2">
+                      <h5 style="line-height:40px">Tỉnh/Thành phố:</h5>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <select
+                        name="thanhPho"
+                        id="idTinhThanhPho"
+                        class="form-control"
+                      >
+                        <option value="Tỉnh/Thành Phố" selected
+                          >--Tỉnh/Thành phố--</option
+                        >
+                        <option value="Hà Nội">Hà Nội</option>
+                        <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                      </select>
+                    </div>
+                    <div class="col-sm-2">
+                      <h5 style="line-height:40px">Quận/Huyện:</h5>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <select name="quan" id="idQuanHuyen" class="form-control">
+                        <option value="">--Quận/Huyện--</option>
+                      </select>
+                    </div>
+                  </div>
 
-                                <div class="form-row">
-                                    <div class="col-sm-2">
-                                        <h5 style="line-height:40px">Tỉnh/Thành phố:</h5>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <select name="thanhPho" id="idTinhThanhPho" class="form-control">
-                                            <option value="Tỉnh/Thành Phố" selected>--Tỉnh/Thành phố--</option>
-                                            <option value="Hà Nội">Hà Nội</option>
-                                            <option value="Hồ CHí Minh">Hồ CHí Minh</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <h5 style="line-height:40px">Quận/Huyện:</h5>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <select name="quan" id="idQuanHuyen" class="form-control">
-                                            <option value="">--Quận/Huyện--</option>
-                                        </select>
-                                    </div>
-                                </div>
+                  <div class="form-row">
+                    <div class="col-sm-2">
+                      <h5 style="line-height:40px">Diện tích:</h5>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <input
+                        name="fromDienTich"
+                        type="text"
+                        class="form-control"
+                        placeholder="Từ"
+                      />
+                    </div>
+                    <div class="form-group col-md-4">
+                      <input
+                        name="toDienTich"
+                        type="text"
+                        class="form-control"
+                        placeholder="Đến"
+                      />
+                    </div>
+                  </div>
 
-            
-
-                                <div class="form-row">
-                                    <div class="col-sm-2">
-                                        <h5 style="line-height:40px">Diện tích:</h5>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <input name="fromDienTich" type="text" class="form-control" placeholder="Từ">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <input name="toDienTich" type="text" class="form-control" placeholder="Đến">
-                                    </div>
-                                </div>
-
-                                <div class="form-row">
-                                    <div class="col-sm-2">
-                                        <h5 style="line-height:40px">Giá:</h5>
-                                    </div>
-                                    <div class="form-group col-md-2">
-                                        <input name="fromCost" type="text" class="form-control" value='' id="idFromGia" placeholder="Từ">
-                                    </div>
-                                    <div class="form-group col-md-2">
-                                        <input name="fromCost" type="text" class="form-control" value='' id="idToGia" placeholder="Đến">
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <h5 style="line-height:40px">Đơn vị:</h5>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <select name="donVi" id="idDonVi" class="form-control">
-                                            <option value=""></option>
-                                        </select>
-                                    </div>
-                                </div>
-
-
-
-                            </div>
-                        </div>
-
-                       
-
-
-
-                        <div class="card text-white bg-info mb-3 col-sm-12">
-                            <div class="card-header">
-                                <h3>Lịch đăng tin</h3>
-                            </div>
-
-                            <div class="card-body">
-                                <div class="form-row">
-                                    <div class="col-sm-2">
-                                        <h5 style="line-height:40px">Ngày bắt đầu:</h5>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <input name="fromPost" type="date" class="form-control">
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <h5 style="line-height:40px">Ngày kết thúc:</h5>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <input name="toPost" type="date" class="form-control">
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="form-row">
-                                    <div class="col-sm-2">
-                                        <h5 style="line-height:40px">Mệnh giá:</h5>
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <select name="menhGia" id="idMenhGia" class="form-control">
-                                            <option selected>--Mệnh giá--</option>
-                                            <option value="50000">50000 đồng</option>
-                                            <option value="100000">100000 đồng</option>
-                                            <option value="200000">200000 đồng</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-1">
-                                        <h5 style="line-height:40px">Mã thẻ:</h5>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <input name="idCard" type="text" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card text-white mb-3 col-sm-12" style="border: none">
-                            <button type="submit" class="btn btn-info col-sm-6 btn-lg" style="margin: auto">Submit</button>
-                        </div>
-                    </form>
+                  <div class="form-row">
+                    <div class="col-sm-2">
+                      <h5 style="line-height:40px">Giá:</h5>
+                    </div>
+                    <div class="form-group col-md-2">
+                      <input
+                        name="fromCost"
+                        type="text"
+                        class="form-control"
+                        value=""
+                        id="idFromGia"
+                        placeholder="Từ"
+                      />
+                    </div>
+                    <div class="form-group col-md-2">
+                      <input
+                        name="fromCost"
+                        type="text"
+                        class="form-control"
+                        value=""
+                        id="idToGia"
+                        placeholder="Đến"
+                      />
+                    </div>
+                    <div class="col-sm-2">
+                      <h5 style="line-height:40px">Đơn vị:</h5>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <select name="donVi" id="idDonVi" class="form-control">
+                        <option value=""></option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
-                <div class="col-sm-1"></div>
-                <%-include("../../layouts/footer")%>
-            </div>
+              </div>
+
+              <div class="card text-white bg-info mb-3 col-sm-12">
+                <div class="card-header"><h3>Lịch đăng tin</h3></div>
+
+                <div class="card-body">
+                  <div class="form-row">
+                    <div class="col-sm-2">
+                      <h5 style="line-height:40px">Ngày bắt đầu:</h5>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <input name="fromPost" type="date" class="form-control" />
+                    </div>
+                    <div class="col-sm-2">
+                      <h5 style="line-height:40px">Ngày kết thúc:</h5>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <input name="toPost" type="date" class="form-control" />
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="form-row">
+                    <div class="col-sm-2">
+                      <h5 style="line-height:40px">Mệnh giá:</h5>
+                    </div>
+                    <div class="form-group col-md-3">
+                      <select
+                        name="menhGia"
+                        id="idMenhGia"
+                        class="form-control"
+                      >
+                        <option selected>--Mệnh giá--</option>
+                        <option value="50000">50000 đồng</option>
+                        <option value="100000">100000 đồng</option>
+                        <option value="200000">200000 đồng</option>
+                      </select>
+                    </div>
+                    <div class="col-sm-1">
+                      <h5 style="line-height:40px">Mã thẻ:</h5>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <input name="idCard" type="text" class="form-control" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card text-white mb-3 col-sm-12" style="border: none">
+                <button
+                  type="submit"
+                  class="btn btn-info col-sm-6 btn-lg"
+                  style="margin: auto"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="col-sm-1"></div>
+          <%-include("../../layouts/footer")%>
         </div>
+      </div>
     </div>
 
     <%-include("../../layouts/javascript")%>
     <script type="text/javascript">
-        /*==============================================THÔNG TIN CƠ BẢN==============================================*/
-        /* Tỉnh thành phố */
-        // Hà Nội
-        var listQuanHuyenHaNoi = {
-            "Quận Ba Đình": "Quận Ba Đình",
-            "Quận Hoàn Kiếm": "Quận Hoàn Kiếm",
-            "Quận Hai Bà Trưng": "Quận Hai Bà Trưng",
-            "Quận Đống Đa": "Quận Đống Đa",
-            "Quận Tây Hồ": "Quận Tây Hồ",
-            "Quận Cầu Giấy": "Quận Cầu Giấy",
-            "Quận Thanh Xuân": "Quận Thanh Xuân",
-            "Quận Hoàng Mai": "Quận Hoàng Mai",
-            "Quận Long Biên": "Quận Long Biên",
-            "Huyện Từ Liêm": "Huyện Từ Liêm",
-            "Huyện Thanh Trì": "Huyện Thanh Trì",
-            "Huyện Gia Lâm": "Huyện Gia Lâm",
-            "Huyện Đông Anh": "Huyện Đông Anh",
-            "Huyện Sóc Sơn": "Huyện Sóc Sơn",
-            "Quận Hà Đông": "Quận Hà Đông",
-            "Thị xã Sơn Tây": "Thị xã Sơn Tây",
-            "Huyện Ba Vì": "Huyện Ba Vì",
-            "Huyện Phúc Thọ": "Huyện Phúc Thọ",
-            "Huyện Thạch Thất": "Huyện Thạch Thất",
-            "Huyện Quốc Oai": "Huyện Quốc Oai",
-            "Huyện Chương Mỹ": "Huyện Chương Mỹ",
-            "Huyện Đan Phượng": "Huyện Đan Phượng",
-            "Huyện Hoài Đức": "Huyện Hoài Đức",
-            "Huyện Thanh Oai": "Huyện Thanh Oai",
-            "Huyện Mỹ Đức": "Huyện Mỹ Đức",
-            "Huyện Ứng Hoà": "Huyện Ứng Hoà",
-            "Huyện Thường Tín": "Huyện Thường Tín",
-            "Huyện Phú Xuyên": "Huyện Phú Xuyên",
-            "Huyện Mê Linh": "Huyện Mê Linh",
-            "Quận/Huyện khác": "Quận/Huyện khác"
-        };
+      /*==============================================THÔNG TIN CƠ BẢN==============================================*/
+      /* Tỉnh thành phố */
+      // Hà Nội
+      var listQuanHuyenHaNoi = {
+        "Quận Ba Đình": "Quận Ba Đình",
+        "Quận Hoàn Kiếm": "Quận Hoàn Kiếm",
+        "Quận Hai Bà Trưng": "Quận Hai Bà Trưng",
+        "Quận Đống Đa": "Quận Đống Đa",
+        "Quận Tây Hồ": "Quận Tây Hồ",
+        "Quận Cầu Giấy": "Quận Cầu Giấy",
+        "Quận Thanh Xuân": "Quận Thanh Xuân",
+        "Quận Hoàng Mai": "Quận Hoàng Mai",
+        "Quận Long Biên": "Quận Long Biên",
+        "Huyện Từ Liêm": "Huyện Từ Liêm",
+        "Huyện Thanh Trì": "Huyện Thanh Trì",
+        "Huyện Gia Lâm": "Huyện Gia Lâm",
+        "Huyện Đông Anh": "Huyện Đông Anh",
+        "Huyện Sóc Sơn": "Huyện Sóc Sơn",
+        "Quận Hà Đông": "Quận Hà Đông",
+        "Thị xã Sơn Tây": "Thị xã Sơn Tây",
+        "Huyện Ba Vì": "Huyện Ba Vì",
+        "Huyện Phúc Thọ": "Huyện Phúc Thọ",
+        "Huyện Thạch Thất": "Huyện Thạch Thất",
+        "Huyện Quốc Oai": "Huyện Quốc Oai",
+        "Huyện Chương Mỹ": "Huyện Chương Mỹ",
+        "Huyện Đan Phượng": "Huyện Đan Phượng",
+        "Huyện Hoài Đức": "Huyện Hoài Đức",
+        "Huyện Thanh Oai": "Huyện Thanh Oai",
+        "Huyện Mỹ Đức": "Huyện Mỹ Đức",
+        "Huyện Ứng Hoà": "Huyện Ứng Hoà",
+        "Huyện Thường Tín": "Huyện Thường Tín",
+        "Huyện Phú Xuyên": "Huyện Phú Xuyên",
+        "Huyện Mê Linh": "Huyện Mê Linh",
+        "Quận/Huyện khác": "Quận/Huyện khác"
+      };
 
-        // Hồ Chí Minh
-        var listQuanHuyenHoChiMinh = {
-            "Quận 1": "Quận 1",
-            "Quận 2": "Quận 2",
-            "Quận 3": "Quận 3",
-            "Quận 4": "Quận 4",
-            "Quận 5": "Quận 5",
-            "Quận 6": "Quận 6",
-            "Quận 7": "Quận 7",
-            "Quận 8": "Quận 8",
-            "Quận 9": "Quận 9",
-            "Quận 10": "Quận 10",
-            "Quận 11": "Quận 11",
-            "Quận 12": "Quận 12",
-            "Quận Gò Vấp": "Quận Gò Vấp",
-            "Quận Tân Bình": "Quận Tân Bình",
-            "Quận Tân Phú": "Quận Tân Phú",
-            "Quận Bình Thạnh": "Quận Bình Thạnh",
-            "Quận Phú Nhuận": "Quận Phú Nhuận",
-            "Quận Thủ Đức": "Quận Thủ Đức",
-            "Quận Bình Tân": "Quận Bình Tân",
-            "Huyện Bình Chánh": "Huyện Bình Chánh",
-            "Huyện Củ Chi": "Huyện Củ Chi",
-            "Huyện Hóc Môn": "Huyện Hóc Môn",
-            "Huyện Nhà Bè": "Huyện Nhà Bè",
-            "Huyện Cần Giờ": "Huyện Cần Giờ",
-            "Quận/Huyện khác": "Quận/Huyện khác"
-        };
+      // Hồ Chí Minh
+      var listQuanHuyenHoChiMinh = {
+        "Quận 1": "Quận 1",
+        "Quận 2": "Quận 2",
+        "Quận 3": "Quận 3",
+        "Quận 4": "Quận 4",
+        "Quận 5": "Quận 5",
+        "Quận 6": "Quận 6",
+        "Quận 7": "Quận 7",
+        "Quận 8": "Quận 8",
+        "Quận 9": "Quận 9",
+        "Quận 10": "Quận 10",
+        "Quận 11": "Quận 11",
+        "Quận 12": "Quận 12",
+        "Quận Gò Vấp": "Quận Gò Vấp",
+        "Quận Tân Bình": "Quận Tân Bình",
+        "Quận Tân Phú": "Quận Tân Phú",
+        "Quận Bình Thạnh": "Quận Bình Thạnh",
+        "Quận Phú Nhuận": "Quận Phú Nhuận",
+        "Quận Thủ Đức": "Quận Thủ Đức",
+        "Quận Bình Tân": "Quận Bình Tân",
+        "Huyện Bình Chánh": "Huyện Bình Chánh",
+        "Huyện Củ Chi": "Huyện Củ Chi",
+        "Huyện Hóc Môn": "Huyện Hóc Môn",
+        "Huyện Nhà Bè": "Huyện Nhà Bè",
+        "Huyện Cần Giờ": "Huyện Cần Giờ",
+        "Quận/Huyện khác": "Quận/Huyện khác"
+      };
 
-        var chooseTinhThanhPho = document.getElementById('idTinhThanhPho');
+      var chooseTinhThanhPho = document.getElementById("idTinhThanhPho");
 
-        chooseTinhThanhPho.addEventListener('click', function () {
-            if (chooseTinhThanhPho.value === 'Hà Nội') {
-                renderQuanHuyen(listQuanHuyenHaNoi);
-            }
-            else if (chooseTinhThanhPho.value === 'Hồ CHí Minh') {
-                renderQuanHuyen(listQuanHuyenHoChiMinh);
-            }
-            else {
-                renderQuanHuyen({ "QUANHUYEN": "--Quận/Huyện--" });
-            }
-        });
-
-        function renderQuanHuyen(listQuanHuyen) {
-            var contentQuanHuyen = '';
-            for (x in listQuanHuyen) {
-                contentQuanHuyen += '<option value=' + x + '>' + listQuanHuyen[x] + '</option>';
-            }
-            document.getElementById('idQuanHuyen').innerHTML = contentQuanHuyen;
+      chooseTinhThanhPho.addEventListener("click", function() {
+        if (chooseTinhThanhPho.value === "Hà Nội") {
+          renderQuanHuyen(listQuanHuyenHaNoi);
+        } else if (chooseTinhThanhPho.value === "Hồ Chí Minh") {
+          renderQuanHuyen(listQuanHuyenHoChiMinh);
+        } else {
+          renderQuanHuyen({ QUANHUYEN: "--Quận/Huyện--" });
         }
+      });
 
-
-        /* Loại */
-        var contentLoaiDatBan = '<option value="Mua căn hộ chung cư">Mua căn hộ chung cư</option>' +
-            '<option value="Mua nhà riêng">Mua nhà riêng</option>' +
-            '<option value="Mua nhà mặt phố">Mua nhà mặt phố</option>' +
-            '<option value="Mua kho, nhà xưởng">Mua kho, nhà xưởng</option>';
-
-        var contentLoaiDatThue = '<option value="Thuê căn hộ chung cư">Thuê căn hộ chung cư</option>' +
-            '<option value="Thuê nhà trọ, phòng trọ">Thuê nhà trọ, phòng trọ</option>' +
-            '<option value="Thuê văn phòng">Thuê văn phòng</option>';
-
-        /* Đơn vị */
-        var listDonViBan = '<option value="Thỏa thuận">Thỏa thuận</option>' +
-            '<option value="Triệu">Triệu</option>' +
-            '<option value="Tỷ">Tỷ</option>' +
-            '<option value="Trăm nghìn/m2">Trăm nghìn/m2</option>' +
-            '<option value="Triệu/m2">Triệu/m2</option>';
-
-        var listDonViThue = '<option value="Thỏa thuận">Thỏa thuận</option>' +
-            '<option value="Trăm nghìn/Tháng">Trăm nghìn/Tháng</option>' +
-            '<option value="Triệu/Tháng">Triệu/Tháng</option>' +
-            '<option value="Trăm nghìn/m2/Tháng">Trăm nghìn/m2/Tháng</option>' +
-            '<option value="Triệu/m2/Tháng">Triệu/m2/Tháng</option>' +
-            '<option value="Nghìn/m2/Tháng">Nghìn/m2/Tháng</option>';
-
-        var chooseHinhThuc = document.getElementById('idHinhThuc');
-
-        chooseHinhThuc.addEventListener('click', function () {
-            if (chooseHinhThuc.value == 'sell') {
-                renderDonVi(listDonViBan);
-                renderLoai(contentLoaiDatBan);
-            }
-            else if (chooseHinhThuc.value == 'rent') {
-                renderDonVi(listDonViThue)
-                renderLoai(contentLoaiDatThue);
-            }
-            else {
-                renderLoai('<option value="">--Loại--</option>');
-            }
-
-        });
-
-        function renderLoai(contentLoai) {
-            document.getElementById('idLoai').innerHTML = contentLoai;
+      function renderQuanHuyen(listQuanHuyen) {
+        var contentQuanHuyen = "";
+        for (x in listQuanHuyen) {
+          contentQuanHuyen +=
+            "<option value=" + x + ">" + listQuanHuyen[x] + "</option>";
         }
+        document.getElementById("idQuanHuyen").innerHTML = contentQuanHuyen;
+      }
 
-        function renderDonVi(contentDonVi) {
-            document.getElementById('idDonVi').innerHTML = contentDonVi;
+      /* Loại */
+      var contentLoaiDatBan =
+        '<option value="Mua căn hộ chung cư">Mua căn hộ chung cư</option>' +
+        '<option value="Mua nhà riêng">Mua nhà riêng</option>' +
+        '<option value="Mua nhà mặt phố">Mua nhà mặt phố</option>' +
+        '<option value="Mua kho, nhà xưởng">Mua kho, nhà xưởng</option>';
+
+      var contentLoaiDatThue =
+        '<option value="Thuê căn hộ chung cư">Thuê căn hộ chung cư</option>' +
+        '<option value="Thuê nhà trọ, phòng trọ">Thuê nhà trọ, phòng trọ</option>' +
+        '<option value="Thuê văn phòng">Thuê văn phòng</option>';
+
+      /* Đơn vị */
+      var listDonViBan =
+        '<option value="Thỏa thuận">Thỏa thuận</option>' +
+        '<option value="Triệu">Triệu</option>' +
+        '<option value="Tỷ">Tỷ</option>' +
+        '<option value="Trăm nghìn/m2">Trăm nghìn/m2</option>' +
+        '<option value="Triệu/m2">Triệu/m2</option>';
+
+      var listDonViThue =
+        '<option value="Thỏa thuận">Thỏa thuận</option>' +
+        '<option value="Trăm nghìn/Tháng">Trăm nghìn/Tháng</option>' +
+        '<option value="Triệu/Tháng">Triệu/Tháng</option>' +
+        '<option value="Trăm nghìn/m2/Tháng">Trăm nghìn/m2/Tháng</option>' +
+        '<option value="Triệu/m2/Tháng">Triệu/m2/Tháng</option>' +
+        '<option value="Nghìn/m2/Tháng">Nghìn/m2/Tháng</option>';
+
+      var chooseHinhThuc = document.getElementById("idHinhThuc");
+
+      chooseHinhThuc.addEventListener("click", function() {
+        if (chooseHinhThuc.value == "sell") {
+          renderDonVi(listDonViBan);
+          renderLoai(contentLoaiDatBan);
+        } else if (chooseHinhThuc.value == "rent") {
+          renderDonVi(listDonViThue);
+          renderLoai(contentLoaiDatThue);
+        } else {
+          renderLoai('<option value="">--Loại--</option>');
         }
+      });
 
+      function renderLoai(contentLoai) {
+        document.getElementById("idLoai").innerHTML = contentLoai;
+      }
 
-        /*=================================================CHI TIẾT=========================================*/
-        var listHuongNha_BanCong = '<option value="">KXĐ</option>' +
-            '<option value="Đông">Đông</option>' +
-            '<option value="Tây">Tây</option>' +
-            '<option value="Nam">Nam</option>' +
-            '<option value="Bắc">Bắc</option>' +
-            '<option value="Đông - Bắc">Đông - Bắc</option>' +
-            '<option value="Tây - Bắc">Tây - Bắc</option>' +
-            '<option value="Tây - Nam">Tây - Nam</option>' +
-            '<option value="Đông - Nam">Đông - Nam</option>';
+      function renderDonVi(contentDonVi) {
+        document.getElementById("idDonVi").innerHTML = contentDonVi;
+      }
 
-        function renderHuongNha_BanCong() {
-            document.getElementById('idHuongNha').innerHTML = listHuongNha_BanCong;
-            document.getElementById('idHuongBanCong').innerHTML = listHuongNha_BanCong;
-        }
+      /*=================================================CHI TIẾT=========================================*/
+      var listHuongNha_BanCong =
+        '<option value="">KXĐ</option>' +
+        '<option value="Đông">Đông</option>' +
+        '<option value="Tây">Tây</option>' +
+        '<option value="Nam">Nam</option>' +
+        '<option value="Bắc">Bắc</option>' +
+        '<option value="Đông - Bắc">Đông - Bắc</option>' +
+        '<option value="Tây - Bắc">Tây - Bắc</option>' +
+        '<option value="Tây - Nam">Tây - Nam</option>' +
+        '<option value="Đông - Nam">Đông - Nam</option>';
 
-        renderHuongNha_BanCong();
+      function renderHuongNha_BanCong() {
+        document.getElementById("idHuongNha").innerHTML = listHuongNha_BanCong;
+        document.getElementById(
+          "idHuongBanCong"
+        ).innerHTML = listHuongNha_BanCong;
+      }
 
-
+      renderHuongNha_BanCong();
     </script>
-
-</body>
-
+  </body>
 </html>
