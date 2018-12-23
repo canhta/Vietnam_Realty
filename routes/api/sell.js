@@ -9,9 +9,7 @@ const validateSellInput = require("../../validation/sell");
 //@route  GET api/sells/test
 //@desc   Test sells route
 //@access Public
-router.get("/test", (req, res) => res.json({ msg: "Sells works" }));
-router.get("/", (req, res) => res.render("mains/sell/postSell"));
-
+router.get("/test", (req, res) => res.json("Sells works"));
 //@route  GET api/sells/all
 //@desc   Get all sells
 //@access Public
@@ -22,7 +20,12 @@ router.get("/all", (req, res, next) => {
   ) //cần sua thanh sate
     // .map(val => val)
     .then(sell => {
-      res.json(sell);
+      console.log("HELLO SELL All");
+
+      return res.render("mains/sell/listSell", {
+        sell: sell,
+        title: "ALL SELL"
+      });
     })
     .catch(err =>
       res.status(404).json({ noSellFounds: "No sell posts found." })
@@ -31,37 +34,37 @@ router.get("/all", (req, res, next) => {
 //@route  GET api/sells
 //@desc   Get filter sells
 //@access Public
-router.get("/", (req, res, next) => {
-  let _query = {
-    diachi: req.query.diachi,
-    loai: req.query.loai,
-    gia: parseInt(req.query.gia),
-    dienTich: parseInt(req.query.dienTich)
-  };
-  console.log(_query);
+// router.get("/", (req, res, next) => {
+//   let _query = {
+//     diachi: req.query.diachi,
+//     loai: req.query.loai,
+//     gia: parseInt(req.query.gia),
+//     dienTich: parseInt(req.query.dienTich)
+//   };
+//   console.log(_query);
 
-  Sell.find()
-    .where("state")
-    .equals("POSTED")
-    .where("diachi")
-    .equals(_query.diachi)
-    .where("loai")
-    .equals(_query.loai)
-    // .where("from")
-    // .gte(_query.gia)
-    // .where("dienTich")
-    // .equals(_query.dienTich())
-    // .sort({ dienTich: -1 })
-    .select("loai diachi dienTich chiTiet gia timePost")
-    .then(sell => {
-      console.log(sell.state);
-      console.log("-------------------All----------------");
-      res.json(sell);
-    })
-    .catch(err =>
-      res.status(404).json({ noSellFounds: "No sellS posts found." })
-    );
-});
+//   Sell.find()
+//     .where("state")
+//     .equals("POSTED")
+//     .where("diachi")
+//     .equals(_query.diachi)
+//     .where("loai")
+//     .equals(_query.loai)
+//     // .where("from")
+//     // .gte(_query.gia)
+//     // .where("dienTich")
+//     // .equals(_query.dienTich())
+//     // .sort({ dienTich: -1 })
+//     .select("loai diachi dienTich chiTiet gia timePost")
+//     .then(sell => {
+//       console.log(sell.state);
+//       console.log("-------------------All----------------");
+//       res.json(sell);
+//     })
+//     .catch(err =>
+//       res.status(404).json({ noSellFounds: "No sellS posts found." })
+//     );
+// });
 //@route  GET api/sells/:id
 //@desc   Get sell by id
 //@access Public
@@ -72,6 +75,9 @@ router.get("/:id", (req, res, next) => {
       res.status(404).json({ noSellFound: "No sell post for this ID." })
     );
 });
+router.get("/", (req, res) =>
+  res.render("mains/sell/postSell", { title: "POST SELL" })
+);
 
 //@route  POST api/sells/
 //@desc   Create sells route
