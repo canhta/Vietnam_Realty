@@ -10,5 +10,5 @@ router.get("/", function(req, res, next) {
 router.get("/post", function(req, res){
   res.render("mains/find/postFind");
 })
-
+router.get("/abc", (req, res) => res.render("mains/user/profile"))
 module.exports = router;
