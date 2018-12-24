@@ -9,11 +9,11 @@ const validateLoginInput = require("../../validation/login");
 
 // Load User model
 const User = require("../../models/User");
+const Profile = require("../../models/Profile");
 //@route  GET api/users/
 //@desc   Test users route
 //@access Public
 router.get("/test", (req, res) => res.json({ msg: "Posts works" }));
-
 
 // //@route  GET api/users/register
 // //@desc   register route
@@ -53,7 +53,20 @@ router.post("/register", (req, res, next) => {
           newUser.password = hash;
           newUser
             .save()
-            .then(user => res.json(user))
+            .then(user => {
+              const newProfile = new Profile({
+                user: user.id
+              });
+              newProfile.save().then(profile => {
+                //User matched
+                req.session.user = user.id;
+                req.session.role = user.role;
+                return res.render("mains/user/profile", {
+                  profile: profile,
+                  user: user
+                });
+              });
+            })
             .catch(err => console.log(err));
         });
       });
@@ -92,7 +105,7 @@ router.post("/login", (req, res, next) => {
       //User matched
       req.session.user = user.id;
       req.session.role = user.role;
-      res.redirect("/api/users/current");
+      res.redirect("/");
     });
   });
 });
@@ -100,11 +113,22 @@ router.post("/login", (req, res, next) => {
 // @route   GET api/users/current
 // @desc    Return Current user
 // @access  Private
-router.get("/current", authentication.MEMBER, (req, res) => {
-  User.findById(req.session.user).then(user=> res.render("test",{user:user.name}))
+router.get("/current", (req, res) => {
+  User.findById(req.session.user).then(user =>
+    res.send({ user: user.name, role: user.role, id: user.id })
+  );
 });
-router.get("/logout", (req, res) => {
-  req.session.destroy();
-  res.send("logout success!");
+// GET /logout
+router.get("/logout", (req, res, next) => {
+  if (req.session) {
+    // delete session object
+    req.session.destroy(function(err) {
+      if (err) {
+        return next(err);
+      } else {
+        return res.redirect("/");
+      }
+    });
+  }
 });
 module.exports = router;

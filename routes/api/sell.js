@@ -14,17 +14,15 @@ router.get("/test", (req, res) => res.json("Sells works"));
 //@desc   Get all sells
 //@access Public
 router.get("/all", (req, res, next) => {
-  Sell.find(
-    { state: "POSTED" },
-    "hinhThuc loai diachi dienTich chiTiet gia timePost"
-  ) //cần sua thanh sate
+  Sell.find({ state: "NEW" }) //cần sửa thành POSTED
     // .map(val => val)
     .then(sell => {
-      console.log("HELLO SELL All");
+      console.log(sell);
 
       return res.render("mains/sell/listSell", {
-        sell: sell,
-        title: "ALL SELL"
+        sells: sell,
+        title: "ALL SELL",
+        total: sell.length
       });
     })
     .catch(err =>
@@ -70,7 +68,11 @@ router.get("/all", (req, res, next) => {
 //@access Public
 router.get("/:id", (req, res, next) => {
   Sell.findById(req.params.id)
-    .then(sell => res.json(sell))
+    .then(sell => {
+      console.log(sell);
+
+      res.render("mains/sell/detailSell", { title: "DETAIL SELL", sell: sell });
+    })
     .catch(err =>
       res.status(404).json({ noSellFound: "No sell post for this ID." })
     );
@@ -91,11 +93,14 @@ router.post("/", (req, res, next) => {
     return res.status(400).json(errors);
   }
   const newSell = new Sell({
-    user: req.user.id,
-    avatar: req.body.avatar,
+    user: req.session.user,
     hinhThuc: req.body.hinhThuc,
     loai: req.body.loai,
-    diachi: req.body.diachi,
+    adress: {
+      diachi: req.body.diachi,
+      thanhPho: req.body.thanhPho,
+      quan: req.body.quan
+    },
     dienTich: req.body.dienTich,
 
     chiTiet: {
@@ -108,11 +113,23 @@ router.post("/", (req, res, next) => {
       soToilet: req.body.soToilet,
       noiThat: req.body.noiThat
     },
-    gia: req.body.gia,
-    noiThat: {
+    moTa: req.body.moTa,
+    cost: {
+      gia: req.body.gia,
+      donVi: req.body.donVi
+    },
+    imageURL: {
       image: req.body.image
     },
-    moTa: req.body.moTa
+    state: "NEW",
+    timePost: {
+      fromPost: req.body.fromPost,
+      toPost: req.body.toPost
+    },
+    cardCash: {
+      menhGia: req.body.menhGia,
+      idCard: req.body.idCard
+    }
   });
   newSell.save().then(sell => res.json(sell));
 });

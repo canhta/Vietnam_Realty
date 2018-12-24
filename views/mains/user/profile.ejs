@@ -1,110 +1,89 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <%-include("../../layouts/head")%>
 </head>
+
 <body>
   <div class="supper-container">
     <%-include("../../layouts/header")%>
+    <%-include("../../layouts/menu")%>
     <%-include("../../layouts/home")%>
     <%-include("../../layouts/search")%>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
-          <A href="edit.html">Edit Profile</A>
-    
-          <A href="edit.html">Logout</A>
-          <br>
-          <p class=" text-info">May 05,2014,03:00 pm </p>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
-    
-    
-          <div class="panel panel-info">
-            <div class="panel-heading">
-              <h3 class="panel-title">Sheena Shrestha</h3>
+    <main>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-9">
+            <div class=" panel-heading">
+              <h3 class="panel-title"></h3>
             </div>
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png"
-                    class="img-circle img-responsive"> </div>
-    
-                <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
-                      <dl>
-                        <dt>DEPARTMENT:</dt>
-                        <dd>Administrator</dd>
-                        <dt>HIRE DATE</dt>
-                        <dd>11/12/2013</dd>
-                        <dt>DATE OF BIRTH</dt>
-                           <dd>11/12/2013</dd>
-                        <dt>GENDER</dt>
-                        <dd>Male</dd>
-                      </dl>
-                    </div>-->
-                <div class=" col-md-9 col-lg-9 ">
-                  <table class="table table-user-information">
-                    <tbody>
-                      <tr>
-                        <td>Department:</td>
-                        <td>Programming</td>
-                      </tr>
-                      <tr>
-                        <td>Hire date:</td>
-                        <td>06/23/2013</td>
-                      </tr>
-                      <tr>
-                        <td>Date of Birth</td>
-                        <td>01/24/1988</td>
-                      </tr>
-    
-                      <tr>
-                      <tr>
-                        <td>Gender</td>
-                        <td>Female</td>
-                      </tr>
-                      <tr>
-                        <td>Home Address</td>
-                        <td>Kathmandu,Nepal</td>
-                      </tr>
-                      <tr>
-                        <td>Email</td>
-                        <td><a href="mailto:info@support.com">info@support.com</a></td>
-                      </tr>
-                      <td>Phone Number</td>
-                      <td>123-4567-890(Landline)<br><br>555-4567-890(Mobile)
-                      </td>
-    
-                      </tr>
-    
-                    </tbody>
-                  </table>
-    
-                  <a href="#" class="btn btn-primary">My Sales Performance</a>
-                  <a href="#" class="btn btn-primary">Team Sales Performance</a>
-                </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-9 col-lg-4">
+            <div class="card">
+              <div class="sidebar_realtor_image"><img src="<%= user.avatar %>" width="100%" height="auto" alt=""></div>
+              <div class="sidebar_realtor_body text-center">
+                <div class="sidebar_realtor_title"><a href="#"><%= user.name %></a></div>
+                <% if(profile.phone){ %>
+                <div class="sidebar_realtor_phone"><span>call us: </span><%= profile.phone %> </div>
+                <% } %>
               </div>
             </div>
-            <div class="panel-footer">
-              <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i
-                  class="glyphicon glyphicon-envelope"></i></a>
-              <span class="pull-right">
-                <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i
-                    class="glyphicon glyphicon-edit"></i></a>
-                <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i
-                    class="glyphicon glyphicon-remove"></i></a>
-              </span>
+            <div class="col-md-9  toppad  pull-right col-md-offset-3 ">
+              <a href="edit.html">Edit Profile</a> &nbsp;
+              <br>
             </div>
-    
+          </div>
+          <div class=" col-md-9 col-lg-8">
+            <table class="table table-user-information">
+              <tbody>
+                <tr>
+                  <td>Name:</td>
+                  <td><%= user.name%></td>
+                </tr>
+                <tr>
+                  <td>Birth Day:</td>
+                  <td><%= profile.dateOfBirth %></td>
+                </tr>
+                <tr>
+                  <td>Gender</td>
+                  <td><%= profile.gender %></td>
+                </tr>
+                <tr>
+                <tr>
+                  <td>Address</td>
+                  <% if(profile.adress.length>0){ %>
+                  <td><%= profile.adress[0].diachi %>, <%= profile.adress[0].quan %>, <%= profile.adress[0].thanhPho %></td>
+                  <% }else { %>
+                    <td></td>
+                    <% } %>
+                </tr>
+                <tr>
+                  <td>Phone</td>
+                  <% if(profile.phone){ %>
+                  <td><%= profile.phone %></td>
+                  <% }else { %>
+                    <td></td>
+                    <% } %>
+                </tr>
+                <tr>
+                  <td>Email</td>
+                  <td><a href=<%= user.email%>><%= user.email%></a></td>
+                </tr>
+                <td>Type Of</td>
+                <td><%= profile.typeOf %></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
-    </div>
+    </main>
   </div>
   <%-include("../../layouts/footer")%>
 </body>
+<%-include("../../layouts/javascript")%>
 
 </html>
-
-
-

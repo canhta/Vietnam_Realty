@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 const Find = require("../../models/Find");
 const Profile = require("../../models/Profile");
+const User = require("../../models/User");
 
 const validateFindInput = require("../../validation/find");
 //@route  GET api/finds/test
@@ -13,21 +14,17 @@ router.get("/test", (req, res) => res.json("test FIND"));
 //@desc   Get all finds
 //@access Public
 router.get("/all", (req, res, next) => {
-  Find.find(
-    { state: "POSTED" },
-    "hinhThuc loai diachi dienTich chiTiet gia timePost"
-  ) //cần sua thanh sate
+  Find.find({ state: "NEW" }) //cần sửa thành POSTED
     // .map(val => val)
     .then(find => {
-      // res.json(find);
-      console.log(find);
       return res.render("mains/find/listFind", {
-        find: find,
-        title: "ALL FIND"
+        finds: find,
+        title: "ALL FIND",
+        total: find.length
       });
     })
     .catch(err =>
-      res.status(404).json({ noFindFounds: "No find posts found." })
+      res.status(404).json({ noSellFounds: "No find posts found." })
     );
 });
 //@route  GET api/finds
@@ -81,27 +78,32 @@ router.get("/", (req, res, next) =>
 //@desc   Create finds route
 //@access Private
 router.post("/", (req, res, next) => {
+  // console.log("comhere");
   const { errors, isValid } = validateFindInput(req.body);
-
+  User.findById(req.session.user).then(user =>
+    console.log(`this is session user: ${user}`)
+  );
   // Check Validation
   if (!isValid) {
     // Return any errors with 400 status
     return res.status(400).json(errors);
   }
   const newFind = new Find({
-    user: req.user.id,
-    avatar: req.body.avatar,
+    user: req.session.user,
     hinhThuc: req.body.hinhThuc,
     loai: req.body.loai,
-    diachi: req.body.diachi,
-    dienTich: req.body.dienTich,
-    chiTiet: {
-      title: req.body.title,
-      noiDung: req.body.noiDung
+    adress: {
+      thanhPho: req.body.thanhPho,
+      quan: req.body.quan
     },
-    gia: {
-      from: req.body.from,
-      to: req.body.to
+    dienTich: {
+      fromDienTich: req.body.fromDienTich,
+      toDienTich: req.body.toDienTich
+    },
+    cost: {
+      fromCost: req.body.from,
+      toCost: req.body.to,
+      donVi: req.body.donVi
     },
     state: "NEW",
     timePost: {
@@ -113,11 +115,10 @@ router.post("/", (req, res, next) => {
       idCard: req.body.idCard
     }
   });
-  newFind
-    .save()
-    .then(find =>
-      res.render("mains/find/listFind", { find: find, title: "POST FIND" })
-    );
+  newFind.save().then(find =>
+    // res.render("mains/find/listFind", { find: find, title: "POST FIND" })
+    res.json(find)
+  );
 });
 //@route  GET api/finds/:id
 //@desc   Get find by id
