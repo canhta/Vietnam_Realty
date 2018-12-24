@@ -6,201 +6,173 @@
 
   <body>
     <div class="super_container">
-      <%-include("../../layouts/header")%> <%-include("../../layouts/menu")%>
-      <%-include("../../layouts/home")%>
-      <%-include("../../layouts/searchFind")%>
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-1"></div>
-          <div class="col-sm-10">
-            <form action="" method="POST">
-              <div class="card text-white bg-info mb-3 col-sm-12">
-                <div class="card-header"><h3>Thông tin cơ bản</h3></div>
-                <div class="card-body">
-                  <div class="form-row">
-                    <div class="col-sm-2">
-                      <h5 style="line-height:40px">Hình thức:</h5>
-                    </div>
-                    <div class="form-group col-md-4">
-                      <select
-                        name="hinhThuc"
-                        id="idHinhThuc"
-                        class="form-control"
-                      >
-                        <option value="">--Hình thức--</option>
-                        <option value="sell" selected>Cần mua nhà</option>
-                        <option value="rent">Cần thuê nhà</option>
-                      </select>
-                    </div>
-                    <div class="col-sm-2">
-                      <h5 style="line-height:40px">Loại:</h5>
-                    </div>
-                    <div class="form-group col-md-4">
-                      <select name="loai" id="idLoai" class="form-control">
-                        <option value="">--Loại--</option>
-                      </select>
-                    </div>
-                  </div>
+        <%-include("../../layouts/header")%>
+        <%-include("../../layouts/menu")%>
+        <%-include("../../layouts/home")%>
+        <%-include("../../layouts/searchFind")%>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10">
+                    <form action="" method="POST">
+                        <div class="card text-white bg-info mb-3 col-sm-12">
+                            <div class="card-header">
+                                <h3>Thông tin cơ bản</h3>
+                            </div>
+                            <div class="card-body">
 
-                  <div class="form-row">
-                    <div class="col-sm-2">
-                      <h5 style="line-height:40px">Tỉnh/Thành phố:</h5>
-                    </div>
-                    <div class="form-group col-md-4">
-                      <select
-                        name="thanhPho"
-                        id="idTinhThanhPho"
-                        class="form-control"
-                        value="<%=info.thanhPho%>"
-                      >
-                        <option value="Tỉnh/Thành Phố" selected
-                          >--Tỉnh/Thành phố--</option
-                        >
-                        <option value="Hà Nội">Hà Nội</option>
-                        <option value="Hồ Chí Minh">Hồ Chí Minh</option>
-                      </select>
-                    </div>
-                    <div class="col-sm-2">
-                      <h5 style="line-height:40px">Quận/Huyện:</h5>
-                    </div>
-                    <div class="form-group col-md-4">
-                      <select
-                        name="quan"
-                        id="idQuanHuyen"
-                        class="form-control"
-                        value="<%=info.quan%>"
-                      >
-                        <option value="">--Quận/Huyện--</option>
-                      </select>
-                    </div>
-                  </div>
+                                <div class="form-row">
+                                    <div class="col-sm-2">
+                                        <h5 style="line-height:40px">Hình thức:</h5>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <select name="hinhThuc" id="idHinhThuc" class="form-control">
+                                            <option value="" >--Hình thức--</option>
+                                            <option value="sell" selected>Cần mua nhà</option>
+                                            <option value="rent">Cần thuê nhà</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <h5 style="line-height:40px">Loại:</h5>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <select name="loai" id="idLoai" class="form-control">
+                                            <option value="<%=info.loai%>">--Loại--</option>
+                                        </select>
+                                    </div>
+                                </div>
 
-                  <div class="form-row">
-                    <div class="col-sm-2">
-                      <h5 style="line-height:40px">Diện tích:</h5>
-                    </div>
-                    <div class="form-group col-md-4">
-                      <input
-                        name="fromDienTich"
-                        type="text"
-                        class="form-control"
-                        placeholder="Từ"
-                        value="<%=info.fromDienTich%>"
-                      />
-                    </div>
-                    <div class="form-group col-md-4">
-                      <input
-                        name="toDienTich"
-                        type="text"
-                        class="form-control"
-                        placeholder="Đến"
-                        value="<%=info.toDienTich%>"
-                      />
-                    </div>
-                  </div>
-                  <p class="text-danger"><%=errors.dienTich%></p>
+                                <div class="form-row">
+                                    <div class="col-sm-2">
+                                        <h5 style="line-height:40px">Tỉnh/Thành phố:</h5>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <select name="thanhPho" id="idTinhThanhPho" class="form-control" value="<%=info.thanhPho%>">
+                                            <option value="Tỉnh/Thành Phố" selected>--Tỉnh/Thành phố--</option>
+                                            <option value="Hà Nội">Hà Nội</option>
+                                            <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <h5 style="line-height:40px">Quận/Huyện:</h5>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <select name="quan" id="idQuanHuyen" class="form-control" value="<%=info.quan%>">
+                                            <option value="">--Quận/Huyện--</option>
+                                        </select>
+                                    </div>
+                                </div>
 
-                  <div class="form-row">
-                    <div class="col-sm-2">
-                      <h5 style="line-height:40px">Giá:</h5>
-                    </div>
-                    <div class="form-group col-md-2">
-                      <input
-                        name="fromCost"
-                        type="text"
-                        class="form-control"
-                        value=""
-                        id="idFromGia"
-                        placeholder="Từ"
-                      />
-                    </div>
-                    <div class="form-group col-md-2">
-                      <input
-                        name="toCost"
-                        type="text"
-                        class="form-control"
-                        value=""
-                        id="idToGia"
-                        placeholder="Đến"
-                      />
-                    </div>
-                    <div class="col-sm-2">
-                      <h5 style="line-height:40px">Đơn vị:</h5>
-                    </div>
-                    <div class="form-group col-md-4">
-                      <select name="donVi" id="idDonVi" class="form-control">
-                        <option value=""></option>
-                      </select>
-                    </div>
-                  </div>
-                  <p class="text-danger"><%=errors.cost%></p>
+            
+
+                                <div class="form-row">
+                                    <div class="col-sm-2">
+                                        <h5 style="line-height:40px">Diện tích:</h5>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <input name="fromDienTich" type="text" class="form-control" placeholder="Từ" value="<%=info.fromDienTich%>">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <input name="toDienTich" type="text" class="form-control" placeholder="Đến" value="<%=info.toDienTich%>">
+                                    </div>
+                                    
+                                   
+                                </div>
+                                <p class="text-danger">
+                                    <%=errors.dienTich%>
+                                </p>
+
+                                <div class="form-row">
+                                    <div class="col-sm-2">
+                                        <h5 style="line-height:40px">Giá:</h5>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <input name="fromCost" type="text" class="form-control" value='<%=info.fromCost%>' id="idFromGia" placeholder="Từ">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <input name="toCost" type="text" class="form-control" value='<%=info.toCost%>' id="idToGia" placeholder="Đến">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <h5 style="line-height:40px">Đơn vị:</h5>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <select name="donVi" id="idDonVi" class="form-control">
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                    
+                                </div>
+                                <p class="text-danger">
+                                    <%=errors.cost%>
+                                </p>
+
+
+
+                            </div>
+                        </div>
+
+                       
+
+
+
+                        <div class="card text-white bg-info mb-3 col-sm-12">
+                            <div class="card-header">
+                                <h3>Lịch đăng tin</h3>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="form-row">
+                                    <div class="col-sm-2">
+                                        <h5 style="line-height:40px">Ngày bắt đầu:</h5>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <input name="fromPost" type="date" class="form-control">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <h5 style="line-height:40px">Ngày kết thúc:</h5>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <input name="toPost" type="date" class="form-control">
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="form-row">
+                                    <div class="col-sm-2">
+                                        <h5 style="line-height:40px">Mệnh giá:</h5>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <select name="menhGia" id="idMenhGia" class="form-control">
+                                            <option selected>--Mệnh giá--</option>
+                                            <option value="50000">50000 đồng</option>
+                                            <option value="100000">100000 đồng</option>
+                                            <option value="200000">200000 đồng</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <h5 style="line-height:40px">Mã thẻ:</h5>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <input name="idCard" type="text" class="form-control" value="<%=info.idCard%>">
+                                    </div>
+                                    <p class="text-danger">
+                                        <%=errors.idCardKHL%>
+                                        <%=errors.idCardKDD%>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card text-white mb-3 col-sm-12" style="border: none">
+                            <button type="submit" class="btn btn-info col-sm-6 btn-lg" style="margin: auto">Submit</button>
+                        </div>
+                    </form>
                 </div>
-              </div>
-
-              <div class="card text-white bg-info mb-3 col-sm-12">
-                <div class="card-header"><h3>Lịch đăng tin</h3></div>
-
-                <div class="card-body">
-                  <div class="form-row">
-                    <div class="col-sm-2">
-                      <h5 style="line-height:40px">Ngày bắt đầu:</h5>
-                    </div>
-                    <div class="form-group col-md-4">
-                      <input name="fromPost" type="date" class="form-control" />
-                    </div>
-                    <div class="col-sm-2">
-                      <h5 style="line-height:40px">Ngày kết thúc:</h5>
-                    </div>
-                    <div class="form-group col-md-4">
-                      <input name="toPost" type="date" class="form-control" />
-                    </div>
-                  </div>
-                  <hr />
-                  <div class="form-row">
-                    <div class="col-sm-2">
-                      <h5 style="line-height:40px">Mệnh giá:</h5>
-                    </div>
-                    <div class="form-group col-md-3">
-                      <select
-                        name="menhGia"
-                        id="idMenhGia"
-                        class="form-control"
-                      >
-                        <option selected>--Mệnh giá--</option>
-                        <option value="50000">50000 đồng</option>
-                        <option value="100000">100000 đồng</option>
-                        <option value="200000">200000 đồng</option>
-                      </select>
-                    </div>
-                    <div class="col-sm-1">
-                      <h5 style="line-height:40px">Mã thẻ:</h5>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <input name="idCard" type="text" class="form-control" />
-                    </div>
-                    <p class="text-danger">
-                      <%=errors.idCardKHL%> <%=errors.idCardKDD%>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="card text-white mb-3 col-sm-12" style="border: none">
-                <button
-                  type="submit"
-                  class="btn btn-info col-sm-6 btn-lg"
-                  style="margin: auto"
-                >
-                  Submit
-                </button>
-              </div>
-            </form>
-          </div>
-          <div class="col-sm-1"></div>
-          <%-include("../../layouts/footer")%>
+                <div class="col-sm-1"></div>
+               
+            </div>
         </div>
       </div>
     </div>
-
+    <%-include("../../layouts/footer")%>
     <%-include("../../layouts/javascript")%>
     <script type="text/javascript">
       /*==============================================THÔNG TIN CƠ BẢN==============================================*/

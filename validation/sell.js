@@ -7,7 +7,6 @@ module.exports = function validateSellInput(data) {
   let errors = validateScheduleInput(data);
   data.hinhThuc = !isEmpty(data.hinhThuc) ? data.hinhThuc : "";
   data.loai = !isEmpty(data.loai) ? data.loai : "";
-  data.diachi = !isEmpty(data.diachi) ? data.diachi : "";
   data.dienTich = !isEmpty(data.dienTich) ? data.dienTich : "0";
   //chi Tiết
   data.matTien = !isEmpty(data.matTien) ? data.matTien : "";
@@ -20,22 +19,52 @@ module.exports = function validateSellInput(data) {
   data.moTa = !isEmpty(data.moTa) ? data.moTa : "";
 
   if (Validator.isEmpty(data.hinhThuc)) {
-    errors.hinhThuc = "Kind of field is required";
+    errors.hinhThuc = "Trường này yêu cầu chọn";
   }
   if (Validator.isEmpty(data.loai)) {
-    errors.loai = "Kind of field is required";
+    errors.loai = "Trường này yêu cầu chọn";
   }
   if (Validator.isEmpty(data.diachi)) {
-    errors.diachi = "Address field is required";
+    errors.diaChi = "Không được bỏ trống địa chỉ";
   }
   if (!Validator.isNumeric(data.dienTich)) {
-    errors.dienTich = "Area field is required numeric";
+    errors.dienTich = "diện tích không được để trống";
   }
+  if (!Validator.isNumeric(data.dienTich)){
+    errors.dienTich = "diện tích yêu cầu sôs";
+  } 
   
   if (!Validator.isNumeric(data.gia)) {
-    errors.gia = " The price required a numeric";
+    errors.cost = " Giá yêu cầu số";
   }
- 
+  if (Validator.isEmpty(data.moTa)){
+    errors.moTa = "Mô tả không được bỏ trống";
+  }
+
+   
+  if (!Validator.isNumeric(data.matTien)) {
+    errors.matDuong = " Trường này yêu cầu số";
+  }
+  
+  if (!Validator.isNumeric(data.duongVao)) {
+    errors.matDuong = "Trường này yêu cầu số";
+  }
+
+  if (!Validator.isNumeric(data.soTang)) {
+    errors.soTang = "Trường này yêu cầu số";
+  }
+
+  if (!Validator.isNumeric(data.soToilet) || !Validator.isNumeric(data.soPhongNgu)) {
+    errors.nguToilet = "Trường này yêu cầu số";
+  }
+
+  if (!Validator.isNumeric(data.idCard)){
+    errors.card = "Trường này yêu cầu số";
+  }
+
+  
+
+
   return {
     errors,
     isValid: isEmpty(errors)
