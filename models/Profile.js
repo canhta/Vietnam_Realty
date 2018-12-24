@@ -8,32 +8,38 @@ const ProfileSchema = new Schema({
     ref: "users"
   },
   dateOfBirth: {
-    type: Date
+    type: Date,
+    default: Date.now()
   },
   gender: {
-    type: String
+    type: String,
+    default: "Male"
   },
   adress: [
     {
+      diachi: {
+        type: String
+        // required: true
+      },
       thanhPho: {
-        type: String,
-        required: true
+        type: String
+        // required: true
       },
       quan: {
-        type: String,
-        required: true
+        type: String
+        // required: true
       }
     }
   ],
   phone: {
     type: String,
-    required: true,
+    // required: true,
     minlength: 10,
     maxlength: 11
   },
   typeOf: {
     type: String,
-    required: true,
+    // required: true,
     enum: ["Individual", "Company"],
     default: "Individual"
   }

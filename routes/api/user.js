@@ -9,6 +9,7 @@ const validateLoginInput = require("../../validation/login");
 
 // Load User model
 const User = require("../../models/User");
+const Profile = require("../../models/Profile");
 //@route  GET api/users/
 //@desc   Test users route
 //@access Public
@@ -53,10 +54,18 @@ router.post("/register", (req, res, next) => {
           newUser
             .save()
             .then(user => {
-              //User matched
-              req.session.user = user.id;
-              req.session.role = user.role;
-              return res.render("mains/user/editProfile", { user: user });
+              const newProfile = new Profile({
+                user: user.id
+              });
+              newProfile.save().then(profile => {
+                //User matched
+                req.session.user = user.id;
+                req.session.role = user.role;
+                return res.render("mains/user/profile", {
+                  profile: profile,
+                  user: user
+                });
+              });
             })
             .catch(err => console.log(err));
         });
