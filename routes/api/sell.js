@@ -23,7 +23,7 @@ router.get("/all", (req, res, next) => {
         sells: sell,
         title: "ALL SELL",
         total: sell.length,
-        head : req.session.user
+        head: req.session.user
       });
     })
     .catch(err =>
@@ -70,16 +70,28 @@ router.get("/all", (req, res, next) => {
 router.get("/:id", (req, res, next) => {
   Sell.findById(req.params.id)
     .then(sell => {
-      console.log(sell);
+      Profile.findOne({ user: sell.user })
+        .populate("user")
+        .then(profile => {
+          console.log(sell.user);
 
-      res.render("mains/sell/detailSell", { title: "DETAIL SELL", sell: sell, head : req.session.user });
+          res.render("mains/sell/detailSell", {
+            title: "DETAIL SELL",
+            sell: sell,
+            head: req.session.user,
+            profile: profile
+          });
+        });
     })
     .catch(err =>
       res.status(404).json({ noSellFound: "No sell post for this ID." })
     );
 });
 router.get("/", Authentication.MEMBER, (req, res) =>
-  res.render("mains/sell/postSell", { title: "POST SELL", head : req.session.user })
+  res.render("mains/sell/postSell", {
+    title: "POST SELL",
+    head: req.session.user
+  })
 );
 
 //@route  POST api/sells/
@@ -132,7 +144,9 @@ router.post("/", Authentication.MEMBER, (req, res, next) => {
       idCard: req.body.idCard
     }
   });
-  newSell.save().then(sell => res.render("mains/sell/detailSell", {sell : sell}));
+  newSell
+    .save()
+    .then(sell => res.render("mains/sell/detailSell", { sell: sell }));
 });
 //@route  GET api/sells/:id
 //@desc   Get sell by id

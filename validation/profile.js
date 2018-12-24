@@ -6,7 +6,7 @@ module.exports = function validateProfileInput(data) {
 
   data.dateOfBirth = !isEmpty(data.dateOfBirth) ? data.dateOfBirth : "";
   data.gender = !isEmpty(data.gender) ? data.gender : "";
-  data.adress = !isEmpty(data.adress) ? data.adress : "";
+  data.diachi = !isEmpty(data.diachi) ? data.diachi : "";
   data.phone = !isEmpty(data.phone) ? data.phone : "";
 
   if (Validator.isEmpty(data.phone)) {

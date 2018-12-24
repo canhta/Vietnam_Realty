@@ -1,57 +1,79 @@
 <!-- Header -->
 
 <header class="header">
-	<div class="container">
-		<div class="row">
-			<div class="col">
-				<div class="header_content d-flex flex-row align-items-center justify-content-start">
-					<div class="logo">
-						<a href="#"><img src="images/logo_large.png" width="50px" height="70px" alt="" /></a>
-					</div>
-					<nav class="main_nav">
-						<ul>
-							<li><a href="/">Trang Chủ</a></li>
-							<li><a href="/api/sells/all">Bán/Cho thuê</a></li>
-							<li><a href="/api/finds/all">Cần mua/Thuê</a></li>
-							<li>
-								<div class="dropdown">
-									<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-									 aria-haspopup="true" aria-expanded="false">
-										Đăng bài
-									</button>
-									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-										<a class="dropdown-item" href="/api/sells/">Bán nhà/ Cho thuê nhà</a>
-										<a class="dropdown-item" href="/api/finds/">Mua nhà/ Thuê nhà</a>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</nav>
-					<% if (head) { %>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div
+          class="header_content d-flex flex-row align-items-center justify-content-start"
+        >
+          <div class="logo">
+            <a href="#"
+              ><img
+                src="images/logo_large.png"
+                width="50px"
+                height="70px"
+                alt=""
+            /></a>
+          </div>
+          <nav class="main_nav">
+            <ul>
+              <li><a href="/">Trang Chủ</a></li>
+              <li><a href="/api/sells/all">Bán/Cho thuê</a></li>
+              <li><a href="/api/finds/all">Cần mua/Thuê</a></li>
+              <li>
+                <div class="dropdown">
+                  <button
+                    class="btn btn-primary dropdown-toggle"
+                    type="button"
+                    id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    Đăng bài
+                  </button>
+                  <div
+                    class="dropdown-menu"
+                    aria-labelledby="dropdownMenuButton"
+                  >
+                    <a class="dropdown-item" href="/api/sells/"
+                      >Bán nhà/ Cho thuê nhà</a
+                    >
+                    <a class="dropdown-item" href="/api/finds/"
+                      >Mua nhà/ Thuê nhà</a
+                    >
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </nav>
+          <% if (head) { %>
 
-					<div class="phone_num ml-auto">
-						<div class="phone_num_inner">
+          <div class="phone_num ml-auto">
+            <div class="phone_num_inner">
+              <a href="/api/profiles/current" role="button"
+                ><span>Profile</span>
+              </a>
+              <a href="/api/users/logout" role="button"><span>Logout</span></a>
+            </div>
+          </div>
+          <% } else { %>
+          <div class="phone_num ml-auto">
+            <div class="phone_num_inner">
+              <a href="/api/users/login" role="button"><span>Login</span></a>
+              <a href="/api/users/register" role="button"
+                ><span>Register</span></a
+              >
+            </div>
+          </div>
 
-							<a href="/api/profiles/current" role="button"><span>Profile</span>
-							</a>
-							<a href="api/users/logout" role="button"><span>Logout</span></a>
-
-						</div>
-					</div>
-					<% } else { %>
-					<div class="phone_num ml-auto">
-						<div class="phone_num_inner">
-							<a href="/api/users/login" role="button"><span>Login</span></a>
-							<a href="/api/users/register" role="button"><span>Register</span></a>
-						</div>
-					</div>
-
-					<% } %>
-					<div class="hamburger ml-auto">
-						<i class="fa fa-bars" aria-hidden="true"></i>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+          <% } %>
+          <div class="hamburger ml-auto">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </header>

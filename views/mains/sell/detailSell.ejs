@@ -106,15 +106,26 @@
                   <!-- Realtor -->
                   <div class="sidebar_realtor">
                     <div class="sidebar_realtor_image">
-                      <img src="images/sidebar_realtor.jpg" alt="" />
+                      <img
+                        src="<%= profile.user.avatar %>"
+                        width="100%"
+                        alt="Avatar"
+                      />
                     </div>
                     <div class="sidebar_realtor_body text-center">
                       <div class="sidebar_realtor_title">
-                        <a href="#">Maria Williams</a>
+                        <a href="#"><%= profile.user.name %></a>
                       </div>
-                      <div class="sidebar_realtor_subtitle">Senior Realtor</div>
+
+                      <%if(profile.typeOf==="Individual"){ %>
+                      <div class="sidebar_realtor_subtitle">Cá nhân</div>
+                      <% } else { %>
+                      <div class="sidebar_realtor_subtitle">Tổ chức</div>
+                      <% } %>
+
                       <div class="sidebar_realtor_phone">
-                        <span>call us: </span>652 345 3222 11
+                        <% if(profile.phone){ %> <span>call us: </span><%=
+                        profile.phone %> <% } %>
                       </div>
                       <div class="realtor_link"><a href="#">+</a></div>
                     </div>

@@ -21,7 +21,7 @@ router.get("/all", (req, res, next) => {
         finds: find,
         title: "ALL FIND",
         total: find.length,
-        head : req.session.user
+        head: req.session.user
       });
     })
     .catch(err =>
@@ -67,13 +67,27 @@ router.get("/all", (req, res, next) => {
 //@access Public
 router.get("/:id", (req, res, next) => {
   Find.findById(req.params.id)
-    .then(find => res.render("mains/find/detailFind", { find: find, head : req.session.user }))
+    .then(find => {
+      Profile.findOne({ user: sell.user })
+        .populate("user")
+        .then(profile => {
+          return res.render("mains/find/detailFind", {
+            title: "DETAIL FIND",
+            find: find,
+            head: req.session.user,
+            profile: profile
+          });
+        });
+    })
     .catch(err =>
       res.status(404).json({ noFindFound: "No find post for this ID." })
     );
 });
 router.get("/", Authentication.MEMBER, (req, res, next) =>
-  res.render("mains/find/postFind", { title: "POST FIND", head : req.session.user })
+  res.render("mains/find/postFind", {
+    title: "POST FIND",
+    head: req.session.user
+  })
 );
 //@route  POST api/finds/
 //@desc   Create finds route
@@ -134,7 +148,10 @@ router.delete("/:id", Authentication.MEMBER, (req, res, next) => {
         }
         //Delete
         Find.remove().then(() => {
-          res.render("mains/find/listFind", { find: find, head : req.session.user });
+          res.render("mains/find/listFind", {
+            find: find,
+            head: req.session.user
+          });
         });
       })
       .catch(err => {
