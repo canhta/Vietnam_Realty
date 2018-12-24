@@ -9,4 +9,10 @@ router.get("/", function(req, res, next) {
 
   res.render("mains/home", { title: "Express", userID: userID });
 });
+router.get("/login",function(req,res){
+  res.render("authentication/login")
+})
+router.get("/register",function(req,res){
+  res.render("authentication/register")
+})
 module.exports = router;
