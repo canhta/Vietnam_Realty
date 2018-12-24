@@ -57,59 +57,55 @@
                                     <table class="table table-data2">
                                         <thead>
                                             <tr>
-                                                <th>
-                                                    <label class="au-checkbox">
-                                                        <input type="checkbox">
-                                                        <span class="au-checkmark"></span>
-                                                    </label>
-                                                </th>
-                                                <th>name</th>
-                                                <th>email</th>
-                                                <th>description</th>
-                                                <th>date</th>
-                                                <th>status</th>
-                                                <th>price</th>
+                                                
+                                                <th>Người đăng</th>
+                                                <th>Hình thức</th>
+                                                <th>Giá</th>
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Status</th>
+                                                <th>CARD</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             
-                                            <tr class="spacer"></tr>
+                                            <% if (locals.sells) for(let i=0;i < total; i++){ var sell = sells[i] %>
                                             <tr class="tr-shadow">
+                                                
+                                                <td><%= sell.user.name %></td>
+                                                <td class="desc"><%= sell.hinhThuc %></td>
                                                 <td>
-                                                    <label class="au-checkbox">
-                                                        <input type="checkbox">
-                                                        <span class="au-checkmark"></span>
-                                                    </label>
+                                                    <span class="block-email"><%= sell.cost[0].gia %> <%= sell.cost[0].donVi %></span>
                                                 </td>
-                                                <td>Lori Lynch</td>
+                                                <td class="desc"><%= sell.timePost[0].fromPost %></td>
+                                                <td class="desc"><%= sell.timePost[0].toPost %></td>
                                                 <td>
-                                                    <span class="block-email">john@example.com</span>
+                                                    <span class="status--process"><%= sell.state %></span>
                                                 </td>
-                                                <td class="desc">iPhone X 64Gb Grey</td>
-                                                <td>2018-09-29 05:57</td>
-                                                <td>
-                                                    <span class="status--process">Processed</span>
-                                                </td>
-                                                <td>$999.00</td>
+                                                <td class="desc"><%= sell.cardCash.menhGia %></td>
                                                 <td>
                                                     <div class="table-data-feature">
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
-                                                            <i class="zmdi zmdi-mail-send"></i>
-                                                        </button>
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                            <i class="zmdi zmdi-edit"></i>
-                                                        </button>
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                            <i class="zmdi zmdi-delete"></i>
-                                                        </button>
+                                                            <form action="delete/<%= sell.id %>" method="post">
+                                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
+                                                                    <i class="zmdi zmdi-mail-send"></i>
+                                                                </button>
+                                                            </form>
+                                                        <form action="/admin/schedule/sells/delete/<%= sell.id %>" method="post">
+                                                                <button class="item" type="submit" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                                        <i class="zmdi zmdi-delete"></i>
+                                                                </button>
+                                                    </form>
+                                                    <form action="/admin/schedule/sells/<%= sell.id %>" method="get">
                                                         <button class="item" data-toggle="tooltip" data-placement="top" title="More">
                                                             <i class="zmdi zmdi-more"></i>
                                                         </button>
+                                                    </form>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr class="spacer"></tr>                                       
+                                            <tr class="spacer"></tr>
+                                            <% } %>                                       
                                         </tbody>
                                     </table>
                                 </div>

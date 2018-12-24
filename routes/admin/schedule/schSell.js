@@ -1,68 +1,50 @@
 var express = require("express");
 var router = express.Router();
 const Sell = require("../../../models/Sell");
-const Profile = require("../../../models/Profile");
-//middleware
-const isEmpty = require("../../../validation/is-empty");
-
-//@route  GET admin/schedule/sells/test
-//@desc   Test sells route
-//@access Public
-router.get("/test", (req, res) => res.json({ msg: "mytest works" }));
-//@route  GET admin/schedule/sells
-//@desc   Get all sells
-//@access Public
-router.get("/all", (req, res, next) => {
+const User = require("../../../models/User");
+const Authentication = require("../../../middlewares/Authentication");
+router.get("/all", Authentication.ADMIN, (req, res, next) => {
   Sell.find()
-    // .sort({ date: -1 })
+    .populate("user")
+    .then(sell => {
+      return res.render("admin/listSell", {
+        sells: sell,
+        total: sell.length
+      });
+    })
+    .catch(err =>
+      res.status(404).json({ noFindFounds: "No find posts found." })
+    );
+});
+
+//@route  GET admin/manager
+//@desc   Get all finds
+//@access Public
+router.get("/:id", Authentication.ADMIN, (req, res, next) => {
+  Sell.findById(req.params.id)
     .then(find => {
-      // if (find.length === 0) {
-      //   res.status(404).json({ noFindPost: "No find posts found." });
-      // }
+      if (find.length === 0) {
+        res.status(404).json({ noFindPost: "No find post found." });
+      }
       res.json(find);
     })
     .catch(err =>
-      res.status(404).json({ noSellFounds: "No sell posts found." })
+      res.status(404).json({ noFindFounds: "No find posts found." })
     );
 });
-
-//@route  GET admin/schedule/sells/:id
-//@desc   Get sell by id
+//@route  DELETE admin/manager/:id
+//@desc   DELETE find by id
 //@access Public
-router.get("/:id", (req, res, next) => {
-  Sell.findById(req.params.id)
-    .then(find => res.json(find))
-    .catch(err =>
-      res.status(404).json({ noSellFound: "No sell post for this ID." })
-    );
+router.post("/delete/:id", Authentication.ADMIN, (req, res, next) => {
+  Sell.findByIdAndRemove(req.params.id).then(() => {
+    return res.redirect("/admin/schedule/sells/all");
+  });
 });
-
-//@route  POST admin/schedule/sells/
-//@desc   Check sells route
-//@access Private
-router.post("/:id", (req, res, next) => {
-  const _state = req.body.state;
-  if (
-    _state === "NEW" ||
-    _state === "READY" ||
-    _state === "POSTED" ||
-    _state === "EXPIRED"
-  ) {
-    Find.findByIdAndUpdate(
-      req.params.id,
-      { state: _state },
-      { new: true }
-    ).then(value => res.json(value));
-  } else return res.status(400).json({ invalid: "errors state" });
-});
-//@route  DELETE admin/schedule/sells/:id
-//@desc   DELETE sell by id
-//@access Public
-router.delete("/:id", (req, res, next) => {
-  Sell.findByIdAndRemove(req.params.id)
-    .then(find => res.json({ success: true }))
-    .catch(err => {
-      res.status(404).json({ noFindFound: "Not find post found" });
-    });
+router.get("/fix/:id", Authentication.ADMIN, (req, res, next) => {
+  Sell.findOneAndUpdate(
+    { id: req.params.id },
+    { $set: { state: req.body.state } },
+    { new: true }
+  ).then(() => res.redirect("/admin/schedule/sells/all"));
 });
 module.exports = router;

@@ -121,3 +121,10 @@ const SellSchema = new Schema({
   }
 });
 module.exports = mongoose.model("sells", SellSchema);
+SellSchema.pre("save", function(next) {
+  this.timePost.fromPost = moment(this.timePost.fromPost).format(
+    "MMMM DD,YYYY"
+  );
+  this.timePost.toPost = moment(this.timePost.toPost).format("MMMM DD,YYYY");
+  next();
+});

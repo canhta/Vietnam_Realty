@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-
+const moment = require("moment");
 //Create schema
 const FindSchema = new Schema({
   user: {
@@ -88,3 +88,10 @@ const FindSchema = new Schema({
   }
 });
 module.exports = mongoose.model("finds", FindSchema);
+FindSchema.pre("save", function(next) {
+  this.timePost.fromPost = moment(this.timePost.fromPost).format(
+    "MMMM DD,YYYY"
+  );
+  this.timePost.toPost = moment(this.timePost.toPost).format("MMMM DD,YYYY");
+  next();
+});

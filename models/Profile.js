@@ -36,3 +36,7 @@ const ProfileSchema = new Schema({
 });
 
 module.exports = Profile = mongoose.model("profile", ProfileSchema);
+ProfileSchema.pre("save", function(next) {
+  this.dateOfBirth = moment(this.dateOfBirth).format("MMMM DD,YYYY");
+  next();
+});
