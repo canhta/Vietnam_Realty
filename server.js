@@ -66,18 +66,18 @@ app.use(
 app.use(
   "/admin/schedule/finds",
   scheduleFINDRouter,
-  express.static(path.join(__dirname, "public"))
+  express.static(path.join(__dirname, "public/admin"))
 );
 app.use(
   "/admin/schedule/sells",
   scheduleSELLRouter,
-  express.static(path.join(__dirname, "public"))
+  express.static(path.join(__dirname, "public/admin"))
 );
 
 app.use(
   "/admin/manager",
   managerRouter,
-  express.static(path.join(__dirname, "public"))
+  express.static(path.join(__dirname, "public/admin"))
 );
 
 mongoose.connect(
@@ -104,5 +104,5 @@ app.use(function(err, req, res, next) {
   res.render("error");
 });
 
-const PORT = 9000;
+const PORT = 3000;
 app.listen(PORT, () => console.log(`Start on port ${PORT}`));

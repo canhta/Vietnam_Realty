@@ -1,10 +1,6 @@
 var express = require("express");
 var router = express.Router();
-router.get("/test", (req, res) => res.json({ msg: "test works" }));
-const User = require("../../../models/User");
-//@route  GET admin/manager
-//@desc   Get all finds
-//@access Public
+
 router.get("/all", (req, res, next) => {
   User.find({ role: "Member" })
     .sort({ name: -1 })
@@ -14,7 +10,7 @@ router.get("/all", (req, res, next) => {
       //   res.status(404).json({ noFindPost: "No find posts found." });
       // }
       // res.json(find);
-      return res.render("mains/admin/listUser");
+      return res.render("admin/listUser");
     })
     .catch(err =>
       res.status(404).json({ noFindFounds: "No find posts found." })
