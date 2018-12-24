@@ -23,7 +23,9 @@
         <div class="row">
           <div class="col-md-9 col-lg-4">
             <div class="card">
-              <div class="sidebar_realtor_image"><img src="<%= profile.user.avatar %>" width="100%" height="auto" alt=""></div>
+                <% if(profile.user.avatar){ %>
+              <div class="sidebar_realtor_image"><img src="<%= profile.user.avatar %>" width="100%" height="auto" alt="Avatar"></div>
+              <% } %>
               <div class="sidebar_realtor_body text-center">
                 <div class="sidebar_realtor_title"><a href="#"><%= profile.user.name %></a></div>
                 <% if(profile.phone){ %>

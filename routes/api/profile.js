@@ -10,7 +10,9 @@ const Authentication = require("../../middlewares/Authentication");
 //@route  GET api/profile/test
 //@desc   Test profile route
 //@access Public
-router.get("/test", (req, res) => res.json({ msg: "Profile works" }));
+router.get("/test", Authentication.MEMBER, (req, res) =>
+  res.json({ msg: "Profile works" })
+);
 
 //@route  GET api/profiles
 //@desc   Get current users profile
@@ -27,7 +29,7 @@ router.get("/current", Authentication.MEMBER, (req, res) => {
 //@route  POST api/profile
 //@desc   Create user profile
 //@access Private
-router.post("/", (req, res) => {
+router.post("/", Authentication.MEMBER, (req, res) => {
   const { errors, isValid } = validateProfileInput(req.body);
 
   // Check Validation
@@ -97,27 +99,27 @@ router.post("/", (req, res) => {
 //@route  POST api/profile/all
 //@desc   Get all profiles
 //@access Public
-router.get("/all", (req, res, next) => {
-  const errors = {};
-  Profile.find()
-    .populate("user", ["fullname", "avatar"])
-    .then(profiles => {
-      if (!profiles) {
-        errors.noprofile = "There is no profiles";
-        res.status(404).json(errors);
-      }
-      res.json(profiles);
-    })
-    .catch(err =>
-      res.status(404).json({ profile: "There is no profile for this user" })
-    );
-});
+// router.get("/all", (req, res, next) => {
+//   const errors = {};
+//   Profile.find()
+//     .populate("user", ["fullname", "avatar"])
+//     .then(profiles => {
+//       if (!profiles) {
+//         errors.noprofile = "There is no profiles";
+//         res.status(404).json(errors);
+//       }
+//       res.json(profiles);
+//     })
+//     .catch(err =>
+//       res.status(404).json({ profile: "There is no profile for this user" })
+//     );
+// });
 // @route   DELETE api/profile
 // @desc    Delete user and profile
 // @access  Private
-router.delete("/", (req, res) => {
-  Profile.findOneAndRemove({ user: req.user.id }).then(() => {
-    User.findOneAndRemove({ _id: req.user.id }).then(() => {
+router.delete("/", Authentication.MEMBER, (req, res) => {
+  Profile.findOneAndRemove({ user: req.session.user }).then(() => {
+    User.findOneAndRemove({ _id: req.session.user }).then(() => {
       res.json({ success: true });
     });
   });

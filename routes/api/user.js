@@ -2,7 +2,6 @@ var express = require("express");
 var router = express.Router();
 var gravatar = require("gravatar");
 var bcrypt = require("bcryptjs");
-const url = require('url');    
 const authentication = require("../../middlewares/Authentication");
 //Load input validation
 const validateRegisterInput = require("../../validation/register");
@@ -20,7 +19,7 @@ router.get("/test", (req, res) => res.json({ msg: "Posts works" }));
 // //@desc   register route
 // //@access Public
 router.get("/register", (req, res, next) => {
-  res.render("authentication/register",{errors : {}});
+  res.render("authentication/register", { errors: {} });
 });
 // router.get("/register", (req, res, next) => res.json({ msg: "GET works" }));
 // // @route   GET api/users/register
@@ -31,13 +30,13 @@ router.post("/register", (req, res, next) => {
 
   // Check Validation
   if (!isValid) {
-    return res.render("authentication/register",{errors : errors});
+    return res.render("authentication/register", { errors: errors });
   }
 
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
       errors.emailExist = "Email already exists";
-      return res.render("authentication/register",{errors : errors});
+      return res.render("authentication/register", { errors: errors });
     } else {
       const avatar = gravatar.url(req.body.email, {
         s: "200", // Size
@@ -80,7 +79,7 @@ router.post("/register", (req, res, next) => {
 // @desc    Login User / Returning JWT token
 // @access  Public
 router.get("/login", (req, res, next) => {
-  res.render("authentication/login", {errors : {}});
+  res.render("authentication/login", { errors: {} });
 });
 router.post("/login", (req, res, next) => {
   const { errors, isValid } = validateLoginInput(req.body);
@@ -96,17 +95,17 @@ router.post("/login", (req, res, next) => {
   User.findOne({ email }).then(user => {
     if (!user) {
       errors.incorrect = "Tài khoản hoặc mật khẩu không chính xác";
-      return  res.render("authentication/login", {errors : errors});
+      return res.render("authentication/login", { errors: errors });
     }
     //Check password
     bcrypt.compare(password, user.password, (err, same) => {
       if (err) {
         errors.incorrect = "Một số thứ bị lỗi";
-        return res.render("authentication/login", {errors : errors});
+        return res.render("authentication/login", { errors: errors });
       }
       if (!same) {
         errors.incorrect = "Tài khoản hoặc mật khẩu không chính xác!";
-		return res.render("authentication/login", {errors : errors});
+        return res.render("authentication/login", { errors: errors });
       }
       //User matched
       req.session.user = user.id;
@@ -119,13 +118,13 @@ router.post("/login", (req, res, next) => {
 // @route   GET api/users/current
 // @desc    Return Current user
 // @access  Private
-router.get("/current", (req, res) => {
+router.get("/current", authentication.MEMBER, (req, res) => {
   User.findById(req.session.user).then(user =>
     res.send({ user: user.name, role: user.role, id: user.id })
   );
 });
 // GET /logout
-router.get("/logout", (req, res, next) => {
+router.get("/logout", authentication.MEMBER, (req, res, next) => {
   if (req.session) {
     // delete session object
     req.session.destroy(function(err) {

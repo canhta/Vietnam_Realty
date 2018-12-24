@@ -2,7 +2,8 @@ var express = require("express");
 var router = express.Router();
 const User = require("../../../models/User");
 const Profile = require("../../../models/Profile");
-router.get("/all", (req, res, next) => {
+const Authentication = require("../../../middlewares/Authentication");
+router.get("/all", Authentication.ADMIN, (req, res, next) => {
   Profile.find()
     .populate("user")
     .then(profile => {
@@ -19,7 +20,7 @@ router.get("/all", (req, res, next) => {
 //@route  GET admin/manager
 //@desc   Get all finds
 //@access Public
-router.get("/:id", (req, res, next) => {
+router.get("/:id", Authentication.ADMIN, (req, res, next) => {
   User.findById(req.params.id)
     .then(find => {
       if (find.length === 0) {
@@ -34,11 +35,12 @@ router.get("/:id", (req, res, next) => {
 //@route  DELETE admin/manager/:id
 //@desc   DELETE find by id
 //@access Public
-router.delete("/:id", (req, res, next) => {
-  User.findByIdAndRemove(req.params.id)
-    .then(find => res.json({ success: true }))
-    .catch(err => {
-      res.status(404).json({ noFindFound: "Not finsd post found" });
+router.post("/delete/:id", Authentication.ADMIN, (req, res, next) => {
+  Profile.findOneAndRemove({ user: req.params.id }).then(() => {
+    User.findOneAndRemove({ _id: req.params.id }).then(() => {
+      res.redirect("/admin/manager/all");
     });
+  });
 });
+
 module.exports = router;

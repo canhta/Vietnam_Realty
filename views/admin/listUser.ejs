@@ -90,12 +90,16 @@
                                                 </td>
                                                 <td>
                                                     <div class="table-data-feature">
+                                                    
                                                         <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                                             <i class="zmdi zmdi-edit"></i>
                                                         </button>
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                            <i class="zmdi zmdi-delete"></i>
-                                                        </button>
+                                                        <form action="delete/<%= profile.user.id %>" method="post">
+                                                                <button class="item" type="submit" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                                        <i class="zmdi zmdi-delete"></i>
+                                                                </button>
+                                                            </form>
+                                                        
                                                         <button class="item" data-toggle="tooltip" data-placement="top" title="More">
                                                             <i class="zmdi zmdi-more"></i>
                                                         </button>

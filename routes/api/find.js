@@ -3,7 +3,7 @@ var router = express.Router();
 const Find = require("../../models/Find");
 const Profile = require("../../models/Profile");
 const User = require("../../models/User");
-
+const Authentication = require("../../middlewares/Authentication");
 const validateFindInput = require("../../validation/find");
 //@route  GET api/finds/test
 //@desc   Test finds route
@@ -71,13 +71,13 @@ router.get("/:id", (req, res, next) => {
       res.status(404).json({ noFindFound: "No find post for this ID." })
     );
 });
-router.get("/", (req, res, next) =>
+router.get("/", Authentication.MEMBER, (req, res, next) =>
   res.render("mains/find/postFind", { title: "POST FIND" })
 );
 //@route  POST api/finds/
 //@desc   Create finds route
 //@access Private
-router.post("/", (req, res, next) => {
+router.post("/", Authentication.MEMBER, (req, res, next) => {
   // console.log("comhere");
   const { errors, isValid } = validateFindInput(req.body);
   User.findById(req.session.user).then(user =>
@@ -123,7 +123,7 @@ router.post("/", (req, res, next) => {
 //@route  GET api/finds/:id
 //@desc   Get find by id
 //@access Public
-router.delete("/:id", (req, res, next) => {
+router.delete("/:id", Authentication.MEMBER, (req, res, next) => {
   Profile.findOne({ user: req.user.id }).then(profile => {
     Find.findById(req.params.id)
       .then(find => {
