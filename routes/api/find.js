@@ -58,16 +58,15 @@ router.get("/search", (req, res, next) => {
       res.status(404).json({ noSellFounds: "No find posts found." })
     );
 });
-//@route  GET api/finds/:id
-//@desc   Get find by id
-//@access Public
 router.get("/:id", (req, res, next) => {
   Find.findById(req.params.id)
     .then(find => {
-      Profile.findOne({ user: sell.user })
+      Profile.findOne({ user: find.user })
         .populate("user")
         .then(profile => {
-          return res.render("mains/find/detailFind", {
+          console.log(find.user);
+
+          res.render("mains/find/detailFind", {
             title: "DETAIL FIND",
             find: find,
             head: req.session.user,
@@ -76,7 +75,7 @@ router.get("/:id", (req, res, next) => {
         });
     })
     .catch(err =>
-      res.status(404).json({ noFindFound: "No find post for this ID." })
+      res.status(404).json({ noSellFound: "No find post for this ID." })
     );
 });
 router.get("/", Authentication.MEMBER, (req, res, next) =>

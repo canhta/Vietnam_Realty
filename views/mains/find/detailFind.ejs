@@ -1,172 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <%-include("../../layouts/head")%>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="super_container">
-        <%-include("../../layouts/header")%>
-        <%-include("../../layouts/menu")%>
-		<%-include("../../layouts/home")%>
-		<%-include("../../layouts/searchFind")%>
-        <main>
-			<!-- Intro -->
-		
-			<div class="intro">
-				<div class="container">
-					<div class="row">
-						<div class="col">
-							<div class="intro_content d-flex flex-lg-row flex-column align-items-start justify-content-start">
-								<div class="intro_title_container">
-									<div class="intro_title">Mô tả cơ bản</div>
-									<div class="intro_tags">
-										<ul>
-											<li><a href="#">3 phòng ngủ</a></li>
-											<li><a href="#">3 phòng tắm</a></li>
-											<li><a href="#">Nội thất</a></li>
-											<li><a href="#">Diện tích</a></li>
-											<li><a href="#">2 tầng</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="intro_price_container ml-lg-auto d-flex flex-column align-items-start justify-content-center">
-									<div>For Sale</div>
-									<div class="intro_price"><%=find.cost[0].fromCost%> - <%=find.cost[0].toCost%></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="intro_slider_container">
-		
-					<!-- Intro Slider -->
-					<div class="owl-carousel owl-theme intro_slider">
-						<!-- Slide -->
-						<div class="owl-item"><img src="images/intro_1.jpg" alt=""></div>
-						<!-- Slide -->
-						<div class="owl-item"><img src="images/intro_1.jpg" alt=""></div>
-						<!-- Slide -->
-						<div class="owl-item"><img src="images/intro_1.jpg" alt=""></div>
-					</div>
-		
-					<!-- Intro Slider Nav -->
-					<div class="intro_slider_nav_container">
-						<div class="container">
-							<div class="row">
-								<div class="col">
-									<div class="intro_slider_nav_content d-flex flex-row align-items-start justify-content-end">
-										<div class="intro_slider_nav intro_slider_prev"><i class="fa fa-chevron-left" aria-hidden="true"></i></div>
-										<div class="intro_slider_nav intro_slider_next"><i class="fa fa-chevron-right" aria-hidden="true"></i></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		
-			<!-- Property -->
-		
-			<div class="property">
-				<div class="container">
-					<div class="row">
-						
-						<!-- Sidebar -->
-		
-						<div class="col-lg-3">
-							<div class="sidebar">
-		
-								<!-- Realtor -->
-								<div class="sidebar_realtor">
-									<div class="sidebar_realtor_image"><img src="images/sidebar_realtor.jpg" alt=""></div>
-									<div class="sidebar_realtor_body text-center">
-										<div class="sidebar_realtor_title"><a href="#"><%=find.user%></a></div>
-										<div class="sidebar_realtor_subtitle">Senior Realtor</div>
-										<div class="sidebar_realtor_phone"><span>call us: </span>652 345 3222 11</div>
-										<div class="realtor_link"><a href="#">+</a></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-						<!-- Property Content -->
-						<div class="col-lg-8 offset-lg-1">
-							<div class="property_content">
-								<div class="property_icons">
-									<div class="property_title">Extra Facilities</div>
-									<div class="property_text property_text_1">
-										<p>Donec ullamcorper nulla non metus auctor fringi lla. Curabitur blandit tempus porttitor.</p>
-									</div>
-									<div class="property_rooms d-flex flex-sm-row flex-column align-items-start justify-content-start">
-		
-										<!-- Property Room Item -->
-										
-		
-										<!-- Property Room Item -->
-										
-		
-										<!-- Property Room Item -->
-										<div class="property_room">
-											<div class="property_room_title">Diện tích</div>
-											<div class="property_room_content d-flex flex-row align-items-center justify-content-start">
-												<div class="room_icon"><img src="images/room_3.png" alt=""></div>
-												<div class="room_num">Từ <%=find.dienTich[0].fromDienTich%>  tới <%=find.dienTich[0].toDienTich%></div>
-											</div>
-										</div>
-		
-										<!-- Property Room Item -->
-										
-									</div>
-								</div>
-		
-								<!-- Description -->
-		
-								<div class="property_description">
-									<div class="property_title">Mô tả</div>
-									<div class="property_text property_text_2">
-										<p>Donec ullamcorper nulla non metus auctor fringi lla. Curabitur blandit tempus porttitor.Sed lectus urna, ultricies sit amet risus eget, euismod imperdiet augue. Duis imperdiet, purus a pellentesque sodales, sapien mauris rhoncus eros, ac blandit elit leo ac diam. Sed lectus urna, ultricies sit amet risus eget, euismod imperdiet augue. Duis imperdiet, purus a pellentesque sodales, sapien mauris rhoncus eros, ac blandit elit leo ac diam</p>
-									</div>
-								</div>
-		
-								<!-- Additional Details -->
-		
-								
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		
-			<!-- Newsletter -->
-		
-			<div class="newsletter">
-				<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="images/newsletter.jpg" data-speed="0.8"></div>
-				<div class="container">
-					<div class="row">
-						<div class="col">
-							<div class="newsletter_content d-flex flex-lg-row flex-column align-items-start justify-content-start">
-								<div class="newsletter_title_container">
-									<div class="newsletter_title">Are you buying or selling?</div>
-									<div class="newsletter_subtitle">Search your dream home</div>
-								</div>
-								<div class="newsletter_form_container">
-									<form action="#" class="newsletter_form">
-										<input type="email" class="newsletter_input" placeholder="Your e-mail address" required="required">
-										<button class="newsletter_button">subscribe now</button>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		
-        </main>
-        <%-include("../../layouts/footer")%>
+      <%-include("../../layouts/header")%> <%-include("../../layouts/menu")%>
+      <%-include("../../layouts/home")%>
+      <%-include("../../layouts/searchSell")%>
+      <main>
+        <!-- Intro -->
+
+        <div class="intro">
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <div
+                  class="intro_content d-flex flex-lg-row flex-column align-items-start justify-content-start"
+                >
+                  <div class="intro_title_container">
+                    <div class="intro_title">Mô tả cơ bản</div>
+                    <div class="intro_tags">
+                      <ul>
+                        <li>
+                          <a href="#"
+                            >Giá: <%= find.cost[0].fromCost%> - <%=
+                            find.cost[0].toCost%> (<%= find.cost[0].donVi%>)</a
+                          >
+                        </li>
+                        <li>
+                          <a href="#"
+                            >Diện tích: <%= find.dienTich[0].fromDienTich%> -
+                            <%= find.dienTich[0].fromDienTich%> m2</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div
+                    class="intro_price_container ml-lg-auto d-flex flex-column align-items-start justify-content-center"
+                  >
+                    <% if (find.hinhThuc==="rent"){ %>
+                    <div class="intro_price">Thuê</div>
+                    <% } else { %>
+                    <div class="intro_price">Mua</div>
+                    <% } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="intro_slider_container">
+            <!-- Intro Slider -->
+            <div class="owl-carousel owl-theme intro_slider">
+              <!-- Slide -->
+              <div class="owl-item">
+                <img src="images/intro_1.jpg" alt="" />
+              </div>
+              <!-- Slide -->
+              <div class="owl-item">
+                <img src="images/intro_1.jpg" alt="" />
+              </div>
+              <!-- Slide -->
+              <div class="owl-item">
+                <img src="images/intro_1.jpg" alt="" />
+              </div>
+            </div>
+
+            <!-- Intro Slider Nav -->
+            <div class="intro_slider_nav_container">
+              <div class="container">
+                <div class="row">
+                  <div class="col">
+                    <div
+                      class="intro_slider_nav_content d-flex flex-row align-items-start justify-content-end"
+                    >
+                      <div class="intro_slider_nav intro_slider_prev">
+                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                      </div>
+                      <div class="intro_slider_nav intro_slider_next">
+                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Property -->
+
+        <div class="property">
+          <div class="container">
+            <div class="row">
+              <!-- Sidebar -->
+
+              <div class="col-lg-3">
+                <div class="sidebar">
+                  <!-- Realtor -->
+                  <div class="sidebar_realtor">
+                    <div class="sidebar_realtor_image">
+                      <img
+                        src="<%= profile.user.avatar %>"
+                        width="100%"
+                        alt="Avatar"
+                      />
+                    </div>
+                    <div class="sidebar_realtor_body text-center">
+                      <div class="sidebar_realtor_title">
+                        <a href="#"><%= profile.user.name %></a>
+                      </div>
+
+                      <%if(profile.typeOf==="Individual"){ %>
+                      <div class="sidebar_realtor_subtitle">Cá nhân</div>
+                      <% } else { %>
+                      <div class="sidebar_realtor_subtitle">Tổ chức</div>
+                      <% } %>
+
+                      <div class="sidebar_realtor_phone">
+                        <% if(profile.phone){ %> <span>call us: </span><%=
+                        profile.phone %> <% } %>
+                      </div>
+                      <div class="realtor_link"><a href="#">+</a></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Property Content -->
+              <div class="col-lg-8 offset-lg-1">
+                <div class="property_content">
+                  <div class="property_icons">
+                    <div class="property_title">Chi Tiết</div>
+                    <div class="property_text property_text_1">
+                      <p>
+                        Donec ullamcorper nulla non metus auctor fringi lla.
+                        Curabitur blandit tempus porttitor.
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- Description -->
+
+                  <div class="property_description">
+                    <div class="property_title">
+                      <div class="row">
+                        <div class="col-6">
+                          <% if (find.hinhThuc==="rent"){ %>
+                          <div>Giá muốn thuê:</div>
+                          <% } else { %>
+                          <div>Tầm giá:</div>
+
+                          <% } %>
+                          <div>
+                            <%= find.cost[0].fromCost%> - <%=
+                            find.cost[0].toCost%> (<%= find.cost[0].donVi%>)
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <div>Diện tích:</div>
+                          <div>
+                            <%= find.dienTich[0].fromDienTich%> m2 - <%=
+                            find.dienTich[0].fromDienTich%> m2
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Newsletter -->
+
+        <div class="newsletter">
+          <div
+            class="parallax_background parallax-window"
+            data-parallax="scroll"
+            data-image-src="images/newsletter.jpg"
+            data-speed="0.8"
+          ></div>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <div
+                  class="newsletter_content d-flex flex-lg-row flex-column align-items-start justify-content-start"
+                >
+                  <div class="newsletter_title_container">
+                    <div class="newsletter_title">
+                      Are you buying or finding?
+                    </div>
+                    <div class="newsletter_subtitle">
+                      Search your dream home
+                    </div>
+                  </div>
+                  <div class="newsletter_form_container">
+                    <form action="#" class="newsletter_form">
+                      <input
+                        type="email"
+                        class="newsletter_input"
+                        placeholder="Your e-mail address"
+                        required="required"
+                      />
+                      <button class="newsletter_button">subscribe now</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <%-include("../../layouts/footer")%>
     </div>
     <%-include("../../layouts/javascript")%>
-</body>
-
+  </body>
 </html>
