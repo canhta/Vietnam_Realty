@@ -57,7 +57,6 @@ app.use(
   sellRouter,
   express.static(path.join(__dirname, "public"))
 );
-app.use(express.static(path.join(__dirname, "public")));
 app.use(
   "/api/finds",
   findRouter,

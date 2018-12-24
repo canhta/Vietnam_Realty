@@ -79,7 +79,7 @@ router.get("/:id", (req, res, next) => {
     );
 });
 router.get("/", Authentication.MEMBER, (req, res) =>
-  res.render("mains/sell/postSell", { title: "POST SELL", head : req.session.user })
+  res.render("mains/sell/postSell", { title: "POST SELL", head : req.session.user, errors : {}, info : {} })
 );
 
 //@route  POST api/sells/
@@ -88,10 +88,49 @@ router.get("/", Authentication.MEMBER, (req, res) =>
 router.post("/", Authentication.MEMBER, (req, res, next) => {
   const { errors, isValid } = validateSellInput(req.body);
 
+  var info = {
+    hinhThuc: req.body.hinhThuc,
+    loai: req.body.loai,
+    adress: {
+      diachi: req.body.diachi,
+      thanhPho: req.body.thanhPho,
+      quan: req.body.quan
+    },
+    dienTich: req.body.dienTich,
+
+    chiTiet: {
+      matTien: req.body.matTien,
+      duongVao: req.body.duongVao,
+      huongNha: req.body.huongNha,
+      huongBanCong: req.body.huongBanCong,
+      soTang: req.body.soTang,
+      soPhongNgu: req.body.soPhongNgu,
+      soToilet: req.body.soToilet,
+      noiThat: req.body.noiThat
+    },
+    moTa: req.body.moTa,
+    cost: {
+      gia: req.body.gia,
+      donVi: req.body.donVi
+    },
+    imageURL: {
+      image: req.body.image
+    },
+    state: "NEW",
+    timePost: {
+      fromPost: req.body.fromPost,
+      toPost: req.body.toPost
+    },
+    cardCash: {
+      menhGia: req.body.menhGia,
+      idCard: req.body.idCard
+    }
+
+  };
   // Check Validation
   if (!isValid) {
     // Return any errors with 400 status
-    return res.status(400).json(errors);
+    return res.render("mains/sell/postSell", { title: "POST SELL", head : req.session.user, errors : errors, info : info });
   }
   const newSell = new Sell({
     user: req.session.user,
@@ -132,7 +171,7 @@ router.post("/", Authentication.MEMBER, (req, res, next) => {
       idCard: req.body.idCard
     }
   });
-  newSell.save().then(sell => res.render("mains/sell/detailSell", {sell : sell}));
+  newSell.save().then(sell => res.render("mains/sell/detailSell", {sell : sell, head : req.session.user}));
 });
 //@route  GET api/sells/:id
 //@desc   Get sell by id
