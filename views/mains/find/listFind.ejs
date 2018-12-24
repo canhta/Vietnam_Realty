@@ -7,7 +7,7 @@
   <body>
     <div class="super_container">
       <%-include("../../layouts/header")%> <%-include("../../layouts/menu")%>
-      <%-include("../../layouts/home")%> <%-include("../../layouts/search")%>
+      <%-include("../../layouts/home")%> <%-include("../../layouts/searchFind")%>
       <main>
         <!-- Properties -->
 
@@ -40,9 +40,14 @@
                               <div class="property_title">
                                 <a href="/api/sells/<%= find._id %>"><%= find.loai %></a>
                               </div>
+                              <% if(find.cost[0].donVi==="Thỏa thuận") { %>
                               <div class="property_price">
-                                <%= find.cost[0].gia %> <%= find.cost[0].donVi %>
+                                Thỏa thuận
                               </div>
+                              <% } else{ %>
+                                <div class="property_price">
+                                  </div>
+                              <% } %>
                             </div>
                             <div
                               class="property_footer d-flex flex-row align-items-center justify-content-start text-center"

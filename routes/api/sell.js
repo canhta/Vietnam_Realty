@@ -31,43 +31,33 @@ router.get("/all", (req, res, next) => {
       res.status(404).json({ noSellFounds: "No sell posts found." })
     );
 });
-//@route  GET api/sells
-//@desc   Get filter sells
-//@access Public
-// router.get("/", (req, res, next) => {
-//   let _query = {
-//     diachi: req.query.diachi,
-//     loai: req.query.loai,
-//     gia: parseInt(req.query.gia),
-//     dienTich: parseInt(req.query.dienTich)
-//   };
-//   console.log(_query);
+//search
+router.get("/search", (req, res, next) => {
+  Sell.find()
+    .where("state")
+    .equals(State.POSTED)
+    .where("hinhThuc")
+    .equals(req.query.hinhThucSearch)
+    .where("loai")
+    .equals(req.query.loaiSearch)
+    .where("adress.thanhPho")
+    .equals(req.query.thanhPhoSearch)
+    .sort({ dienTich: req.query.dienTichSearch, gia: req.query.giaSearch })
+    .then(sell => {
+      console.log(sell);
 
-//   Sell.find()
-//     .where("state")
-//     .equals("POSTED")
-//     .where("diachi")
-//     .equals(_query.diachi)
-//     .where("loai")
-//     .equals(_query.loai)
-//     // .where("from")
-//     // .gte(_query.gia)
-//     // .where("dienTich")
-//     // .equals(_query.dienTich())
-//     // .sort({ dienTich: -1 })
-//     .select("loai diachi dienTich chiTiet gia timePost")
-//     .then(sell => {
-//       console.log(sell.state);
-//       console.log("-------------------All----------------");
-//       res.json(sell);
-//     })
-//     .catch(err =>
-//       res.status(404).json({ noSellFounds: "No sellS posts found." })
-//     );
-// });
-//@route  GET api/sells/:id
-//@desc   Get sell by id
-//@access Public
+      return res.render("mains/sell/listSell", {
+        sells: sell,
+        title: "ALL SELL",
+        total: sell.length,
+        head: req.session.user
+      });
+    })
+    .catch(err =>
+      res.status(404).json({ noSellFounds: "No sell posts found." })
+    );
+});
+
 router.get("/:id", (req, res, next) => {
   Sell.findById(req.params.id)
     .then(sell => {
