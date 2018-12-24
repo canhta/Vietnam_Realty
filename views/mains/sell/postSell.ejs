@@ -33,6 +33,9 @@
                                             <option value="sell">Nhà đất bán</option>
                                             <option value="rent">Nhà đất cho thuê</option>
                                         </select>
+                                        <p class="text-danger">
+                                            <%=errors.hinhThuc%>
+                                        </p>
                                     </div>
                                     <div class="col-sm-2">
                                         <h5 style="line-height:40px">Loại:</h5>
@@ -42,6 +45,9 @@
                                             <option value="">--Loại--</option>
                                         </select>
                                     </div>
+                                    <p class="text-danger">
+                                        <%=errors.loai%>
+                                    </p>
                                 </div>
 
                                 <div class="form-row">
@@ -73,6 +79,9 @@
                                         <input name="diachi" type="text" class="form-control" placeholder="Địa chỉ">
                                     </div>
                                 </div>
+                                <p class="text-danger">
+                                    <%=errors.diaChi%>
+                                </p>
 
                                 <div class="form-row">
                                     <div class="col-sm-2">
@@ -82,6 +91,9 @@
                                         <input name="dienTich" type="text" class="form-control" placeholder="--Diện tích--">
                                     </div>
                                 </div>
+                                <p class="text-danger">
+                                    <%=errors.dienTich%>
+                                </p>
 
                                 <div class="form-row">
                                     <div class="col-sm-2">
@@ -100,6 +112,9 @@
                                         </select>
                                     </div>
                                 </div>
+                                <p class="text-danger">
+                                    <%=errors.cost%>
+                                </p>
 
                                 <div class="form-row">
                                     <div class="col-sm-2">
@@ -136,6 +151,9 @@
                                 </div>
                             </div>
                         </div>
+                        <p class="text-danger">
+                            <%=errors.moTa%>
+                        </p>
 
                         <div class="card text-white bg-info mb-3 col-sm-12">
                             <div class="card-header">
@@ -162,6 +180,9 @@
                                     <input name="duongVao" type="text" class="form-control">
                                 </div>
                             </div>
+                            <p class="text-danger">
+                                <%=errors.matDuong%>
+                            </p>
 
                             <div class="form-row">
                                 <div class="col-sm-2">
@@ -186,6 +207,9 @@
                                     <input name="soTang" type="text" class="form-control">
                                 </div>
                             </div>
+                            <p class="text-danger">
+                                <%=errors.soTang%>
+                            </p>
 
                             <div class="form-row">
                                 <div class="col-sm-2">
@@ -201,6 +225,9 @@
                                     <input name="soToilet" type="text" class="form-control">
                                 </div>
                             </div>
+                            <p class="text-danger">
+                                <%=errors.nguToilet%>
+                            </p>
 
                             <div class="form-row">
                                 <div class="col-sm-2">
@@ -273,6 +300,9 @@
                                     <div class="form-group col-md-6">
                                         <input name="idCard" type="text" class="form-control">
                                     </div>
+                                    <p class="text-danger">
+                                        <%=errors.card%>
+                                    </p>
                                 </div>
                             </div>
                         </div>

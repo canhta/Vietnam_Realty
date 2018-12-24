@@ -194,6 +194,7 @@ router.post("/", Authentication.MEMBER, (req, res, next) => {
     res.render("mains/sell/detailSell", {
       sell: sell,
       head: req.session.user
+      
     })
   );
 });
