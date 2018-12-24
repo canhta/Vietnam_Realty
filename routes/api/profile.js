@@ -26,7 +26,15 @@ router.get("/current", Authentication.MEMBER, (req, res) => {
     })
     .catch(err => res.status(404).json(err));
 });
-//@route  POST api/profile
+router.get("/", Authentication.MEMBER, (req, res) => {
+  Profile.findOne({ user: req.session.user })
+    .populate("user")
+    .then(profile => {
+      return res.render("mains/user/editProfile", { profile: profile });
+    })
+    .catch(err => res.status(404).json(err));
+});
+//@route  POST api/profiles
 //@desc   Create user profile
 //@access Private
 router.post("/", Authentication.MEMBER, (req, res) => {
@@ -117,10 +125,16 @@ router.post("/", Authentication.MEMBER, (req, res) => {
 // @route   DELETE api/profile
 // @desc    Delete user and profile
 // @access  Private
-router.delete("/", Authentication.MEMBER, (req, res) => {
-  Profile.findOneAndRemove({ user: req.session.user }).then(() => {
+router.post("/delete/:id", Authentication.MEMBER, (req, res) => {
+  Profile.findByIdAndRemove({ id: req.params.id }).then(() => {
     User.findOneAndRemove({ _id: req.session.user }).then(() => {
-      res.json({ success: true });
+      req.session.destroy(function(err) {
+        if (err) {
+          return next(err);
+        } else {
+          return res.redirect("/");
+        }
+      });
     });
   });
 });

@@ -64,9 +64,7 @@ router.post("/register", (req, res, next) => {
                 //User matched
                 req.session.user = user.id;
                 req.session.role = user.role;
-                return res.render("mains/user/profile", {
-                  profile: { ...user, ...profile }
-                });
+                return res.render("mains/user/profile", { profile: profile });
               });
             })
             .catch(err => console.log(err));
