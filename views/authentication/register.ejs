@@ -42,7 +42,7 @@
 								<div class="login-form">
 									<form action="" method="post">
 										<div class="form-group">
-											<label>Full name</label>
+											<label>Tên đầy đủ</label>
 											<input class="au-input au-input--full" type="text" name="name" placeholder="Full name" />
 											<p class="text-danger">
 												<%=errors.name%>
@@ -58,14 +58,14 @@
 											</p>
 										</div>
 										<div class="form-group">
-											<label>Password</label>
+											<label>Mật khẩu</label>
 											<input class="au-input au-input--full" type="password" name="password" placeholder="Password" />
 											<p class="text-danger">
 												<%=errors.password%>
 											</p>
 										</div>
 										<div class="form-group">
-											<label>Confirm Password</label>
+											<label>Nhập lại mật khẩu</label>
 											<input class="au-input au-input--full" type="password" name="password2" placeholder="Confirm Password" />
 											<p class="text-danger">
 												<%=errors.password2%>
@@ -73,8 +73,7 @@
 										</div>
 										<div class="login-checkbox">
 											<label>
-												<input type="checkbox" name="aggree" />Agree the terms
-												and policy
+												<input type="checkbox" name="aggree" /> Đồng ý với điều khoản
 											</label>
 										</div>
 										<button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">
@@ -83,8 +82,8 @@
 									</form>
 									<div class="register-link">
 										<p>
-											Already have account?
-											<a href="/api/users/login">Sign In Here</a>
+											Bạn đã có tài khoản?
+											<a href="/api/users/login">Đăng nhập tại đây</a>
 										</p>
 									</div>
 								</div>
