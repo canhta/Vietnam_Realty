@@ -131,7 +131,7 @@ router.post("/", Authentication.MEMBER, (req, res, next) => {
       idCard: req.body.idCard
     }
   });
-  newSell.save().then(sell => res.json(sell));
+  newSell.save().then(sell => res.render("mains/sell/detailSell", {sell : sell}));
 });
 //@route  GET api/sells/:id
 //@desc   Get sell by id
