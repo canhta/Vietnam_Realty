@@ -7,17 +7,27 @@
   <body>
     <div class="super-container">
       <%-include("../../layouts/header")%> <%-include("../../layouts/home")%>
-      <%-include("../../layouts/search")%>
+      <%-include("../../layouts/search")%> <br />
       <div class="container">
         <div class="row">
           <div class="col-lg-3">
             <div class="sidebar_realtor_image">
               <img
-                src="images/sidebar_realtor.jpg"
+                src="<%= profile.user.avatar %>"
                 width="300px"
-                height="300px"
+                height="auto"
                 alt=""
               />
+              <div class="sidebar_realtor_body text-center">
+                <div class="sidebar_realtor_title">
+                  <a href="#"><%= profile.user.name %></a>
+                </div>
+                <% if(profile.phone){ %>
+                <div class="sidebar_realtor_phone">
+                  <span>call us: </span><%= profile.phone %>
+                </div>
+                <% } %>
+              </div>
             </div>
             <div class="sidebar_realtor_body text-center">
               <div class="sidebar_realtor_title"><a href="#"></a></div>
@@ -25,7 +35,8 @@
             </div>
           </div>
           <div class="col-lg-9">
-            <h2 class="text-center">Edit Profile</h2>
+            <h2 class="text-center">Chỉnh sửa Profile</h2>
+            <br />
             <div class="panel panel-info">
               <form
                 class="form"
@@ -36,21 +47,15 @@
                 novalidate=""
                 method="POST"
               >
-                <div class="form-group">
-                  <label for="uname1">Full name</label> <input type="text"
-                  class="form-control form-control-lg" name="name" id="uname1"
-                  value=<%= %> />
-                  <div class="invalid-feedback">Oops, you missed this one.</div>
-                </div>
                 <div class="row">
                   <div class="form-group col-lg-8">
-                    <label for="uname1">Birth Day</label>
+                    <label for="uname1">Họ & Tên</label>
                     <input
                       type="text"
                       class="form-control form-control-lg"
                       name="name"
                       id="uname1"
-                      required=""
+                      value="<%=profile.user.name %>"
                     />
                     <div class="invalid-feedback">
                       Oops, you missed this one.
@@ -58,10 +63,44 @@
                   </div>
                   <div class="form-group col-lg-4">
                     <label for="uname1">Gender</label>
-                    <select class="form-control">
-                      <option>Male</option>
-                      <option>Female</option>
+                    <select
+                      class="form-control"
+                      name="gender"
+                      value="<%=profile.gender%>"
+                    >
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
                     </select>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-lg-6">
+                    <label for="uname1">Birth Day</label>
+                    <input
+                      type="date"
+                      class="form-control form-control-lg"
+                      name="dateOfBirth"
+                      value="<%=profile.dateOfBirth%>"
+                      required=""
+                    />
+                    <div class="invalid-feedback">
+                      Oops, you missed this one.
+                    </div>
+                  </div>
+                  <div class="form-group col-lg-6">
+                    <label for="uname1">Số điện thoại</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      name="phone"
+                      value="<%=profile.phone%>"
+                      id=""
+                      required=""
+                    />
+                    <div class="invalid-feedback">
+                      Oops, you missed this one.
+                    </div>
                   </div>
                 </div>
 
@@ -70,26 +109,40 @@
                   <input
                     type="text"
                     class="form-control form-control-lg"
-                    name="name"
+                    name="diachi"
                     id="uname1"
                     required=""
                   />
                   <div class="invalid-feedback">Oops, you missed this one.</div>
                 </div>
+                <div class="row">
+                  <div class="form-group col-lg-5">
+                    <label for="uname1">Loại tài khoản</label>
+                    <select
+                      class="form-control"
+                      name="typeOf"
+                      value="<%=profile.typeOf%>"
+                    >
+                      <option value="Individual">Cá nhân</option>
+                      <option value="Company">Tổ chức</option>
+                    </select>
+                  </div>
+                </div>
+
                 <div class="form-group py-4">
                   <button
                     class="btn btn-outline-secondary btn-lg"
                     data-dismiss="modal"
                     aria-hidden="true"
                   >
-                    Cancel
+                    Hủy
                   </button>
                   <button
                     type="submit"
                     class="btn btn-success btn-lg float-right"
                     id="btnRegister"
                   >
-                    Change
+                    Thay đổi
                   </button>
                 </div>
               </form>

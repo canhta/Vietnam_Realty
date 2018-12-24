@@ -3,7 +3,7 @@ var router = express.Router();
 const Find = require("../../models/Find");
 const Profile = require("../../models/Profile");
 const User = require("../../models/User");
-
+const Authentication = require("../../middlewares/Authentication");
 const validateFindInput = require("../../validation/find");
 //@route  GET api/finds/test
 //@desc   Test finds route
@@ -20,7 +20,8 @@ router.get("/all", (req, res, next) => {
       return res.render("mains/find/listFind", {
         finds: find,
         title: "ALL FIND",
-        total: find.length
+        total: find.length,
+        head : req.session.user
       });
     })
     .catch(err =>
@@ -66,18 +67,18 @@ router.get("/all", (req, res, next) => {
 //@access Public
 router.get("/:id", (req, res, next) => {
   Find.findById(req.params.id)
-    .then(find => res.render("mains/find/detailFind", { find: find }))
+    .then(find => res.render("mains/find/detailFind", { find: find, head : req.session.user }))
     .catch(err =>
       res.status(404).json({ noFindFound: "No find post for this ID." })
     );
 });
-router.get("/", (req, res, next) =>
-  res.render("mains/find/postFind", { title: "POST FIND" })
+router.get("/", Authentication.MEMBER, (req, res, next) =>
+  res.render("mains/find/postFind", { title: "POST FIND", head : req.session.user })
 );
 //@route  POST api/finds/
 //@desc   Create finds route
 //@access Private
-router.post("/", (req, res, next) => {
+router.post("/", Authentication.MEMBER, (req, res, next) => {
   // console.log("comhere");
   const { errors, isValid } = validateFindInput(req.body);
   User.findById(req.session.user).then(user =>
@@ -123,7 +124,7 @@ router.post("/", (req, res, next) => {
 //@route  GET api/finds/:id
 //@desc   Get find by id
 //@access Public
-router.delete("/:id", (req, res, next) => {
+router.delete("/:id", Authentication.MEMBER, (req, res, next) => {
   Profile.findOne({ user: req.user.id }).then(profile => {
     Find.findById(req.params.id)
       .then(find => {
@@ -133,7 +134,7 @@ router.delete("/:id", (req, res, next) => {
         }
         //Delete
         Find.remove().then(() => {
-          res.render("mains/find/listFind", { find: find });
+          res.render("mains/find/listFind", { find: find, head : req.session.user });
         });
       })
       .catch(err => {

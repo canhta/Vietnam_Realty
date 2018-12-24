@@ -3,9 +3,9 @@ const ROLE = require("../constants/roleConstrants");
 module.exports = {
   ADMIN: (req, res, next) => {
     //   if (req.session && req.session.user === "amy" && req.session.admin)
-    if (req.session.user && req.session.role === ROLE.REQUIRE_MEMBER)
+    if (req.session.user && req.session.role === ROLE.REQUIRE_ADMIN)
       return next();
-    else return res.json("Error session admin");
+    else return res.redirect("/api/users/login");
   },
   MEMBER: (req, res, next) => {
     //   if (req.session && req.session.user === "amy" && req.session.admin)
@@ -15,6 +15,6 @@ module.exports = {
         req.session.role === ROLE.REQUIRE_ADMIN)
     )
       return next();
-    else return res.json("Error session member");
+    else return res.redirect("/api/users/login");
   }
 };

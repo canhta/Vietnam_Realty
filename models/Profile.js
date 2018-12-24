@@ -15,22 +15,11 @@ const ProfileSchema = new Schema({
     type: String,
     default: "Male"
   },
-  adress: [
-    {
-      diachi: {
-        type: String
-        // required: true
-      },
-      thanhPho: {
-        type: String
-        // required: true
-      },
-      quan: {
-        type: String
-        // required: true
-      }
-    }
-  ],
+
+  diachi: {
+    type: String
+    // required: true
+  },
   phone: {
     type: String,
     // required: true,

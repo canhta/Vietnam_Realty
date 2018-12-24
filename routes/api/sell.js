@@ -5,7 +5,7 @@ const Sell = require("../../models/Sell");
 const Profile = require("../../models/Profile");
 //middleware
 const validateSellInput = require("../../validation/sell");
-
+const Authentication = require("../../middlewares/Authentication");
 //@route  GET api/sells/test
 //@desc   Test sells route
 //@access Public
@@ -22,7 +22,8 @@ router.get("/all", (req, res, next) => {
       return res.render("mains/sell/listSell", {
         sells: sell,
         title: "ALL SELL",
-        total: sell.length
+        total: sell.length,
+        head : req.session.user
       });
     })
     .catch(err =>
@@ -71,20 +72,20 @@ router.get("/:id", (req, res, next) => {
     .then(sell => {
       console.log(sell);
 
-      res.render("mains/sell/detailSell", { title: "DETAIL SELL", sell: sell });
+      res.render("mains/sell/detailSell", { title: "DETAIL SELL", sell: sell, head : req.session.user });
     })
     .catch(err =>
       res.status(404).json({ noSellFound: "No sell post for this ID." })
     );
 });
-router.get("/", (req, res) =>
-  res.render("mains/sell/postSell", { title: "POST SELL" })
+router.get("/", Authentication.MEMBER, (req, res) =>
+  res.render("mains/sell/postSell", { title: "POST SELL", head : req.session.user })
 );
 
 //@route  POST api/sells/
 //@desc   Create sells route
 //@access Private
-router.post("/", (req, res, next) => {
+router.post("/", Authentication.MEMBER, (req, res, next) => {
   const { errors, isValid } = validateSellInput(req.body);
 
   // Check Validation
@@ -131,12 +132,12 @@ router.post("/", (req, res, next) => {
       idCard: req.body.idCard
     }
   });
-  newSell.save().then(sell => res.json(sell));
+  newSell.save().then(sell => res.render("mains/sell/detailSell", {sell : sell}));
 });
 //@route  GET api/sells/:id
 //@desc   Get sell by id
 //@access Public
-router.delete("/:id", (req, res, next) => {
+router.delete("/:id", Authentication.MEMBER, (req, res, next) => {
   Profile.findOne({ user: req.user.id }).then(profile => {
     Sell.findById(req.params.id)
       .then(sell => {
