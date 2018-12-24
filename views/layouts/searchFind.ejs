@@ -6,7 +6,7 @@
         <div class="home_search_container">
           <div class="home_search_content">
             <form
-              action="#"
+              action="/api/finds/search"
               class="search_form d-flex flex-row align-items-start justfy-content-start"
             >
               <div
@@ -18,8 +18,8 @@
                     id="idHinhThucSearch"
                     class="search_form_select"
                   >
-                    <option value="sell">Bán nhà</option>
-                    <option value="rent">Cho thuê</option>
+                    <option value="sell" selected>Mua nhà</option>
+                    <option value="rent">Thuê nhà</option>
                   </select>
                 </div>
                 <div>
@@ -54,7 +54,7 @@
                   </select>
                 </div>
               </div>
-              <button class="search_form_button ml-auto">search</button>
+              <button class="search_form_button ml-auto">Filter</button>
             </form>
           </div>
         </div>

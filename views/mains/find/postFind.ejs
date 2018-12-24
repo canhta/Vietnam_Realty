@@ -48,7 +48,7 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <select name="thanhPho" id="idTinhThanhPho" class="form-control" value="<%=info.thanhPho%>">
-                                            <option value="Tỉnh/Thành Phố" selected>--Tỉnh/Thành phố--</option>
+                                            <option value="">--Tỉnh/Thành phố--</option>
                                             <option value="Hà Nội">Hà Nội</option>
                                             <option value="Hồ Chí Minh">Hồ Chí Minh</option>
                                         </select>
@@ -262,16 +262,14 @@
       }
 
       /* Loại */
-      var contentLoaiDatBan =
-        '<option value="Mua căn hộ chung cư">Mua căn hộ chung cư</option>' +
-        '<option value="Mua nhà riêng">Mua nhà riêng</option>' +
-        '<option value="Mua nhà mặt phố">Mua nhà mặt phố</option>' +
-        '<option value="Mua kho, nhà xưởng">Mua kho, nhà xưởng</option>';
+      var contentLoaiDatBan = '<option value="Bán căn hộ chung cư">Bán căn hộ chung cư</option>' +
+            '<option value="Bán nhà riêng">Bán nhà riêng</option>' +
+            '<option value="Bán nhà mặt phố">Bán nhà mặt phố</option>' +
+            '<option value="Bán kho, nhà xưởng">Bán kho, nhà xưởng</option>';
 
-      var contentLoaiDatThue =
-        '<option value="Thuê căn hộ chung cư">Thuê căn hộ chung cư</option>' +
-        '<option value="Thuê nhà trọ, phòng trọ">Thuê nhà trọ, phòng trọ</option>' +
-        '<option value="Thuê văn phòng">Thuê văn phòng</option>';
+        var contentLoaiDatThue = '<option value="Cho thuê căn hộ chung cư">Cho thuê căn hộ chung cư</option>' +
+            '<option value="Cho thuê nhà trọ, phòng trọ">Cho thuê nhà trọ, phòng trọ</option>' +
+            '<option value="Cho thuê văn phòng">Cho thuê văn phòng</option>';
 
       /* Đơn vị */
       var listDonViBan =
