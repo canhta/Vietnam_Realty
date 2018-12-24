@@ -65,8 +65,7 @@ router.post("/register", (req, res, next) => {
                 req.session.user = user.id;
                 req.session.role = user.role;
                 return res.render("mains/user/profile", {
-                  profile: profile,
-                  user: user
+                  profile: { ...user, ...profile }
                 });
               });
             })

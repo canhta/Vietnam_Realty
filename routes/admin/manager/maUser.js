@@ -4,15 +4,12 @@ const User = require("../../../models/User");
 const Profile = require("../../../models/Profile");
 router.get("/all", (req, res, next) => {
   Profile.find()
-    .populate("users")
+    .populate("user")
     .then(profile => {
-      var _profile = {
-        ...profile,
-        name: profile.user.name,
-        email: profile.user.email,
-        role: profile.user.role
-      };
-      return res.render("admin/listUser", { profiles: _profile });
+      return res.render("admin/listUser", {
+        profiles: profile,
+        total: profile.length
+      });
     })
     .catch(err =>
       res.status(404).json({ noFindFounds: "No find posts found." })
