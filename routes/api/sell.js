@@ -22,7 +22,8 @@ router.get("/all", (req, res, next) => {
       return res.render("mains/sell/listSell", {
         sells: sell,
         title: "ALL SELL",
-        total: sell.length
+        total: sell.length,
+        head : req.session.user
       });
     })
     .catch(err =>
@@ -71,14 +72,14 @@ router.get("/:id", (req, res, next) => {
     .then(sell => {
       console.log(sell);
 
-      res.render("mains/sell/detailSell", { title: "DETAIL SELL", sell: sell });
+      res.render("mains/sell/detailSell", { title: "DETAIL SELL", sell: sell, head : req.session.user });
     })
     .catch(err =>
       res.status(404).json({ noSellFound: "No sell post for this ID." })
     );
 });
 router.get("/", Authentication.MEMBER, (req, res) =>
-  res.render("mains/sell/postSell", { title: "POST SELL" })
+  res.render("mains/sell/postSell", { title: "POST SELL", head : req.session.user })
 );
 
 //@route  POST api/sells/

@@ -22,7 +22,7 @@ router.get("/current", Authentication.MEMBER, (req, res) => {
   Profile.findOne({ user: req.session.user })
     .populate("user")
     .then(profile => {
-      return res.render("mains/user/profile", { profile: profile });
+      return res.render("mains/user/profile", { profile: profile, head: req.session.user });
     })
     .catch(err => res.status(404).json(err));
 });
@@ -30,7 +30,7 @@ router.get("/", Authentication.MEMBER, (req, res) => {
   Profile.findOne({ user: req.session.user })
     .populate("user")
     .then(profile => {
-      return res.render("mains/user/editProfile", { profile: profile });
+      return res.render("mains/user/editProfile", { profile: profile, head: req.session.user });
     })
     .catch(err => res.status(404).json(err));
 });
@@ -79,7 +79,7 @@ router.post("/", Authentication.MEMBER, (req, res) => {
 
         // Save Profile
         new Profile(profileFields).save().then(profile => {
-          return res.render("/api/profile", { profile });
+          return res.render("/api/profile", { profile, head: req.session.user });
         });
       });
     }
@@ -128,7 +128,7 @@ router.post("/", Authentication.MEMBER, (req, res) => {
 router.post("/delete/:id", Authentication.MEMBER, (req, res) => {
   Profile.findByIdAndRemove({ id: req.params.id }).then(() => {
     User.findOneAndRemove({ _id: req.session.user }).then(() => {
-      req.session.destroy(function(err) {
+      req.session.destroy(function (err) {
         if (err) {
           return next(err);
         } else {
