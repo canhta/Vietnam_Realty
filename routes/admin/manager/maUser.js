@@ -1,25 +1,21 @@
 var express = require("express");
 var router = express.Router();
-router.get("/test", (req, res) => res.json({ msg: "test works" }));
 const User = require("../../../models/User");
-//@route  GET admin/manager
-//@desc   Get all finds
-//@access Public
+const Profile = require("../../../models/Profile");
 router.get("/all", (req, res, next) => {
-  User.find({ role: "Member" })
-    .select("role name email avatar")
-    .sort({ name: -1 })
-    // .sort({ date: -1 })
-    .then(find => {
-      // if (find.length === 0) {
-      //   res.status(404).json({ noFindPost: "No find posts found." });
-      // }
-      res.json(find);
+  Profile.find()
+    .populate("user")
+    .then(profile => {
+      return res.render("admin/listUser", {
+        profiles: profile,
+        total: profile.length
+      });
     })
     .catch(err =>
       res.status(404).json({ noFindFounds: "No find posts found." })
     );
 });
+
 //@route  GET admin/manager
 //@desc   Get all finds
 //@access Public

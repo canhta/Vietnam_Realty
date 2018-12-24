@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var gravatar = require("gravatar");
 var bcrypt = require("bcryptjs");
+const url = require('url');    
 const authentication = require("../../middlewares/Authentication");
 //Load input validation
 const validateRegisterInput = require("../../validation/register");
@@ -18,6 +19,9 @@ router.get("/test", (req, res) => res.json({ msg: "Posts works" }));
 // //@route  GET api/users/register
 // //@desc   register route
 // //@access Public
+router.get("/register", (req, res, next) => {
+  res.render("authentication/register",{errors : {}});
+});
 // router.get("/register", (req, res, next) => res.json({ msg: "GET works" }));
 // // @route   GET api/users/register
 // // @desc    Register user
@@ -27,13 +31,13 @@ router.post("/register", (req, res, next) => {
 
   // Check Validation
   if (!isValid) {
-    return res.status(400).json(errors);
+    return res.render("authentication/register",{errors : errors});
   }
 
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
-      errors.email = "Email already exists";
-      return res.status(400).json(errors);
+      errors.emailExist = "Email already exists";
+      return res.render("authentication/register",{errors : errors});
     } else {
       const avatar = gravatar.url(req.body.email, {
         s: "200", // Size
@@ -62,8 +66,7 @@ router.post("/register", (req, res, next) => {
                 req.session.user = user.id;
                 req.session.role = user.role;
                 return res.render("mains/user/profile", {
-                  profile: profile,
-                  user: user
+                  profile: { ...user, ...profile }
                 });
               });
             })
@@ -76,6 +79,9 @@ router.post("/register", (req, res, next) => {
 // @route   GET api/users/login
 // @desc    Login User / Returning JWT token
 // @access  Public
+router.get("/login", (req, res, next) => {
+  res.render("authentication/login", {errors : {}});
+});
 router.post("/login", (req, res, next) => {
   const { errors, isValid } = validateLoginInput(req.body);
 
@@ -89,18 +95,18 @@ router.post("/login", (req, res, next) => {
   //Find User by email
   User.findOne({ email }).then(user => {
     if (!user) {
-      errors.email = "Email not found!";
-      return res.status(404).json({ errors });
+      errors.incorrect = "Tài khoản hoặc mật khẩu không chính xác";
+      return  res.render("authentication/login", {errors : errors});
     }
     //Check password
     bcrypt.compare(password, user.password, (err, same) => {
       if (err) {
-        errors.password = "Some Errors!";
-        return res.status(404).json({ errors });
+        errors.incorrect = "Một số thứ bị lỗi";
+        return res.render("authentication/login", {errors : errors});
       }
       if (!same) {
-        errors.password = "Password incorrect!";
-        return res.status(400).json({ errors });
+        errors.incorrect = "Tài khoản hoặc mật khẩu không chính xác!";
+		return res.render("authentication/login", {errors : errors});
       }
       //User matched
       req.session.user = user.id;

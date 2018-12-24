@@ -1,14 +1,6 @@
 var express = require("express");
 var router = express.Router();
 const Find = require("../../../models/Find");
-const Profile = require("../../../models/Profile");
-//middleware
-const isEmpty = require("../../../validation/is-empty");
-
-//@route  GET admin/schedule/finds/test
-//@desc   Test finds route
-//@access Public
-router.get("/test", (req, res) => res.json({ msg: "mytest works" }));
 //@route  GET admin/schedule/finds
 //@desc   Get all finds
 //@access Public

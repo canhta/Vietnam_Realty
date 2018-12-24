@@ -15,21 +15,12 @@ router.get("/test", (req, res) => res.json({ msg: "Profile works" }));
 //@route  GET api/profiles
 //@desc   Get current users profile
 //@access Private
+
 router.get("/current", Authentication.MEMBER, (req, res) => {
-  const errors = {};
   Profile.findOne({ user: req.session.user })
-    .populate("users", { name, email, avatar })
+    .populate("user")
     .then(profile => {
-      var user = {
-        name: profile.user.name,
-        email: profile.user.email,
-        avatar: profile.user.avatar
-      };
-      // console.log(profile.user.name);
-      // if (!profile) {
-      //   return res.render("mains/user/editProfile");
-      // }
-      return res.render("mains/user/profile", { profile: profile, user: user });
+      return res.render("mains/user/profile", { profile: profile });
     })
     .catch(err => res.status(404).json(err));
 });
