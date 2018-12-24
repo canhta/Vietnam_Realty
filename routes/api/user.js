@@ -158,3 +158,4 @@ router.get("/logout", authentication.MEMBER, (req, res, next) => {
   }
 });
 module.exports = router;
+		

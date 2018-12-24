@@ -10,6 +10,7 @@ const validateFindInput = require("../../validation/find");
 //@access Public
 router.get("/test", (req, res) => res.json("test FIND"));
 
+
 //@route  GET api/finds
 //@desc   Get all finds
 //@access Public
@@ -84,10 +85,7 @@ router.get("/:id", (req, res, next) => {
     );
 });
 router.get("/", Authentication.MEMBER, (req, res, next) =>
-  res.render("mains/find/postFind", {
-    title: "POST FIND",
-    head: req.session.user
-  })
+  res.render("mains/find/postFind", { title: "POST FIND", head : req.session.user, errors : {}, info :{} })
 );
 //@route  POST api/finds/
 //@desc   Create finds route
@@ -98,10 +96,37 @@ router.post("/", Authentication.MEMBER, (req, res, next) => {
   User.findById(req.session.user).then(user =>
     console.log(`this is session user: ${user}`)
   );
+  var info = {
+    hinhThuc: req.body.hinhThuc,
+    loai: req.body.loai,
+    adress: {
+      thanhPho: req.body.thanhPho,
+      quan: req.body.quan
+    },
+    dienTich: {
+      fromDienTich: req.body.fromDienTich,
+      toDienTich: req.body.toDienTich
+    },
+    cost: {
+      fromCost: req.body.fromCost,
+      toCost: req.body.toCost,
+      donVi: req.body.donVi
+    },
+    timePost: {
+      fromPost: req.body.fromPost,
+      toPost: req.body.toPost
+    },
+    cardCash: {
+      menhGia: req.body.menhGia,
+      idCard: req.body.idCard
+    }
+
+  };
   // Check Validation
   if (!isValid) {
     // Return any errors with 400 status
-    return res.status(400).json(errors);
+    //res.render("mains/find/postFind", { title: "POST FIND", head : req.session.user, errors : {}, info :{} })
+    return res.render("mains/find/postFind", {head : req.session.user, errors : errors, info : info});
   }
   const newFind = new Find({
     user: req.session.user,
@@ -116,8 +141,8 @@ router.post("/", Authentication.MEMBER, (req, res, next) => {
       toDienTich: req.body.toDienTich
     },
     cost: {
-      fromCost: req.body.from,
-      toCost: req.body.to,
+      fromCost: req.body.fromCost,
+      toCost: req.body.toCost,
       donVi: req.body.donVi
     },
     state: "NEW",
@@ -131,8 +156,8 @@ router.post("/", Authentication.MEMBER, (req, res, next) => {
     }
   });
   newFind.save().then(find =>
-    // res.render("mains/find/listFind", { find: find, title: "POST FIND" })
-    res.json(find)
+     res.render("mains/find/detailFind", { find: find, title: "POST FIND", head : req.session.user })
+    //res.json(find)
   );
 });
 //@route  GET api/finds/:id

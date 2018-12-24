@@ -33,7 +33,7 @@
 								</div>
 								<div class="intro_price_container ml-lg-auto d-flex flex-column align-items-start justify-content-center">
 									<div>For Sale</div>
-									<div class="intro_price">$980,000</div>
+									<div class="intro_price"><%=find.cost[0].fromCost%> - <%=find.cost[0].toCost%></div>
 								</div>
 							</div>
 						</div>
@@ -82,7 +82,7 @@
 								<div class="sidebar_realtor">
 									<div class="sidebar_realtor_image"><img src="images/sidebar_realtor.jpg" alt=""></div>
 									<div class="sidebar_realtor_body text-center">
-										<div class="sidebar_realtor_title"><a href="#">Maria Williams</a></div>
+										<div class="sidebar_realtor_title"><a href="#"><%=find.user%></a></div>
 										<div class="sidebar_realtor_subtitle">Senior Realtor</div>
 										<div class="sidebar_realtor_phone"><span>call us: </span>652 345 3222 11</div>
 										<div class="realtor_link"><a href="#">+</a></div>
@@ -102,41 +102,22 @@
 									<div class="property_rooms d-flex flex-sm-row flex-column align-items-start justify-content-start">
 		
 										<!-- Property Room Item -->
-										<div class="property_room">
-											<div class="property_room_title">Phòng ngủ</div>
-											<div class="property_room_content d-flex flex-row align-items-center justify-content-start">
-												<div class="room_icon"><img src="images/room_1.png" alt=""></div>
-												<div class="room_num">4</div>
-											</div>
-										</div>
+										
 		
 										<!-- Property Room Item -->
-										<div class="property_room">
-											<div class="property_room_title">Nhà tắm </div>
-											<div class="property_room_content d-flex flex-row align-items-center justify-content-start">
-												<div class="room_icon"><img src="images/room_2.png" alt=""></div>
-												<div class="room_num">3</div>
-											</div>
-										</div>
+										
 		
 										<!-- Property Room Item -->
 										<div class="property_room">
 											<div class="property_room_title">Diện tích</div>
 											<div class="property_room_content d-flex flex-row align-items-center justify-content-start">
 												<div class="room_icon"><img src="images/room_3.png" alt=""></div>
-												<div class="room_num">7100 Sq Ft</div>
+												<div class="room_num">Từ <%=find.dienTich[0].fromDienTich%>  tới <%=find.dienTich[0].toDienTich%></div>
 											</div>
 										</div>
 		
 										<!-- Property Room Item -->
-										<div class="property_room">
-											<div class="property_room_title">Số tầng</div>
-											<div class="property_room_content d-flex flex-row align-items-center justify-content-start">
-												<div class="room_icon"><img src="images/room_5.png" alt=""></div>
-												<div class="room_num">2</div>
-											</div>
-										</div>
-		
+										
 									</div>
 								</div>
 		
@@ -151,19 +132,7 @@
 		
 								<!-- Additional Details -->
 		
-								<div class="additional_details">
-									<div class="property_title">Chi tiết bổ sung</div>
-									<div class="details_container">
-										<ul>
-											<li><span>Mặt tiền: </span>Main Floor Master Bedroom, Walk-In Closet</li>
-											<li><span>Hướng nhà: </span>Breakfast Counter/Bar, Living/Dining Combo</li>
-											<li><span>Đường vào: </span>Bay Window</li>
-											<li><span>Hướng ban công: </span>Mid Level</li>
-											<li><span>Nội thất: </span>Mid Level</li>
-											<li><span>Địa chỉ: </span>Raised Foundation, Vinyl Tile, Wall-to-Wall Carpet, Wood</li>
-										</ul>
-									</div>
-								</div>
+								
 							</div>
 						</div>
 					</div>

@@ -2,6 +2,7 @@ const Validator = require("validator");
 const isEmpty = require("./is-empty");
 const validateScheduleInput = require("./schedule");
 
+
 module.exports = function validateSellInput(data) {
   let errors = validateScheduleInput(data);
   data.hinhThuc = !isEmpty(data.hinhThuc) ? data.hinhThuc : "";
