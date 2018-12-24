@@ -94,7 +94,7 @@ const SellSchema = new Schema({
   state: {
     type: String,
     required: true,
-    enum: ["NEW", "READY", "POSTED", "EXPIRED"],
+    enum: ["NEW", "STORAGE", "POSTED"],
     default: "NEW"
   },
   timePost: [

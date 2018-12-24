@@ -3,6 +3,7 @@ var router = express.Router();
 
 const Sell = require("../../models/Sell");
 const Profile = require("../../models/Profile");
+const State = require("../../constants/state");
 //middleware
 const validateSellInput = require("../../validation/sell");
 const Authentication = require("../../middlewares/Authentication");
@@ -14,7 +15,7 @@ router.get("/test", (req, res) => res.json("Sells works"));
 //@desc   Get all sells
 //@access Public
 router.get("/all", (req, res, next) => {
-  Sell.find({ state: "NEW" }) //cần sửa thành POSTED
+  Sell.find({ state: State.POSTED }) //cần sửa thành POSTED
     // .map(val => val)
     .then(sell => {
       console.log(sell);
@@ -88,7 +89,12 @@ router.get("/:id", (req, res, next) => {
     );
 });
 router.get("/", Authentication.MEMBER, (req, res) =>
-  res.render("mains/sell/postSell", { title: "POST SELL", head : req.session.user, errors : {}, info : {} })
+  res.render("mains/sell/postSell", {
+    title: "POST SELL",
+    head: req.session.user,
+    errors: {},
+    info: {}
+  })
 );
 
 //@route  POST api/sells/
@@ -134,12 +140,16 @@ router.post("/", Authentication.MEMBER, (req, res, next) => {
       menhGia: req.body.menhGia,
       idCard: req.body.idCard
     }
-
   };
   // Check Validation
   if (!isValid) {
     // Return any errors with 400 status
-    return res.render("mains/sell/postSell", { title: "POST SELL", head : req.session.user, errors : errors, info : info });
+    return res.render("mains/sell/postSell", {
+      title: "POST SELL",
+      head: req.session.user,
+      errors: errors,
+      info: info
+    });
   }
   const newSell = new Sell({
     user: req.session.user,
@@ -180,7 +190,12 @@ router.post("/", Authentication.MEMBER, (req, res, next) => {
       idCard: req.body.idCard
     }
   });
-  newSell.save().then(sell => res.render("mains/sell/detailSell", {sell : sell, head : req.session.user}));
+  newSell.save().then(sell =>
+    res.render("mains/sell/detailSell", {
+      sell: sell,
+      head: req.session.user
+    })
+  );
 });
 //@route  GET api/sells/:id
 //@desc   Get sell by id

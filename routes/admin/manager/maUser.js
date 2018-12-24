@@ -32,6 +32,26 @@ router.get("/:id", Authentication.ADMIN, (req, res, next) => {
       res.status(404).json({ noFindFounds: "No find posts found." })
     );
 });
+const ROLE = require("../../../constants/roleConstrants");
+//@route  GET admin/manager
+//@desc   Get all finds
+//@access Public
+router.post("/up/:id", Authentication.ADMIN, (req, res, next) => {
+  //Update
+  User.findOneAndUpdate(
+    { _id: req.params.id },
+    { $set: { role: ROLE.REQUIRE_ADMIN } },
+    { new: true }
+  ).then(() => res.redirect("/admin/manager/all"));
+});
+router.post("/down/:id", Authentication.ADMIN, (req, res, next) => {
+  //Update
+  User.findOneAndUpdate(
+    { _id: req.params.id },
+    { $set: { role: ROLE.REQUIRE_MEMBER } },
+    { new: true }
+  ).then(() => res.redirect("/admin/manager/all"));
+});
 //@route  DELETE admin/manager/:id
 //@desc   DELETE find by id
 //@access Public

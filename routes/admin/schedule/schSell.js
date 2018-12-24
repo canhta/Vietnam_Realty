@@ -32,6 +32,7 @@ router.get("/:id", Authentication.ADMIN, (req, res, next) => {
       res.status(404).json({ noFindFounds: "No find posts found." })
     );
 });
+const STATE = require("../../../constants/state");
 //@route  DELETE admin/manager/:id
 //@desc   DELETE find by id
 //@access Public
@@ -40,10 +41,27 @@ router.post("/delete/:id", Authentication.ADMIN, (req, res, next) => {
     return res.redirect("/admin/schedule/sells/all");
   });
 });
-router.get("/fix/:id", Authentication.ADMIN, (req, res, next) => {
+router.post("/new/:id", Authentication.ADMIN, (req, res, next) => {
+  //Update
   Sell.findOneAndUpdate(
-    { id: req.params.id },
-    { $set: { state: req.body.state } },
+    { _id: req.params.id },
+    { $set: { state: STATE.NEW } },
+    { new: true }
+  ).then(() => res.redirect("/admin/schedule/sells/all"));
+});
+router.post("/storage/:id", Authentication.ADMIN, (req, res, next) => {
+  //Update
+  Sell.findOneAndUpdate(
+    { _id: req.params.id },
+    { $set: { state: STATE.STORAGE } },
+    { new: true }
+  ).then(() => res.redirect("/admin/schedule/sells/all"));
+});
+router.post("/post/:id", Authentication.ADMIN, (req, res, next) => {
+  //Update
+  Sell.findOneAndUpdate(
+    { _id: req.params.id },
+    { $set: { state: STATE.POSTED } },
     { new: true }
   ).then(() => res.redirect("/admin/schedule/sells/all"));
 });

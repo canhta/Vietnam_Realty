@@ -5,17 +5,17 @@ const Profile = require("../../models/Profile");
 const User = require("../../models/User");
 const Authentication = require("../../middlewares/Authentication");
 const validateFindInput = require("../../validation/find");
+const State = require("../../constants/state");
 //@route  GET api/finds/test
 //@desc   Test finds route
 //@access Public
 router.get("/test", (req, res) => res.json("test FIND"));
 
-
 //@route  GET api/finds
 //@desc   Get all finds
 //@access Public
 router.get("/all", (req, res, next) => {
-  Find.find({ state: "NEW" }) //cần sửa thành POSTED
+  Find.find({ state: State.POSTED }) //cần sửa thành POSTED
     // .map(val => val)
     .then(find => {
       return res.render("mains/find/listFind", {
@@ -85,7 +85,12 @@ router.get("/:id", (req, res, next) => {
     );
 });
 router.get("/", Authentication.MEMBER, (req, res, next) =>
-  res.render("mains/find/postFind", { title: "POST FIND", head : req.session.user, errors : {}, info :{} })
+  res.render("mains/find/postFind", {
+    title: "POST FIND",
+    head: req.session.user,
+    errors: {},
+    info: {}
+  })
 );
 //@route  POST api/finds/
 //@desc   Create finds route
@@ -120,13 +125,16 @@ router.post("/", Authentication.MEMBER, (req, res, next) => {
       menhGia: req.body.menhGia,
       idCard: req.body.idCard
     }
-
   };
   // Check Validation
   if (!isValid) {
     // Return any errors with 400 status
     //res.render("mains/find/postFind", { title: "POST FIND", head : req.session.user, errors : {}, info :{} })
-    return res.render("mains/find/postFind", {head : req.session.user, errors : errors, info : info});
+    return res.render("mains/find/postFind", {
+      head: req.session.user,
+      errors: errors,
+      info: info
+    });
   }
   const newFind = new Find({
     user: req.session.user,
@@ -155,8 +163,13 @@ router.post("/", Authentication.MEMBER, (req, res, next) => {
       idCard: req.body.idCard
     }
   });
-  newFind.save().then(find =>
-     res.render("mains/find/detailFind", { find: find, title: "POST FIND", head : req.session.user })
+  newFind.save().then(
+    find =>
+      res.render("mains/find/detailFind", {
+        find: find,
+        title: "POST FIND",
+        head: req.session.user
+      })
     //res.json(find)
   );
 });
