@@ -1,13 +1,12 @@
 const express = require("express");
 var router = express.Router();
-<<<<<<< HEAD
-router.get("/", (req, res) => res.render("mains/find/postFind.ejs"));
+
+router.get("/", (req, res) => res.render("mains/home.ejs"));
 
 
 router.get("/test", (req, res) => res.render("mains/sell/detailSell"));
 
-=======
->>>>>>> master
+
 
 /* GET home page. */
 
