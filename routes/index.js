@@ -9,4 +9,7 @@ router.get("/", function(req, res, next) {
 
   res.render("mains/home", { title: "Express", user: user });
 });
+router.get("/tests", function(req, res, next) {
+  res.render("admin/listUser");
+});
 module.exports = router;

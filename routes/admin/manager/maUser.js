@@ -7,14 +7,14 @@ const User = require("../../../models/User");
 //@access Public
 router.get("/all", (req, res, next) => {
   User.find({ role: "Member" })
-    .select("role name email avatar")
     .sort({ name: -1 })
     // .sort({ date: -1 })
     .then(find => {
       // if (find.length === 0) {
       //   res.status(404).json({ noFindPost: "No find posts found." });
       // }
-      res.json(find);
+      // res.json(find);
+      return res.render("mains/admin/listUser");
     })
     .catch(err =>
       res.status(404).json({ noFindFounds: "No find posts found." })
