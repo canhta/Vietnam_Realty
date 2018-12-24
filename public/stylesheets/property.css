@@ -1370,8 +1370,8 @@ section
 {
 	width: 100%;
 	background: #3f6fce;
-	padding-top: 80px;
-	padding-bottom: 72px;
+	padding-top: 20px;
+	padding-bottom: 15px;
 }
 .footer_about_text
 {
@@ -1380,6 +1380,9 @@ section
 	font-style: italic;
 	color: #FFFFFF;
 	margin-top: 39px;
+}
+.footer_logo {
+	color: #FFFFFF;
 }
 .footer_title
 {
@@ -1444,7 +1447,7 @@ section
 }
 .footer_bar_content
 {
-	height: 97px;
+	height: 40px;
 }
 .cr
 {
