@@ -48,31 +48,21 @@
               </li>
             </ul>
           </nav>
-          <% if (locals.userID) { %>
+          <% if (locals.user) { %>
 
           <div class="phone_num ml-auto">
             <div class="phone_num_inner">
               <a href="/api/profiles/current" role="button"
-                ><span>Profile</span></a
-              >
-            </div>
-          </div>
-          <div class="phone_num ml-auto">
-            <div class="phone_num_inner">
+                ><span>Profile</span>
+              </a>
               <a href="api/users/logout" role="button"><span>Logout</span></a>
             </div>
           </div>
           <% } else { %>
           <div class="phone_num ml-auto">
             <div class="phone_num_inner">
-              <a href="/login" role="button"
-                ><span>Login</span></a
-              >
-            </div>
-          </div>
-          <div class="phone_num ml-auto">
-            <div class="phone_num_inner">
-              <a href="/register" role="button"
+              <a href="/api/users/login" role="button"><span>Login</span></a>
+              <a href="/api/users/register" role="button"
                 ><span>Register</span></a
               >
             </div>

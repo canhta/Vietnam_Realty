@@ -4,15 +4,9 @@ var router = express.Router();
 /* GET home page. */
 
 router.get("/", function(req, res, next) {
-  let userID = req.session.user;
-  console.log("--------------------" + userID + "--------------------");
+  let user = req.session.user;
+  console.log("--------------------" + user + "--------------------");
 
-  res.render("mains/home", { title: "Express", userID: userID });
+  res.render("mains/home", { title: "Express", user: user });
 });
-router.get("/login",function(req,res){
-  res.render("authentication/login")
-})
-router.get("/register",function(req,res){
-  res.render("authentication/register")
-})
 module.exports = router;
