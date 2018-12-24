@@ -16,23 +16,23 @@
         <div class="row">
           <div class="col-md-9">
             <div class=" panel-heading">
-              <h3 class="panel-title">Sheena Shrestha</h3>
+              <h3 class="panel-title"></h3>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-md-9 col-lg-4">
             <div class="card">
-              <div class="sidebar_realtor_image"><img src="images/sidebar_realtor.jpg" width="360px" height="480px" alt=""></div>
+              <div class="sidebar_realtor_image"><img src="<%= user.avatar %>" width="100%" height="auto" alt=""></div>
               <div class="sidebar_realtor_body text-center">
-                <div class="sidebar_realtor_title"><a href="#">Maria Williams</a></div>
-                <div class="sidebar_realtor_subtitle">Senior Realtor</div>
-                <div class="sidebar_realtor_phone"><span>call us: </span>652 345 3222 11</div>
+                <div class="sidebar_realtor_title"><a href="#"><%= user.name %></a></div>
+                <% if(profile.phone){ %>
+                <div class="sidebar_realtor_phone"><span>call us: </span><%= profile.phone %> </div>
+                <% } %>
               </div>
             </div>
             <div class="col-md-9  toppad  pull-right col-md-offset-3 ">
               <a href="edit.html">Edit Profile</a> &nbsp;
-              <a href="edit.html">Logout</a>
               <br>
             </div>
           </div>
@@ -40,33 +40,40 @@
             <table class="table table-user-information">
               <tbody>
                 <tr>
-                  <td>User name:</td>
-                  <td>hoangthuyen1998</td>
+                  <td>Name:</td>
+                  <td><%= user.name%></td>
                 </tr>
                 <tr>
                   <td>Birth Day:</td>
-                  <td>31/01/1998</td>
+                  <td><%= profile.dateOfBirth %></td>
                 </tr>
                 <tr>
                   <td>Gender</td>
-                  <td>Female</td>
+                  <td><%= profile.gender %></td>
                 </tr>
                 <tr>
                 <tr>
                   <td>Address</td>
-                  <td>Bắc Ninh</td>
+                  <% if(profile.adress.length>0){ %>
+                  <td><%= profile.adress[0].diachi %>, <%= profile.adress[0].quan %>, <%= profile.adress[0].thanhPho %></td>
+                  <% }else { %>
+                    <td></td>
+                    <% } %>
                 </tr>
                 <tr>
                   <td>Phone</td>
-                  <td>0386927744</td>
+                  <% if(profile.phone){ %>
+                  <td><%= profile.phone %></td>
+                  <% }else { %>
+                    <td></td>
+                    <% } %>
                 </tr>
                 <tr>
                   <td>Email</td>
-                  <td><a href="mailto:info@support.com">hoangthuyen1998@gmail.com</a></td>
+                  <td><a href=<%= user.email%>><%= user.email%></a></td>
                 </tr>
                 <td>Type Of</td>
-                <td>Company
-                </td>
+                <td><%= profile.typeOf %></td>
                 </tr>
               </tbody>
             </table>
