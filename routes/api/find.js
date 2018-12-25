@@ -152,11 +152,16 @@ router.post("/", Authentication.MEMBER, (req, res, next) => {
   });
   newFind.save().then(
     find =>
-      res.render("mains/find/detailFind", {
-        find: find,
-        title: "POST FIND",
-        head: req.session.user
-      })
+      Profile.findOne({ user: req.session.user })
+        .populate("user")
+        .then(profile => {
+          return res.render("mains/find/detailFind", {
+            find: find,
+            title: "POST FIND",
+            head: req.session.user
+          });
+        })
+
     //res.json(find)
   );
 });

@@ -181,10 +181,15 @@ router.post("/", Authentication.MEMBER, (req, res, next) => {
     }
   });
   newSell.save().then(sell =>
-    res.render("mains/sell/detailSell", {
-      sell: sell,
-      head: req.session.user
-    })
+    Profile.findOne({ user: req.session.user })
+      .populate("user")
+      .then(profile => {
+        return res.render("mains/sell/detailSell", {
+          sell: sell,
+          head: req.session.user,
+          profile: profile
+        });
+      })
   );
 });
 //@route  GET api/sells/:id
