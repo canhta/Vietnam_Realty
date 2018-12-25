@@ -35,8 +35,20 @@
             </div>
             
           </div>
+          
           <div class=" col-md-9 col-lg-8">
             <table class="table table-user-information">
+                <%
+                var monthNames = [
+                     "January", "February", "March",
+                     "April", "May", "June", "July",
+                     "August", "September", "October",
+                     "November", "December"
+                  ];
+                var d = profile.dateOfBirth.getDate();
+                var m = monthNames[profile.dateOfBirth.getMonth()];
+                var y = profile.dateOfBirth.getFullYear();
+                %>
               <tbody>
                 <tr>
                   <td>Name:</td>
@@ -44,7 +56,7 @@
                 </tr>
                 <tr>
                   <td>Birth Day:</td>
-                  <td><%= profile.dateOfBirth.toDateString() %></td>
+                  <td><%= d+ " " +m+ " " +y %></td>
                 </tr>
                 <tr>
                   <td>Gender</td>
