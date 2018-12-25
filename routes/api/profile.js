@@ -69,11 +69,15 @@ router.post("/", Authentication.MEMBER, (req, res) => {
         { $set: profileFields },
         { new: true }
       )
-        .then(profile => {
-          return res.render("mains/user/profile", {
-            profile,
-            head: req.session.user
-          });
+        .then(() => {
+          Profile.findOne({ user: req.session.user })
+            .populate("user")
+            .then(_profile => {
+              return res.render("mains/user/profile", {
+                profile: _profile,
+                head: req.session.user
+              });
+            });
         })
         .catch(err => res.json("USER: " + req.session.id + "::" + err));
     } else {
@@ -87,11 +91,15 @@ router.post("/", Authentication.MEMBER, (req, res) => {
         }
 
         // Save Profile
-        new Profile(profileFields).save().then(profile => {
-          return res.render("mains/user/profile", {
-            profile,
-            head: req.session.user
-          });
+        new Profile(profileFields).save().then(() => {
+          Profile.findOne({ user: req.session.user })
+            .populate("user")
+            .then(_profile => {
+              return res.render("mains/user/profile", {
+                profile: _profile,
+                head: req.session.user
+              });
+            });
         });
       });
     }

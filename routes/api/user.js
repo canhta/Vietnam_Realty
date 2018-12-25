@@ -19,7 +19,11 @@ router.get("/test", (req, res) => res.json({ msg: "Posts works" }));
 // //@desc   register route
 // //@access Public
 router.get("/register", (req, res, next) => {
-  res.render("authentication/register", { errors: {}, info: {}, head : req.session.user });
+  res.render("authentication/register", {
+    errors: {},
+    info: {},
+    head: req.session.user
+  });
 });
 // router.get("/register", (req, res, next) => res.json({ msg: "GET works" }));
 // // @route   GET api/users/register
@@ -38,7 +42,7 @@ router.post("/register", (req, res, next) => {
     return res.render("authentication/register", {
       errors: errors,
       info: info,
-      head : req.session.user
+      head: req.session.user
     });
   }
 
@@ -47,8 +51,8 @@ router.post("/register", (req, res, next) => {
       errors.emailExist = "Email already exists";
       return res.render("authentication/register", {
         errors: errors,
-        info: info, 
-        head : req.session.user
+        info: info,
+        head: req.session.user
       });
     } else {
       const avatar = gravatar.url(req.body.email, {
@@ -73,11 +77,18 @@ router.post("/register", (req, res, next) => {
               const newProfile = new Profile({
                 user: user.id
               });
-              newProfile.save().then(profile => {
+              newProfile.save().then(() => {
                 //User matched
                 req.session.user = user.id;
                 req.session.role = user.role;
-                return res.render("mains/user/profile", { profile: profile, head : req.session.user});
+                Profile.findOne({ user: req.session.user })
+                  .populate("user")
+                  .then(_profile => {
+                    return res.render("mains/user/profile", {
+                      profile: _profile,
+                      head: req.session.user
+                    });
+                  });
               });
             })
             .catch(err => console.log(err));
@@ -90,7 +101,11 @@ router.post("/register", (req, res, next) => {
 // @desc    Login User / Returning JWT token
 // @access  Public
 router.get("/login", (req, res, next) => {
-  res.render("authentication/login", { errors: {}, info: {}, head : req.session.user});
+  res.render("authentication/login", {
+    errors: {},
+    info: {},
+    head: req.session.user
+  });
 });
 router.post("/login", (req, res, next) => {
   const { errors, isValid } = validateLoginInput(req.body);
@@ -109,7 +124,11 @@ router.post("/login", (req, res, next) => {
   User.findOne({ email }).then(user => {
     if (!user) {
       errors.incorrect = "Tài khoản hoặc mật khẩu không chính xác";
-      return res.render("authentication/login", { errors: errors, info: info, head : req.session.user });
+      return res.render("authentication/login", {
+        errors: errors,
+        info: info,
+        head: req.session.user
+      });
     }
     //Check password
     bcrypt.compare(password, user.password, (err, same) => {
@@ -125,7 +144,7 @@ router.post("/login", (req, res, next) => {
         return res.render("authentication/login", {
           errors: errors,
           info: info,
-          head : req.session.user
+          head: req.session.user
         });
       }
       //User matched
@@ -158,4 +177,3 @@ router.get("/logout", authentication.MEMBER, (req, res, next) => {
   }
 });
 module.exports = router;
-		
