@@ -75,8 +75,8 @@
                                                 <td>
                                                     <span class="block-email"><%= sell.cost[0].gia %> <%= sell.cost[0].donVi %></span>
                                                 </td>
-                                                <td class="desc"><%= sell.timePost[0].fromPost %></td>
-                                                <td class="desc"><%= sell.timePost[0].toPost %></td>
+                                                <td class="desc"><%= sell.timePost[0].fromPost.toDateString() %></td>
+                                                <td class="desc"><%= sell.timePost[0].toPost.toDateString() %></td>
                                                 <td>
                                                     <span class="status--process"><%= sell.state %></span>
                                                 </td>

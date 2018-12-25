@@ -71,8 +71,8 @@
                                                 <% }else{ %>
                                                     <td class="desc">THUÊ</td>
                                                     <% } %>  
-                                                <td class="desc"><%= find.timePost[0].fromPost %></td>
-                                                <td class="desc"><%= find.timePost[0].toPost %></td>
+                                                <td class="desc"><%= find.timePost[0].fromPost.toDateString() %></td>
+                                                <td class="desc"><%= find.timePost[0].toPost.toDateString() %></td>
                                                 <td>
                                                     <span class="status--process"><%= find.state %></span>
                                                 </td>
