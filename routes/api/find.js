@@ -158,7 +158,8 @@ router.post("/", Authentication.MEMBER, (req, res, next) => {
           return res.render("mains/find/detailFind", {
             find: find,
             title: "POST FIND",
-            head: req.session.user
+            head: req.session.user,
+            profile: profile
           });
         })
 
