@@ -8,7 +8,9 @@
   },
   "scripts": {
     "start": "node server",
-    "dev": "nodemon server"
+    "dev": "nodemon server",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -27,9 +29,11 @@
     "morgan": "~1.9.0",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
-    "validator": "^10.8.0"
+    "validator": "^10.8.0",
+    "snyk": "^1.258.2"
   },
   "devDependencies": {
     "nodemon": "^1.18.5"
-  }
+  },
+  "snyk": true
 }
